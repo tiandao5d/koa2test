@@ -1,0 +1,182 @@
+{
+  "Ml-ss03-fu": {
+    "letter": "S",
+    "unicode": "ue001",
+    "color": "#000079",
+    "building": "Mall",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Mall-Future Seems stopped-90% Finished",
+    "name": "购物中心-已停工-完成90%"
+  },
+  "Ml-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue001",
+    "color": "#0000ff",
+    "building": "Mall",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Mall-Future Seems stopped-70% Finished",
+    "name": "购物中心-已停工-完成70%"
+  },
+  "Ml-ss24-fu": {
+    "letter": "S",
+    "unicode": "ue001",
+    "color": "#2894ff",
+    "building": "Mall",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Mall-Future Seems stopped-50% Finished",
+    "name": "购物中心-已停工-完成50%"
+  },
+  "Ml-ss25-fu": {
+    "letter": "S",
+    "unicode": "ue001",
+    "color": "#2894ff",
+    "building": "Mall",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Mall-Future Seems stopped-30% Finished",
+    "name": "购物中心-已停工-完成30%"
+  },
+  "Dp-ss03-fu": {
+    "letter": "S",
+    "unicode": "ue014",
+    "color": "#000079",
+    "building": "Department Store",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Department Store-Future Seems stopped-90% Finished",
+    "name": "百货-已停工-完成90%"
+  },
+  "Dp-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue014",
+    "color": "#0000ff",
+    "building": "Department Store",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Department Store-Future Seems stopped-70% Finished",
+    "name": "百货-已停工-完成70%"
+  },
+  "Dp-ss24-fu": {
+    "letter": "S",
+    "unicode": "ue014",
+    "color": "#2894ff",
+    "building": "Department Store",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Department Store-Future Seems stopped-50% Finished",
+    "name": "百货-已停工-完成50%"
+  },
+  "Dp-ss25-fu": {
+    "letter": "S",
+    "unicode": "ue014",
+    "color": "#2894ff",
+    "building": "Department Store",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Department Store-Future Seems stopped-30% Finished",
+    "name": "百货-已停工-完成30%"
+  },
+  "Hy-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue020",
+    "color": "#0000ff",
+    "building": "Hypermarket",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Hypermarket-Future Seems stopped-70% Finished",
+    "name": "大卖场-已停工-完成70%"
+  },
+  "Hy-ss13-fu": {
+    "letter": "S",
+    "unicode": "ue020",
+    "color": "#2894ff",
+    "building": "Hypermarket",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Hypermarket-Future Seems stopped-50% Finished",
+    "name": "大卖场-已停工-完成50%"
+  },
+  "RB-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#0000ff",
+    "building": "Retail Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Retail Building-Future Seems stopped-70% Finished",
+    "name": "商业大楼-已停工-完成70%"
+  },
+  "RB-ss13-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#2894ff",
+    "building": "Retail Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Retail Building-Future Seems stopped-50% Finished",
+    "name": "商业大楼-已停工-完成50%"
+  },
+  "OB-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#0000ff",
+    "building": "Office Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Office Building-Future Seems stopped-70% Finished",
+    "name": "写字楼商业大楼-已停工-完成70%"
+  },
+  "OB-ss13-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#2894ff",
+    "building": "Office Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Office Building-Future Seems stopped-50% Finished",
+    "name": "写字楼商业大楼-已停工-完成50%"
+  },
+  "AB-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#0000ff",
+    "building": "Apartment Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Apartment Building-Future Seems stopped-70% Finished",
+    "name": "住宅商业大楼-已停工-完成70%"
+  },
+  "AB-ss13-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#2894ff",
+    "building": "Apartment Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Apartment Building-Future Seems stopped-50% Finished",
+    "name": "住宅商业大楼-已停工-完成50%"
+  },
+  "HB-ss12-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#0000ff",
+    "building": "Hotel Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Hotel Building-Future Seems stopped-70% Finished",
+    "name": "酒店商业大楼-已停工-完成70%"
+  },
+  "HB-ss13-fu": {
+    "letter": "S",
+    "unicode": "ue027",
+    "color": "#2894ff",
+    "building": "Hotel Building",
+    "positioning": null,
+    "special": null,
+    "name_eng": "Hotel Building-Future Seems stopped-50% Finished",
+    "name": "酒店商业大楼-已停工-完成50%"
+  }
+}
