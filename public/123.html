@@ -1,110 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html ng-app="ui.bootstrap.demo" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <style>
-        canvas {
-            background: #f00;
-        }
-    </style>
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="css/bootstrap.css" rel="stylesheet" />
+    <title></title>
 
-<body>
+    <script src="js/angular.js"></script>
+    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
     <script>
-        function ccvv ( src ) {
-            return new Promise(res => {
-                var cv = document.createElement('canvas');
-                var ctx = cv.getContext('2d');
-                var img = new Image();
-                img.onload = function () {
-                    cv.width = img.width;
-                    cv.height = img.height;
-                    ctx.drawImage(img, 0, 0)
-                    res(cv);
-                }
-                img.src = src;
-            })
-        }
-        dev();
-        async function dev () {
-            let arr = ["images/001.png", "images/002.png", "images/003.png"];
-            let ps = arr.map(s => ccvv(s));
-            arr = await Promise.all(ps);
-            let e_c = 2086/1043;
-            let th = 109*e_c;
-            let trh = 37*e_c;
-            th = th + trh;
-            console.log(th, trh);
-            arr.forEach(cv => {
-                let carr = pageingCanvasFn(cv, th, trh);
-                if ( carr.length > 0 ) {
-                    carr.forEach(o => {
-                        document.body.appendChild(o)
-                    })
-                }
-            })
-        }
+        // document.querySelector('.btn-group').setAttribute('dropdown-append-to-body', 'true')
+            angular.module('ui.bootstrap.demo', ['ui.bootstrap'])
+            .controller('DropdownCtrl', function ($scope, $attrs) {
+                    // $attrs.$set('dropdownAppendToBody', 'true');
+                    let el = document.querySelector('.abc');
+                    $scope.yy = el;
 
-        function pageingCanvasFn (cv, th, trh, num = 15, maxNum = 20) {
-            let cw = cv.width;
-            let ch = cv.height;
-            // 创建抬头
-            let tobj = createCv(cw, th);
-            tobj.ctx.drawImage(cv, 0, 0, cw, tobj.h, 0, 0, cw, tobj.h);
-
-            // 创建内容
-            let bobj = createCv(cw, (ch - th));
-            bobj.ctx.drawImage(cv, 0, th, cw, bobj.h, 0, 0, cw, bobj.h);
-
-            // 内容有多少行
-            let trnum = Math.ceil(bobj.h/trh);
-            // 分多少页
-            let pnum = trnum < maxNum ? 1 : Math.ceil(trnum/num);
-            let newArr = [];
-            if ( !(pnum > 1) ) {
-                return [cv];
-            }
-
-            for ( let i = 0; i < pnum; i++ ) {
-                let ph = num*trh;
-                let y = i*ph;
-                if ( y < bobj.h ) {
-                    let h = bobj.h < (y + ph) ? (bobj.h - y) : ph;
-                    let o = createCv(cw, (th + h), tobj.cv);
-                    o.ctx.drawImage(bobj.cv, 0, y, cw, h, 0, th, cw, h);
-                    setTag(o, (`${i + 1}/${pnum}`));
-                    newArr.push(o.cv);
-                }
-            }
-
-            // 设置标签
-            // 参数：创建函数创建的canvas对象，一个字符串
-            function setTag ( o, s ) {
-                let fz = o.w * 0.01142; // 数字为元素原始宽度的12px比例进行换算
-                o.ctx.fillStyle = '#aaa';
-                o.ctx.font = (fz + "px Arial");
-                o.ctx.fillText(s, (o.w - (s.length * fz + 15)), (fz + 15)); // 加上分页标签页眉，可以知道当前是第几页
-            }
-
-            // 创建一个canvas
-            function createCv ( w, h, c ) {
-                var cv = document.createElement('canvas');
-                var ctx = cv.getContext('2d');
-                cv.width = w;
-                cv.height = h;
-                if ( c ) {
-                    ctx.drawImage(c, 0, 0);
-                }
-                return {cv, ctx, w, h};
-            }
-            return newArr
-        }
-
-    </script>
-</body>
-
-</html>
+            });
+        </script>
+    
+    </head>
+    <body>
+        <div class="abc"></div>
+        <div ng-controller="DropdownCtrl">
+            <div class="btn-group" uib-dropdown dropdown-append-to="yy" ng-init="dropdownItems=['第一项','第二项','第三项']">
+                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle >
+                    请选择 <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" uib-dropdown-menu  >
+                    <li ng-repeat="item in dropdownItems">
+                        <a href="#">{{item}}</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li ><a href="#">其他</a></li>
+                </ul>
+            </div>
+        </div>
+    </body>
+    </html>
