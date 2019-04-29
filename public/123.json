@@ -1,182 +1,411 @@
 {
-  "Ml-ss03-fu": {
-    "letter": "S",
-    "unicode": "ue001",
-    "color": "#000079",
-    "building": "Mall",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Mall-Future Seems stopped-90% Finished",
-    "name": "购物中心-已停工-完成90%"
+  "data": {
+    "took": 10,
+    "hits": {
+      "hits": [],
+      "total": 2,
+      "max_score": 0
+    },
+    "_shards": {
+      "successful": 1,
+      "total": 1,
+      "failed": 0
+    },
+    "aggregations": {
+      "agg_by_latlng": {
+        "doc_count_error_upper_bound": 0,
+        "buckets": [
+          {
+            "doc_count": 2,
+            "key": "30.663021,104.020463",
+            "venue_samples": {
+              "hits": {
+                "hits": [
+                  {
+                    "inner_hits": {
+                      "repo_store_summary": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "TopSports-s-CHN-514",
+                              "_id": "AWplGxQBixllLfXDWN7m",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "TopSports-s-CHN-514",
+                              "_score": 12.953197,
+                              "_type": "repo_store_summary",
+                              "_source": {
+                                "venue_identifier": "TopSports-s-CHN-514",
+                                "@timestamp": "2019-04-28T18:00:34.538Z",
+                                "store_count": 2,
+                                "type": "latest_repo_store_summary",
+                                "@version": "1",
+                                "last_update_time": 1531377324028
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 12.953197
+                        }
+                      },
+                      "latest_lpa_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_photo_album": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "TopSports-s-CHN-514",
+                              "_id": "AWplGwFrixllLfXDWLbK",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "TopSports-s-CHN-514",
+                              "_score": 12.953197,
+                              "_type": "latest_photo_album",
+                              "_source": {
+                                "snapshot": "20171026",
+                                "venue_identifier": "TopSports-s-CHN-514",
+                                "@timestamp": "2019-04-28T18:00:29.717Z",
+                                "sample_photos": [
+                                  {
+                                    "filepath": "df2ddcae-0347-431b-82ec-44647b636bee.jpeg",
+                                    "created_by": "keffer_xiao",
+                                    "created_at": 1508990596.535527
+                                  },
+                                  {
+                                    "filepath": "fcfc6ef0-de39-4743-aa85-9eececb6263e.jpeg",
+                                    "created_by": "keffer_xiao",
+                                    "created_at": 1508991213.978573
+                                  },
+                                  {
+                                    "filepath": "c73b69e0-2dc4-4614-a03c-e76539e2ad21.jpeg",
+                                    "created_by": "keffer_xiao",
+                                    "created_at": 1508991214.511015
+                                  }
+                                ],
+                                "type": "latest_photo_album",
+                                "id": "8f55b7cb-c991-40c9-8a2c-74b8c214de8a",
+                                "@version": "1"
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 12.953197
+                        }
+                      },
+                      "latest_ifp_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_wsa_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_skitch_ssd": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "TopSports-s-CHN-514",
+                              "_id": "540e4743-dc0c-46bc-8c0e-5f34c5d8155a",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "TopSports-s-CHN-514",
+                              "_score": 12.953197,
+                              "_type": "latest_skitch_ssd",
+                              "_source": {
+                                "venue_identifier": "TopSports-s-CHN-514",
+                                "update_time": 1509107637889,
+                                "id": "540e4743-dc0c-46bc-8c0e-5f34c5d8155a",
+                                "@version": "1",
+                                "last_update_time": 1529745373459,
+                                "photo_album_id": "0af4a617-5227-41da-ac5e-1f7715585d7f",
+                                "ccl_store_count": 16,
+                                "pirate_store_count": 0,
+                                "snapshot": "20171026",
+                                "@timestamp": "2019-04-28T18:02:23.009Z",
+                                "last_walk_time": 1529745373459,
+                                "type": "latest_skitch_ssd",
+                                "black_store_count": 0,
+                                "total_store_count": 16,
+                                "prospect_store_count": 0,
+                                "skitch_count": 1
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 12.953197
+                        }
+                      }
+                    },
+                    "_source": {
+                      "lgl_lsku": "TopSports-s-CHN-514",
+                      "lgl_biz_name": "滔搏运动",
+                      "lgl_venue_of_interest": "",
+                      "lgl_name_local": "滔搏运动",
+                      "lgl_name_local_eng": "TaoBoYunDong",
+                      "lgl_biz_name_eng": "TOPSPORTS",
+                      "lgl_ranking": "Community Leader-Parent",
+                      "lgl_category": "44-8000-mS",
+                      "venue_status": "open",
+                      "lgl_episode": "OPEN",
+                      "cluster_id": null
+                    },
+                    "_id": "TopSports-s-CHN-514",
+                    "_index": "vdr_v2_2019_04_28",
+                    "_score": 0,
+                    "_type": "bizlocation"
+                  },
+                  {
+                    "inner_hits": {
+                      "repo_store_summary": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "RHeChunTBH-v-CHN-2",
+                              "_id": "AWplGw2lixllLfXDWNWH",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "RHeChunTBH-v-CHN-2",
+                              "_score": 9.212202,
+                              "_type": "repo_store_summary",
+                              "_source": {
+                                "venue_identifier": "RHeChunTBH-v-CHN-2",
+                                "@timestamp": "2019-04-28T18:00:32.824Z",
+                                "store_count": 257,
+                                "type": "latest_repo_store_summary",
+                                "@version": "1",
+                                "last_update_time": 1556271208563
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 9.212202
+                        }
+                      },
+                      "latest_lpa_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_photo_album": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "RHeChunTBH-v-CHN-2",
+                              "_id": "AWplGvz8ixllLfXDWKrj",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "RHeChunTBH-v-CHN-2",
+                              "_score": 9.212202,
+                              "_type": "latest_photo_album",
+                              "_source": {
+                                "snapshot": "20171101",
+                                "venue_identifier": "RHeChunTBH-v-CHN-2",
+                                "@timestamp": "2019-04-28T18:00:28.573Z",
+                                "sample_photos": [
+                                  {
+                                    "filepath": "7f6c4d55-b5de-407d-a895-345f24688423.jpeg",
+                                    "created_by": "keffer_xiao",
+                                    "created_at": 1509525561.46767
+                                  },
+                                  {
+                                    "filepath": "74e80d5f-4008-4782-8069-9ec4e8e8d218.jpeg",
+                                    "created_by": "keffer_xiao",
+                                    "created_at": 1509525624.423467
+                                  }
+                                ],
+                                "type": "latest_photo_album",
+                                "id": "0af4a617-5227-41da-ac5e-1f7715585d7f",
+                                "@version": "1"
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 9.212202
+                        }
+                      },
+                      "latest_ifp_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_wsa_ssd": {
+                        "hits": {
+                          "hits": [],
+                          "total": 0,
+                          "max_score": null
+                        }
+                      },
+                      "latest_skitch_ssd": {
+                        "hits": {
+                          "hits": [
+                            {
+                              "_parent": "RHeChunTBH-v-CHN-2",
+                              "_id": "01d6d920-c19f-47da-ba01-bdd26e563cc6",
+                              "_index": "vdr_v2_2019_04_28",
+                              "_routing": "RHeChunTBH-v-CHN-2",
+                              "_score": 9.212202,
+                              "_type": "latest_skitch_ssd",
+                              "_source": {
+                                "venue_identifier": "RHeChunTBH-v-CHN-2",
+                                "update_time": 1509586761920,
+                                "id": "01d6d920-c19f-47da-ba01-bdd26e563cc6",
+                                "@version": "1",
+                                "last_update_time": 1529745314445,
+                                "photo_album_id": null,
+                                "ccl_store_count": 543,
+                                "pirate_store_count": 0,
+                                "snapshot": "20171101",
+                                "@timestamp": "2019-04-28T18:02:22.855Z",
+                                "last_walk_time": 1529745314445,
+                                "type": "latest_skitch_ssd",
+                                "black_store_count": 0,
+                                "total_store_count": 596,
+                                "prospect_store_count": 53,
+                                "skitch_count": 8
+                              }
+                            }
+                          ],
+                          "total": 1,
+                          "max_score": 9.212202
+                        }
+                      }
+                    },
+                    "_source": {
+                      "lgl_ranking": "Community Leader",
+                      "b_txt_gww": "{\"type\":\"MultiPolygon\",\"coordinates\":[[[[104.019476676211,30.6630430227175],[104.02072216303,30.6630584789065],[104.020730719483,30.663716796925],[104.020799551395,30.6637140574763],[104.020811954193,30.6639525277095],[104.020960144868,30.6639580330173],[104.020966016986,30.6640756710471],[104.021158513691,30.6640774932727],[104.021207691614,30.6630128163044],[104.020586543927,30.6624626310189],[104.01948138226,30.6624595289728],[104.019476676211,30.6630430227175]]]]}",
+                      "lgl_category": "Dp-xxxx-pr",
+                      "venue_status": "open",
+                      "lgl_episode": "INITIAL",
+                      "cluster_id": null,
+                      "lgl_lsku": "RHeChunTBH-v-CHN-2",
+                      "lgl_biz_name": "仁和春天百货",
+                      "lgl_venue_of_interest": "",
+                      "lgl_name_local": "仁和春天百货-光华店",
+                      "lgl_name_local_eng": "RenHe-GuangHuaDian",
+                      "lgl_biz_name_eng": "RenHe"
+                    },
+                    "_id": "RHeChunTBH-v-CHN-2",
+                    "_index": "vdr_v2_2019_04_28",
+                    "_score": 0,
+                    "_type": "bizlocation"
+                  }
+                ],
+                "total": 2,
+                "max_score": 1.4e-45
+              }
+            }
+          }
+        ],
+        "sum_other_doc_count": 0
+      }
+    },
+    "timed_out": false
   },
-  "Ml-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue001",
-    "color": "#0000ff",
-    "building": "Mall",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Mall-Future Seems stopped-70% Finished",
-    "name": "购物中心-已停工-完成70%"
+  "status": 200,
+  "config": {
+    "method": "POST",
+    "transformRequest": [
+      null
+    ],
+    "transformResponse": [
+      null
+    ],
+    "url": "https://api.leap.localgravity.com.cn/venue_rating/_search",
+    "data": {
+      "filter": {
+        "geo3_id": [],
+        "venue_status": [
+          "open",
+          "remodelling",
+          "future_opening",
+          "future_12",
+          "future_12_24",
+          "future_25",
+          "future_stopped",
+          "future_unknown",
+          "future_proposed"
+        ],
+        "lgl_category": [],
+        "lgl_sku": [],
+        "lgl_ranking": [
+          "Destination",
+          "Luxury Destination",
+          "F&B Destination",
+          "Lifestyle Destination",
+          "Youth Destination",
+          "District Leader",
+          "Community Leader",
+          "F&B Community",
+          "Future To Watch",
+          "#2 in Dest. Cluster",
+          "#3 in Dest. Cluster",
+          "#4 Street Side",
+          "Destination-Parent",
+          "Luxury Destination-Parent",
+          "F&B Destination-Parent",
+          "Lifestyle Destination-Parent",
+          "Youth Destination-Parent",
+          "District Leader-Parent",
+          "Community Leader-Parent",
+          "F&B Community-Parent",
+          "Future To Watch-Parent",
+          "#2 in Dest. Cluster-Parent",
+          "#3 in Dest. Cluster-Parent",
+          "#4 Street Side-Parent"
+        ],
+        "venue_group": [],
+        "open_date": [
+          null,
+          null
+        ],
+        "lgl_lsku": [],
+        "store_sku": {
+          "min_has": 0,
+          "lack_any": [],
+          "min_lack": 0,
+          "has_any": [],
+          "combine": "and"
+        },
+        "has_ifp": null,
+        "has_wsa": null,
+        "coordinate": [],
+        "total_area": [
+          null,
+          null
+        ],
+        "bbox": [
+          104.00909185409546,
+          30.65819534076165,
+          104.03183698654173,
+          30.66783938210027
+        ]
+      },
+      "coord_sys": "gww",
+      "sort": null,
+      "offset": 0,
+      "limit": 50,
+      "aggs": "point"
+    },
+    "responseType": "arraybuffer",
+    "headers": {
+      "Accept": "application/json, text/plain, */*",
+      "Content-Type": "application/json;charset=utf-8",
+      "Authorization": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJuYmYiOjE1NTY1MDY1NDQsImlkZW50aXR5IjoiYW5uYS56aGFvIiwiaWF0IjoxNTU2NTA2NTQ0LCJleHAiOjE1NTY1OTI5NDR9.6TSgvSetTGcHHXj7FP0wwl7fvJ9b-J4OHmv8a-WavmA",
+      "LG-Timestamp": 1556506661,
+      "LG-Content-Sig": "1acb33cede32876d1dab0305cdf9724ae7c96ec91d2d2f5d86370845e471f579",
+      "X-Request-From": 1
+    },
+    "cached": false
   },
-  "Ml-ss24-fu": {
-    "letter": "S",
-    "unicode": "ue001",
-    "color": "#2894ff",
-    "building": "Mall",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Mall-Future Seems stopped-50% Finished",
-    "name": "购物中心-已停工-完成50%"
-  },
-  "Ml-ss25-fu": {
-    "letter": "S",
-    "unicode": "ue001",
-    "color": "#2894ff",
-    "building": "Mall",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Mall-Future Seems stopped-30% Finished",
-    "name": "购物中心-已停工-完成30%"
-  },
-  "Dp-ss03-fu": {
-    "letter": "S",
-    "unicode": "ue014",
-    "color": "#000079",
-    "building": "Department Store",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Department Store-Future Seems stopped-90% Finished",
-    "name": "百货-已停工-完成90%"
-  },
-  "Dp-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue014",
-    "color": "#0000ff",
-    "building": "Department Store",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Department Store-Future Seems stopped-70% Finished",
-    "name": "百货-已停工-完成70%"
-  },
-  "Dp-ss24-fu": {
-    "letter": "S",
-    "unicode": "ue014",
-    "color": "#2894ff",
-    "building": "Department Store",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Department Store-Future Seems stopped-50% Finished",
-    "name": "百货-已停工-完成50%"
-  },
-  "Dp-ss25-fu": {
-    "letter": "S",
-    "unicode": "ue014",
-    "color": "#2894ff",
-    "building": "Department Store",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Department Store-Future Seems stopped-30% Finished",
-    "name": "百货-已停工-完成30%"
-  },
-  "Hy-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue020",
-    "color": "#0000ff",
-    "building": "Hypermarket",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Hypermarket-Future Seems stopped-70% Finished",
-    "name": "大卖场-已停工-完成70%"
-  },
-  "Hy-ss13-fu": {
-    "letter": "S",
-    "unicode": "ue020",
-    "color": "#2894ff",
-    "building": "Hypermarket",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Hypermarket-Future Seems stopped-50% Finished",
-    "name": "大卖场-已停工-完成50%"
-  },
-  "RB-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#0000ff",
-    "building": "Retail Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Retail Building-Future Seems stopped-70% Finished",
-    "name": "商业大楼-已停工-完成70%"
-  },
-  "RB-ss13-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#2894ff",
-    "building": "Retail Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Retail Building-Future Seems stopped-50% Finished",
-    "name": "商业大楼-已停工-完成50%"
-  },
-  "OB-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#0000ff",
-    "building": "Office Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Office Building-Future Seems stopped-70% Finished",
-    "name": "写字楼商业大楼-已停工-完成70%"
-  },
-  "OB-ss13-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#2894ff",
-    "building": "Office Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Office Building-Future Seems stopped-50% Finished",
-    "name": "写字楼商业大楼-已停工-完成50%"
-  },
-  "AB-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#0000ff",
-    "building": "Apartment Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Apartment Building-Future Seems stopped-70% Finished",
-    "name": "住宅商业大楼-已停工-完成70%"
-  },
-  "AB-ss13-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#2894ff",
-    "building": "Apartment Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Apartment Building-Future Seems stopped-50% Finished",
-    "name": "住宅商业大楼-已停工-完成50%"
-  },
-  "HB-ss12-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#0000ff",
-    "building": "Hotel Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Hotel Building-Future Seems stopped-70% Finished",
-    "name": "酒店商业大楼-已停工-完成70%"
-  },
-  "HB-ss13-fu": {
-    "letter": "S",
-    "unicode": "ue027",
-    "color": "#2894ff",
-    "building": "Hotel Building",
-    "positioning": null,
-    "special": null,
-    "name_eng": "Hotel Building-Future Seems stopped-50% Finished",
-    "name": "酒店商业大楼-已停工-完成50%"
-  }
+  "statusText": "OK"
 }

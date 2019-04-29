@@ -1,39 +1,51 @@
+
 <!DOCTYPE html>
-<html ng-app="ui.bootstrap.demo" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link href="css/bootstrap.css" rel="stylesheet" />
-    <title></title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    function trim (s) {
+      return s.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+    }
+    var a = {"LacostLive-s":"LACOSTE L!VE","ChowSSang-s":"Chow Sang Sang","Clarks-s":"Clarks","Kailas-s":"KAILAS","PumaBlaLab-s":"PUMA THE BLACK LABEL","NikeRuning-s":"Nike Running","Kipling-s":"kipling","Uniqlo-s":"UNIQLO","AJiDou-s":"AJIDOU","AapeByBape-s":"Aape BY A BATHING APE","JackWolfOl-s":"Jack Wolfskin Outlet","Chocoolate-s":":CHOCOOLATE","361du-s":"361 Degrees","HighWaveOl-s":"HIGHWAVESPORTS OUTLET","Reebok-s":"Reebok","Wagas-s":"wagas","Ecco-s":"ecco","NBASport-s":"NBA","UnderArmor-s":"UNDER ARMOUR","LiNingKids-s":"LI-NING KIDS","JordanNike-s":"JORDAN","Balabala-s":"Balabala","Osim-s":"OSIM","Izzue-s":"IZZUE","ChanelBety-s":"CHANEL Beauty","TopSports-s":"TOPSPORTS","BurgerKing-s":"BURGER KING","Sport100-s":"SPORT100","EdHardy-s":"Ed Hardy","NikeSpWear-s":"NIKE SPORTSWEAR","Lululemon-s":"lululemon","Converse-s":"CONVERSE","VeroModa-s":"VERO MODA","CharlKeith-s":"CHARLES&KEITH","Palladium-s":"Palladium","Only-s":"ONLY","PullBear-s":"PULL&BEAR","ItYouth-s":"i.t","HardyHardy-s":"Hardy Hardy","Toread-s":"TOREAD","ConverFaSt-s":"CONVERSE  FACTORY STORE","PumaKids-s":"PUMA KIDS","Shuuemura-s":"shu uemura","Origins-s":"ORIGINS","PumaSelect-s":"PUMA SELECT","Hotwind-s":"hotwind","NewBalaOut-s":"New Balance OUTLET","Timberland-s":"Timberland","PacificCof-s":"Pacific Coffee","Shoemarker-s":"Shoemarker","Rapido-s":"RAPIDO","AdidasHW-s":"adidas bag","KanSCosmet-s":"KanS","Watson-s":"watsons","ElementFsh-s":"element fresh","BenefitCos-s":"benefit","Jurlique-s":"Jurlique","Aojo-s":"aojo","DrKong-s":"DR.KONG","BanilCo-s":"banila co.","Descente-s":"DESCENTE","CostaCoffe-s":"COSTA COFFEE","TnorthFace-s":"THE NORTH FACE","NikeFWFocu-s":"Nike FW Focus","PaulFrank-s":"Paul Frank","ConverKids-s":"CONVERSE KIDS","Clinique-s":"CLINIQUE","HMMen-s":"H&M Man","Columbia-s":"Columbia","Fiyta-s":"FIYTA","NewBalaKid-s":"New Balance Kids","AdidasYoun-s":"adidas YOUNG ATHLETES","NikeGolf-s":"NIKE GOLF","6ixty8ight-s":"6IXTY 8IGHT","EtudeHouse-s":"ETUDE HOUSE","UGG-s":"UGG","TimberFaSt-s":"Timberland FACTORY STORE","Nike-s":"NIKE","Zara-s":"ZARA","KFC-s":"KFC","FjallRaven-s":"FJALLRAVEN","NikeFotbal-s":"Nike Football","JinsGlasse-s":"JINS","SLYclothes-s":"SLY","AdidasSpCo-s":"adidas SPORTSWEAR COLLECTIVE","Croquis-s":"CROQUIS","Haglofs-s":"HAGLOFS","JackWolfsk-s":"Jack Wolfskin","Loreal-s":"L'OREAL","Exit-s":"EXI.T","Moussy-s":"moussy","Denham-s":"DENHAM","CandA-s":"C&A","AdidasOrig-s":"adidas originals","Lacoste-s":"LACOSTE","Debrand-s":"DEBRAND","MassimoDut-s":"Massimo Dutti","Sulwhasoo-s":"Sulwhasoo","AdidasBask-s":"adidas basketball","Afu-s":"AFU","361kids-s":"361 Degrees Kids","TmHilfiger-s":"TOMMY HILFIGER","Pandora-s":"PANDORA","FilaKids-s":"FILA KIDS","Swatch-s":"swatch","HM-s":"H&M","Aupres-s":"AUPRES","CKWatches-s":"Calvin Klein Watches and Jewelry","NikeLab-s":"Nike Lab","AntaSports-s":"ANTA SPORTS","DairyQueen-s":"Dairy Queen","Ochirly-s":"ochirly","LiNingFaSt-s":"LI-NING FACTORY STORE","GStarRaw-s":"G-STAR RAW","Sephora-s":"SEPHORA","LacostComp-s":"LACOSTE Composite","SkecherOul-s":"SKECHERS OUTLET","Belle-s":"BeLLE","Swarovski-s":"SWAROVSKI","Nome-s":"NOME","Pechoin-s":"Pechoin","NikeKicLou-s":"NIKE KICKS LOUNGE","Chando-s":"CHANDO","Coach-s":"COACH","CKUnderwer-s":"Calvin Klein underwear","Muji-s":"MUJI","15Mins-s":":15MINS","EdHardyX-s":"Ed Hardy X","Geox-s":"GEOX","BobbiBrown-s":"BOBBI BROWN","KolonSport-s":"KOLON SPORT","Gillivo-s":"GILLIVO","CKPlatinum-s":"Calvin Klein Platinum","Agatha-s":"AGATHA","Heekcaa-s":"HEYTEA","PoloRalLau-s":"POLO RALPH LAUREN","NikeBag-s":"Nike Bag","UAYouth-s":"UNDER ARMOUR YOUTH","Northland-s":"NORTHLAND","AimerKids-s":"Aimer kids","HaagenDazs-s":"Haagen-Dazs","AdidasInfa-s":"Adidas Infant","ColumbaOut-s":"Columbia Outlet","Evisu-s":"EVISU","NewBalance-s":"New Balance","Joma-s":"Joma","Adidasrunn-s":"adidas running","Herborist-s":"HERBORIST","ArmaniExch-s":"ARMANI EXCHANGE","BreadTalk-s":"BreadTalk","MaxFactor-s":"MAX FACTOR","Patagonia-s":"patagonia","AdidasFO-s":"adidas Factory Outlet","Bershka-s":"Bershka","VansShoes-s":"VANS","ArcTryx-s":"ARC'TERYX","CKJeans-s":"Calvin Klein Jeans","JucyJudy-s":"JUCY JUDY","Adidas-s":"adidas","MJstyle-s":"MJStyle","Hconnect-s":"H:CONNECT","NiceClaup-s":"one after another NICE CLAUP","PizzaHut-s":"Pizza Hut","Asics-s":"ASICS","LiNing-s":"LI-NING","Marubi-s":"MARUBI","NikeAthDep-s":"Nike Athletic Dept.","SecretReci-s":"Secret Recipe","MAC-s":"MAC","WhooCosmet-s":"Whoo","McDonalds-s":"McDonald's","HighWaveSp-s":"HIGHWAVESPORTS","Iceason-s":"iceason","Dyson-s":"dyson","Yysports-s":"YY SPORTS","Loccitane-s":"L'OCCITANE","AdidasFtba-s":"adidas football","FilaFusion-s":"FILA FUSION","AnTa-s":"ANTA","NikeBaskeb-s":"Nike Basketball","UrbanRevo-s":"URBAN REVIVO","Aigle-s":"AIGLE","PangGeLia-s":"PangGeLiaRouXieBao","Laneige-s":"LANEIGE","AdidasTerx-s":"adidas Terrex","Champion-s":"Champion","Fila-s":"FILA","Furla-s":"FURLA","MOCo-s":"MO&Co.","Maybelline-s":"MAYBELLINE","SimpleLivg-s":"SIMPLE LIVING","Kiehls-s":"Kiehl's","It-s":"I.T","Trendiano-s":"TRENDIANO","AntaDisSto-s":"ANTA Discount Store","Carhartt-s":"carhartt","MissSixty-s":"MISS SIXTY","MichaelKos-s":"MICHAEL KORS","ApmMonaco-s":"apm MONACO","MichlKosAc-s":"MICHAEL KORS Accessories","361DFaOuSt-s":"361 Degrees Factory Outlets Store","JackJones-s":"JACK&JONES","AdidasNEO-s":"adidas NEO","Lee-s":"Lee","BlackYak-s":"BLACK YAK","Gap-s":"GAP","AdidasFw-s":"adidas footwear","ArmaniJean-s":"ARMANI JEANS","HoneymoonD-s":"Honeymoon Dessert","OnitsukaTr-s":"Onitsuka Tiger","MCM-s":"MCM","AgnesB-s":"agnes b.","PumaOutlet-s":"PUMA OUTLET","Starbucks-s":"STARBUCKS","MJS-s":"MJS","Puma-s":"PUMA","NikeWomen-s":"NIKE WOMEN","NikeKids-s":"Nike Kids","FreshCosmt-s":"fresh","Innisfree-s":"innisfree","HushPuppie-s":"Hush Puppies","Dicos-s":"dicos","Olay-s":"OLAY","AdidasWome-s":"adidas women","NikeYngAth-s":"NIKE YOUNG ATHLETES","ProyaBLY-s":"PROYA","NikeFOtlet-s":"NIKE FACTORY OUTLET","AdidasKids-s":"adidas Kids","Beanpole-s":"BEANPOLE","FilaOutlet-s":"FILA OUTLET","Carslan-s":"Carslan","TastyRst-s":"TASTy","Skechers-s":"SKECHERS"}
+    var b = null;
+    var c = `
+    CKJeans-s
+CharlKeith-s
+Sephora-s
+Zara-s
+Fila-s
+FilaOutlet-s
+FilaFusion-s
+TmHilfiger-s
+ApmMonaco-s
+Champion-s
+HM-s
+UrbanRevo-s
+Uniqlo-s
+JackJones-s
+Ochirly-s
+Only-s
+VeroModa-s
+Coach-s
+MichlKosAc-s
+MichaelKos-s
 
-    <script src="js/angular.js"></script>
-    <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
-    <script>
-        // document.querySelector('.btn-group').setAttribute('dropdown-append-to-body', 'true')
-            angular.module('ui.bootstrap.demo', ['ui.bootstrap'])
-            .controller('DropdownCtrl', function ($scope, $attrs) {
-                    // $attrs.$set('dropdownAppendToBody', 'true');
-                    let el = document.querySelector('.abc');
-                    $scope.yy = el;
-
-            });
-        </script>
-    
-    </head>
-    <body>
-        <div class="abc"></div>
-        <div ng-controller="DropdownCtrl">
-            <div class="btn-group" uib-dropdown dropdown-append-to="yy" ng-init="dropdownItems=['第一项','第二项','第三项']">
-                <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle >
-                    请选择 <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" uib-dropdown-menu  >
-                    <li ng-repeat="item in dropdownItems">
-                        <a href="#">{{item}}</a>
-                    </li>
-                    <li class="divider"></li>
-                    <li ><a href="#">其他</a></li>
-                </ul>
-            </div>
-        </div>
-    </body>
-    </html>
+    `
+    b = c.split('\n').map(s => {
+      s = trim(s);
+      if ( s.indexOf('-s') > 0 ) {
+        return a[s] || s
+      }
+      return s;
+    })
+    b = b.filter(s => !!s)
+    console.log(JSON.stringify(b))
+</script>
+</body>
+</html>
