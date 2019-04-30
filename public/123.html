@@ -9,32 +9,40 @@
 </head>
 <body>
   <script>
+    var a = getKV();
     function trim (s) {
       return s.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
     }
-    var a = {"LacostLive-s":"LACOSTE L!VE","ChowSSang-s":"Chow Sang Sang","Clarks-s":"Clarks","Kailas-s":"KAILAS","PumaBlaLab-s":"PUMA THE BLACK LABEL","NikeRuning-s":"Nike Running","Kipling-s":"kipling","Uniqlo-s":"UNIQLO","AJiDou-s":"AJIDOU","AapeByBape-s":"Aape BY A BATHING APE","JackWolfOl-s":"Jack Wolfskin Outlet","Chocoolate-s":":CHOCOOLATE","361du-s":"361 Degrees","HighWaveOl-s":"HIGHWAVESPORTS OUTLET","Reebok-s":"Reebok","Wagas-s":"wagas","Ecco-s":"ecco","NBASport-s":"NBA","UnderArmor-s":"UNDER ARMOUR","LiNingKids-s":"LI-NING KIDS","JordanNike-s":"JORDAN","Balabala-s":"Balabala","Osim-s":"OSIM","Izzue-s":"IZZUE","ChanelBety-s":"CHANEL Beauty","TopSports-s":"TOPSPORTS","BurgerKing-s":"BURGER KING","Sport100-s":"SPORT100","EdHardy-s":"Ed Hardy","NikeSpWear-s":"NIKE SPORTSWEAR","Lululemon-s":"lululemon","Converse-s":"CONVERSE","VeroModa-s":"VERO MODA","CharlKeith-s":"CHARLES&KEITH","Palladium-s":"Palladium","Only-s":"ONLY","PullBear-s":"PULL&BEAR","ItYouth-s":"i.t","HardyHardy-s":"Hardy Hardy","Toread-s":"TOREAD","ConverFaSt-s":"CONVERSE  FACTORY STORE","PumaKids-s":"PUMA KIDS","Shuuemura-s":"shu uemura","Origins-s":"ORIGINS","PumaSelect-s":"PUMA SELECT","Hotwind-s":"hotwind","NewBalaOut-s":"New Balance OUTLET","Timberland-s":"Timberland","PacificCof-s":"Pacific Coffee","Shoemarker-s":"Shoemarker","Rapido-s":"RAPIDO","AdidasHW-s":"adidas bag","KanSCosmet-s":"KanS","Watson-s":"watsons","ElementFsh-s":"element fresh","BenefitCos-s":"benefit","Jurlique-s":"Jurlique","Aojo-s":"aojo","DrKong-s":"DR.KONG","BanilCo-s":"banila co.","Descente-s":"DESCENTE","CostaCoffe-s":"COSTA COFFEE","TnorthFace-s":"THE NORTH FACE","NikeFWFocu-s":"Nike FW Focus","PaulFrank-s":"Paul Frank","ConverKids-s":"CONVERSE KIDS","Clinique-s":"CLINIQUE","HMMen-s":"H&M Man","Columbia-s":"Columbia","Fiyta-s":"FIYTA","NewBalaKid-s":"New Balance Kids","AdidasYoun-s":"adidas YOUNG ATHLETES","NikeGolf-s":"NIKE GOLF","6ixty8ight-s":"6IXTY 8IGHT","EtudeHouse-s":"ETUDE HOUSE","UGG-s":"UGG","TimberFaSt-s":"Timberland FACTORY STORE","Nike-s":"NIKE","Zara-s":"ZARA","KFC-s":"KFC","FjallRaven-s":"FJALLRAVEN","NikeFotbal-s":"Nike Football","JinsGlasse-s":"JINS","SLYclothes-s":"SLY","AdidasSpCo-s":"adidas SPORTSWEAR COLLECTIVE","Croquis-s":"CROQUIS","Haglofs-s":"HAGLOFS","JackWolfsk-s":"Jack Wolfskin","Loreal-s":"L'OREAL","Exit-s":"EXI.T","Moussy-s":"moussy","Denham-s":"DENHAM","CandA-s":"C&A","AdidasOrig-s":"adidas originals","Lacoste-s":"LACOSTE","Debrand-s":"DEBRAND","MassimoDut-s":"Massimo Dutti","Sulwhasoo-s":"Sulwhasoo","AdidasBask-s":"adidas basketball","Afu-s":"AFU","361kids-s":"361 Degrees Kids","TmHilfiger-s":"TOMMY HILFIGER","Pandora-s":"PANDORA","FilaKids-s":"FILA KIDS","Swatch-s":"swatch","HM-s":"H&M","Aupres-s":"AUPRES","CKWatches-s":"Calvin Klein Watches and Jewelry","NikeLab-s":"Nike Lab","AntaSports-s":"ANTA SPORTS","DairyQueen-s":"Dairy Queen","Ochirly-s":"ochirly","LiNingFaSt-s":"LI-NING FACTORY STORE","GStarRaw-s":"G-STAR RAW","Sephora-s":"SEPHORA","LacostComp-s":"LACOSTE Composite","SkecherOul-s":"SKECHERS OUTLET","Belle-s":"BeLLE","Swarovski-s":"SWAROVSKI","Nome-s":"NOME","Pechoin-s":"Pechoin","NikeKicLou-s":"NIKE KICKS LOUNGE","Chando-s":"CHANDO","Coach-s":"COACH","CKUnderwer-s":"Calvin Klein underwear","Muji-s":"MUJI","15Mins-s":":15MINS","EdHardyX-s":"Ed Hardy X","Geox-s":"GEOX","BobbiBrown-s":"BOBBI BROWN","KolonSport-s":"KOLON SPORT","Gillivo-s":"GILLIVO","CKPlatinum-s":"Calvin Klein Platinum","Agatha-s":"AGATHA","Heekcaa-s":"HEYTEA","PoloRalLau-s":"POLO RALPH LAUREN","NikeBag-s":"Nike Bag","UAYouth-s":"UNDER ARMOUR YOUTH","Northland-s":"NORTHLAND","AimerKids-s":"Aimer kids","HaagenDazs-s":"Haagen-Dazs","AdidasInfa-s":"Adidas Infant","ColumbaOut-s":"Columbia Outlet","Evisu-s":"EVISU","NewBalance-s":"New Balance","Joma-s":"Joma","Adidasrunn-s":"adidas running","Herborist-s":"HERBORIST","ArmaniExch-s":"ARMANI EXCHANGE","BreadTalk-s":"BreadTalk","MaxFactor-s":"MAX FACTOR","Patagonia-s":"patagonia","AdidasFO-s":"adidas Factory Outlet","Bershka-s":"Bershka","VansShoes-s":"VANS","ArcTryx-s":"ARC'TERYX","CKJeans-s":"Calvin Klein Jeans","JucyJudy-s":"JUCY JUDY","Adidas-s":"adidas","MJstyle-s":"MJStyle","Hconnect-s":"H:CONNECT","NiceClaup-s":"one after another NICE CLAUP","PizzaHut-s":"Pizza Hut","Asics-s":"ASICS","LiNing-s":"LI-NING","Marubi-s":"MARUBI","NikeAthDep-s":"Nike Athletic Dept.","SecretReci-s":"Secret Recipe","MAC-s":"MAC","WhooCosmet-s":"Whoo","McDonalds-s":"McDonald's","HighWaveSp-s":"HIGHWAVESPORTS","Iceason-s":"iceason","Dyson-s":"dyson","Yysports-s":"YY SPORTS","Loccitane-s":"L'OCCITANE","AdidasFtba-s":"adidas football","FilaFusion-s":"FILA FUSION","AnTa-s":"ANTA","NikeBaskeb-s":"Nike Basketball","UrbanRevo-s":"URBAN REVIVO","Aigle-s":"AIGLE","PangGeLia-s":"PangGeLiaRouXieBao","Laneige-s":"LANEIGE","AdidasTerx-s":"adidas Terrex","Champion-s":"Champion","Fila-s":"FILA","Furla-s":"FURLA","MOCo-s":"MO&Co.","Maybelline-s":"MAYBELLINE","SimpleLivg-s":"SIMPLE LIVING","Kiehls-s":"Kiehl's","It-s":"I.T","Trendiano-s":"TRENDIANO","AntaDisSto-s":"ANTA Discount Store","Carhartt-s":"carhartt","MissSixty-s":"MISS SIXTY","MichaelKos-s":"MICHAEL KORS","ApmMonaco-s":"apm MONACO","MichlKosAc-s":"MICHAEL KORS Accessories","361DFaOuSt-s":"361 Degrees Factory Outlets Store","JackJones-s":"JACK&JONES","AdidasNEO-s":"adidas NEO","Lee-s":"Lee","BlackYak-s":"BLACK YAK","Gap-s":"GAP","AdidasFw-s":"adidas footwear","ArmaniJean-s":"ARMANI JEANS","HoneymoonD-s":"Honeymoon Dessert","OnitsukaTr-s":"Onitsuka Tiger","MCM-s":"MCM","AgnesB-s":"agnes b.","PumaOutlet-s":"PUMA OUTLET","Starbucks-s":"STARBUCKS","MJS-s":"MJS","Puma-s":"PUMA","NikeWomen-s":"NIKE WOMEN","NikeKids-s":"Nike Kids","FreshCosmt-s":"fresh","Innisfree-s":"innisfree","HushPuppie-s":"Hush Puppies","Dicos-s":"dicos","Olay-s":"OLAY","AdidasWome-s":"adidas women","NikeYngAth-s":"NIKE YOUNG ATHLETES","ProyaBLY-s":"PROYA","NikeFOtlet-s":"NIKE FACTORY OUTLET","AdidasKids-s":"adidas Kids","Beanpole-s":"BEANPOLE","FilaOutlet-s":"FILA OUTLET","Carslan-s":"Carslan","TastyRst-s":"TASTy","Skechers-s":"SKECHERS"}
     var b = null;
     var c = `
-    CKJeans-s
-CharlKeith-s
-Sephora-s
-Zara-s
-Fila-s
-FilaOutlet-s
+    PumaSelect-s
+Rapido-s
+DrMartens-s
+CKPerformn-s
+LacostComp-s
+Croquis-s
+JordanNike-s
+Descente-s
+UnderArmor-s
+FjallRaven-s
+AapeByBape-s
+TommyJeans-s
+EccoMen-s
+Geox-s
+Evisu-s
 FilaFusion-s
-TmHilfiger-s
-ApmMonaco-s
-Champion-s
-HM-s
-UrbanRevo-s
-Uniqlo-s
-JackJones-s
-Ochirly-s
-Only-s
-VeroModa-s
-Coach-s
-MichlKosAc-s
-MichaelKos-s
+PumaBlaLab-s
+TheShoeBar-s
+NikeKicLou-s
+Aigle-s
+ArcTryx-s
+Superdry-s
+Palladium-s
+Converse-s
+MLB-s
+JackWolfsk-s
+CKJeans-s
+AdidasOrig-s
 
     `
     b = c.split('\n').map(s => {
@@ -45,7 +53,373 @@ MichaelKos-s
       return s;
     })
     b = b.filter(s => !!s)
-    console.log(JSON.stringify(b))
+    document.body.innerHTML = JSON.stringify(b)
+    // console.log(JSON.stringify(b))
+function getKV () {
+  var a = [
+
+["Chow Sang Sang","ChowSSang-s"],
+["Clarks","Clarks-s"],
+["KAILAS","Kailas-s"],
+["PUMA THE BLACK LABEL","PumaBlaLab-s"],
+["Nike Running","NikeRuning-s"],
+["kipling","Kipling-s"],
+["UNIQLO","Uniqlo-s"],
+["AJIDOU","AJiDou-s"],
+["Aape BY A BATHING APE","AapeByBape-s"],
+["Jack Wolfskin Outlet","JackWolfOl-s"],
+[":CHOCOOLATE","Chocoolate-s"],
+["361 Degrees","361du-s"],
+["HIGHWAVESPORTS OUTLET","HighWaveOl-s"],
+["Reebok","Reebok-s"],
+["wagas","Wagas-s"],
+["ecco","Ecco-s"],
+["NBA","NBASport-s"],
+["UNDER ARMOUR","UnderArmor-s"],
+["LI-NING KIDS","LiNingKids-s"],
+["JORDAN","JordanNike-s"],
+["Balabala","Balabala-s"],
+["OSIM","Osim-s"],
+["IZZUE","Izzue-s"],
+["CHANEL Beauty","ChanelBety-s"],
+["TOPSPORTS","TopSports-s"],
+["BURGER KING","BurgerKing-s"],
+["SPORT100","Sport100-s"],
+["Ed Hardy","EdHardy-s"],
+["NIKE SPORTSWEAR","NikeSpWear-s"],
+["lululemon","Lululemon-s"],
+["CONVERSE","Converse-s"],
+["VERO MODA","VeroModa-s"],
+["CHARLES&KEITH","CharlKeith-s"],
+["Palladium","Palladium-s"],
+["ONLY","Only-s"],
+["PULL&BEAR","PullBear-s"],
+["i.t","ItYouth-s"],
+["Hardy Hardy","HardyHardy-s"],
+["TOREAD","Toread-s"],
+["CONVERSE  FACTORY STORE","ConverFaSt-s"],
+["PUMA KIDS","PumaKids-s"],
+["shu uemura","Shuuemura-s"],
+["ORIGINS","Origins-s"],
+["PUMA SELECT","PumaSelect-s"],
+["hotwind","Hotwind-s"],
+["New Balance OUTLET","NewBalaOut-s"],
+["Timberland","Timberland-s"],
+["Pacific Coffee","PacificCof-s"],
+["Shoemarker","Shoemarker-s"],
+["RAPIDO","Rapido-s"],
+["adidas bag","AdidasHW-s"],
+["KanS","KanSCosmet-s"],
+["watsons","Watson-s"],
+["element fresh","ElementFsh-s"],
+["benefit","BenefitCos-s"],
+["Jurlique","Jurlique-s"],
+["aojo","Aojo-s"],
+["DR.KONG","DrKong-s"],
+["banila co.","BanilCo-s"],
+["DESCENTE","Descente-s"],
+["COSTA COFFEE","CostaCoffe-s"],
+["THE NORTH FACE","TnorthFace-s"],
+["Nike FW Focus","NikeFWFocu-s"],
+["Paul Frank","PaulFrank-s"],
+["CONVERSE KIDS","ConverKids-s"],
+["CLINIQUE","Clinique-s"],
+["H&M Man","HMMen-s"],
+["Columbia","Columbia-s"],
+["FIYTA","Fiyta-s"],
+["New Balance Kids","NewBalaKid-s"],
+["adidas YOUNG ATHLETES","AdidasYoun-s"],
+["NIKE GOLF","NikeGolf-s"],
+["6IXTY 8IGHT","6ixty8ight-s"],
+["ETUDE HOUSE","EtudeHouse-s"],
+["UGG","UGG-s"],
+["Timberland FACTORY STORE","TimberFaSt-s"],
+["NIKE","Nike-s"],
+["ZARA","Zara-s"],
+["KFC","KFC-s"],
+["FJALLRAVEN","FjallRaven-s"],
+["Nike Football","NikeFotbal-s"],
+["JINS","JinsGlasse-s"],
+["SLY","SLYclothes-s"],
+["adidas SPORTSWEAR COLLECTIVE","AdidasSpCo-s"],
+["CROQUIS","Croquis-s"],
+["HAGLOFS","Haglofs-s"],
+["Jack Wolfskin","JackWolfsk-s"],
+["L'OREAL","Loreal-s"],
+["EXI.T","Exit-s"],
+["moussy","Moussy-s"],
+["DENHAM","Denham-s"],
+["C&A","CandA-s"],
+["adidas originals","AdidasOrig-s"],
+["LACOSTE","Lacoste-s"],
+["DEBRAND","Debrand-s"],
+["Massimo Dutti","MassimoDut-s"],
+["Sulwhasoo","Sulwhasoo-s"],
+["adidas basketball","AdidasBask-s"],
+["AFU","Afu-s"],
+["361 Degrees Kids","361kids-s"],
+["TOMMY HILFIGER","TmHilfiger-s"],
+["PANDORA","Pandora-s"],
+["FILA KIDS","FilaKids-s"],
+["swatch","Swatch-s"],
+["H&M","HM-s"],
+["AUPRES","Aupres-s"],
+["Calvin Klein Watches and Jewelry","CKWatches-s"],
+["Nike Lab","NikeLab-s"],
+["ANTA SPORTS","AntaSports-s"],
+["Dairy Queen","DairyQueen-s"],
+["ochirly","Ochirly-s"],
+["LI-NING FACTORY STORE","LiNingFaSt-s"],
+["G-STAR RAW","GStarRaw-s"],
+["SEPHORA","Sephora-s"],
+["LACOSTE Composite","LacostComp-s"],
+["SKECHERS OUTLET","SkecherOul-s"],
+["BeLLE","Belle-s"],
+["SWAROVSKI","Swarovski-s"],
+["NOME","Nome-s"],
+["Pechoin","Pechoin-s"],
+["NIKE KICKS LOUNGE","NikeKicLou-s"],
+["CHANDO","Chando-s"],
+["COACH","Coach-s"],
+["Calvin Klein underwear","CKUnderwer-s"],
+["MUJI","Muji-s"],
+[":15MINS","15Mins-s"],
+["Ed Hardy X","EdHardyX-s"],
+["GEOX","Geox-s"],
+["BOBBI BROWN","BobbiBrown-s"],
+["KOLON SPORT","KolonSport-s"],
+["GILLIVO","Gillivo-s"],
+["Calvin Klein Platinum","CKPlatinum-s"],
+["AGATHA","Agatha-s"],
+["HEYTEA","Heekcaa-s"],
+["POLO RALPH LAUREN","PoloRalLau-s"],
+["Nike Bag","NikeBag-s"],
+["UNDER ARMOUR YOUTH","UAYouth-s"],
+["NORTHLAND","Northland-s"],
+["Aimer kids","AimerKids-s"],
+["Haagen-Dazs","HaagenDazs-s"],
+["Adidas Infant","AdidasInfa-s"],
+["Columbia Outlet","ColumbaOut-s"],
+["EVISU","Evisu-s"],
+["New Balance","NewBalance-s"],
+["Joma","Joma-s"],
+["adidas running","Adidasrunn-s"],
+["HERBORIST","Herborist-s"],
+["ARMANI EXCHANGE","ArmaniExch-s"],
+["BreadTalk","BreadTalk-s"],
+["MAX FACTOR","MaxFactor-s"],
+["patagonia","Patagonia-s"],
+["adidas Factory Outlet","AdidasFO-s"],
+["Bershka","Bershka-s"],
+["VANS","VansShoes-s"],
+["ARC'TERYX","ArcTryx-s"],
+["Calvin Klein Jeans","CKJeans-s"],
+["JUCY JUDY","JucyJudy-s"],
+["adidas","Adidas-s"],
+["MJStyle","MJstyle-s"],
+["H:CONNECT","Hconnect-s"],
+["one after another NICE CLAUP","NiceClaup-s"],
+["Pizza Hut","PizzaHut-s"],
+["ASICS","Asics-s"],
+["LI-NING","LiNing-s"],
+["MARUBI","Marubi-s"],
+["Nike Athletic Dept.","NikeAthDep-s"],
+["Secret Recipe","SecretReci-s"],
+["MAC","MAC-s"],
+["Whoo","WhooCosmet-s"],
+["McDonald's","McDonalds-s"],
+["HIGHWAVESPORTS","HighWaveSp-s"],
+["iceason","Iceason-s"],
+["dyson","Dyson-s"],
+["YY SPORTS","Yysports-s"],
+["L'OCCITANE","Loccitane-s"],
+["adidas football","AdidasFtba-s"],
+["FILA FUSION","FilaFusion-s"],
+["ANTA","AnTa-s"],
+["Nike Basketball","NikeBaskeb-s"],
+["URBAN REVIVO","UrbanRevo-s"],
+["AIGLE","Aigle-s"],
+["PangGeLiaRouXieBao","PangGeLia-s"],
+["LANEIGE","Laneige-s"],
+["adidas Terrex","AdidasTerx-s"],
+["Champion","Champion-s"],
+["FILA","Fila-s"],
+["FURLA","Furla-s"],
+["MO&Co.","MOCo-s"],
+["MAYBELLINE","Maybelline-s"],
+["SIMPLE LIVING","SimpleLivg-s"],
+["Kiehl's","Kiehls-s"],
+["I.T","It-s"],
+["TRENDIANO","Trendiano-s"],
+["ANTA Discount Store","AntaDisSto-s"],
+["carhartt","Carhartt-s"],
+["MISS SIXTY","MissSixty-s"],
+["MICHAEL KORS","MichaelKos-s"],
+["apm MONACO","ApmMonaco-s"],
+["MICHAEL KORS Accessories","MichlKosAc-s"],
+["361 Degrees Factory Outlets Store","361DFaOuSt-s"],
+["JACK&JONES","JackJones-s"],
+["adidas NEO","AdidasNEO-s"],
+["Lee","Lee-s"],
+["BLACK YAK","BlackYak-s"],
+["GAP","Gap-s"],
+["adidas footwear","AdidasFw-s"],
+["ARMANI JEANS","ArmaniJean-s"],
+["Honeymoon Dessert","HoneymoonD-s"],
+["Onitsuka Tiger","OnitsukaTr-s"],
+["MCM","MCM-s"],
+["agnes b.","AgnesB-s"],
+["PUMA OUTLET","PumaOutlet-s"],
+["STARBUCKS","Starbucks-s"],
+["MJS","MJS-s"],
+["PUMA","Puma-s"],
+["NIKE WOMEN","NikeWomen-s"],
+["Nike Kids","NikeKids-s"],
+["fresh","FreshCosmt-s"],
+["innisfree","Innisfree-s"],
+["Hush Puppies","HushPuppie-s"],
+["dicos","Dicos-s"],
+["OLAY","Olay-s"],
+["adidas women","AdidasWome-s"],
+["NIKE YOUNG ATHLETES","NikeYngAth-s"],
+["PROYA","ProyaBLY-s"],
+["NIKE FACTORY OUTLET","NikeFOtlet-s"],
+["adidas Kids","AdidasKids-s"],
+["BEANPOLE","Beanpole-s"],
+["FILA OUTLET","FilaOutlet-s"],
+["Carslan","Carslan-s"],
+["TASTy","TastyRst-s"],
+["SKECHERS","Skechers-s"],
+
+
+["PumaSelect-s","PUMA SELECT"],
+["Rapido-s","RAPIDO"],
+["DrMartens-s","Dr.Martens"],
+["CKPerformn-s","Calvin Klein PERFORMANCE"],
+["LacostComp-s","LACOSTE Composite"],
+["Croquis-s","CROQUIS"],
+["JordanNike-s","JORDAN"],
+["Descente-s","DESCENTE"],
+["UnderArmor-s","UNDER ARMOUR"],
+["FjallRaven-s","FJALLRAVEN"],
+["AapeByBape-s","Aape BY A BATHING APE"],
+["TommyJeans-s","TOMMY JEANS"],
+["EccoMen-s","ecco Men"],
+["Geox-s","GEOX"],
+["Evisu-s","EVISU"],
+["FilaFusion-s","FILA FUSION"],
+["PumaBlaLab-s","PUMA THE BLACK LABEL"],
+["TheShoeBar-s","THE SHOES BAR"],
+["NikeKicLou-s","NIKE KICKS LOUNGE"],
+["Aigle-s","AIGLE"],
+["ArcTryx-s","ARC'TERYX"],
+["Superdry-s","Superdry"],
+["Palladium-s","Palladium"],
+["Converse-s","CONVERSE"],
+["MLB-s","MLB"],
+["JackWolfsk-s","Jack Wolfskin"],
+["CKJeans-s","Calvin Klein Jeans"],
+["AdidasOrig-s","adidas originals"],
+["Lee-s","Lee"],
+["VansShoes-s","VANS"],
+["TnorthFace-s","THE NORTH FACE"],
+["Adidas-s","adidas"],
+["OnitsukaTr-s","Onitsuka Tiger"],
+["Fila-s","FILA"],
+["NewBalance-s","New Balance"],
+["Puma-s","PUMA"],
+["LeCoqsport-s","le coq sportif"],
+["Champion-s","Champion"],
+["NikeSpWear-s","NIKE SPORTSWEAR"],
+["Clarks-s","Clarks"],
+["Skechers-s","SKECHERS"],
+["Cat-s","CAT"],
+["Asics-s","ASICS"],
+["Nautica-s","NAUTICA"],
+["Dickies-s","Dickies"],
+["Nike-s","NIKE"],
+["KolonSport-s","KOLON SPORT"],
+["AdidasTerx-s","adidas Terrex"],
+["Columbia-s","Columbia"],
+["Kailas-s","KAILAS"],
+["Speedo-s","speedo"],
+["Arena-s","arena"],
+["Reebok-s","Reebok"],
+["LacostFotw-s","LACOSTE Footwear"],
+["ClarksOrig-s","Clarks ORIGINALS"],
+["UGG-s","UGG"],
+["Ecco-s","ecco"],
+["Zara-s","ZARA"],
+["AbercFitch-s","Abercrombie&Fitch"],
+["MassimoDut-s","Massimo Dutti"],
+["Hollister-s","HOLLISTER"],
+["Uniqlo-s","UNIQLO"],
+["Muji-s","MUJI"],
+["HM-s","H&M"],
+["Guess-s","GUESS"],
+["Gap-s","GAP"],
+["SimpleLivg-s","SIMPLE LIVING"],
+["Levis-s","Levi's"],
+["CharlKeith-s","CHARLES&KEITH"],
+["HiPanda-s","HI PANDA"],
+["MasferSU-s","Marisfrolg.SU"],
+["BoyLondon-s","BOY LONDON"],
+["Beanpole-s","BEANPOLE"],
+["ItYouth-s","i.t"],
+["ArmaniExch-s","ARMANI EXCHANGE"],
+["GStarRaw-s","G-STAR RAW"],
+["Lacoste-s","LACOSTE"],
+["FredPerry-s","FRED PERRY"],
+["Diesel-s","DIESEL"],
+["Lululemon-s","lululemon"],
+["TmHilfiger-s","TOMMY HILFIGER"],
+["JNBY-s","JNBY"],
+["CKPlatinum-s","Calvin Klein Platinum"],
+["Gant-s","GANT"],
+["JLindeberg-s","J.LINDEBERG"],
+["FivePlus-s","Five Plus"],
+["Ochirly-s","ochirly"],
+["GXG-s","GXG"],
+["MOCo-s","MO&Co."],
+["PeaceBirdM-s","PEACEBIRD MEN"],
+["Dazzle-s","DAZZLE"],
+["Selected-s","SELECTED"],
+["JackJones-s","JACK&JONES"],
+["Hazzys-s","HAZZYS"],
+["CKUnderwer-s","Calvin Klein underwear"],
+["Chocoolate-s",":CHOCOOLATE"],
+["MissSixty-s","MISS SIXTY"],
+["Sephora-s","SEPHORA"],
+["Kiehls-s","Kiehl's"],
+["Shiseido-s","SHISEIDO"],
+["Pandora-s","PANDORA"],
+["Swarovski-s","SWAROVSKI"],
+["Aojo-s","aojo"],
+["CKWatches-s","Calvin Klein Watches and Jewelry"],
+["IDo-s","I Do"],
+["MJS-s","MJS"],
+["KeerJewely-s","KEER"],
+["DanielWell-s","Daniel Wellington"],
+["Lancome-s","LANCOME"],
+["EsteeLaud-s","ESTEE LAUDER"],
+["Innisfree-s","innisfree"],
+["Watson-s","watsons"],
+["SKII-s","SK-II"],
+
+]
+let b = {};
+a.forEach(o => {
+  if ( b[o[0]] || b[o[1]] ) {
+    return;
+  }
+  if ( o[0].indexOf('-s') > 0 && !o[0].split('-s')[1] ) {
+    b[o[0]] = o[1]
+  } else {
+    b[o[1]] = o[0]
+  }
+})
+return b;
+}
 </script>
 </body>
 </html>
