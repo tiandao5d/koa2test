@@ -15,34 +15,92 @@
     }
     var b = null;
     var c = `
-    PumaSelect-s
-Rapido-s
-DrMartens-s
-CKPerformn-s
-LacostComp-s
-Croquis-s
-JordanNike-s
-Descente-s
-UnderArmor-s
-FjallRaven-s
-AapeByBape-s
-TommyJeans-s
-EccoMen-s
-Geox-s
-Evisu-s
-FilaFusion-s
-PumaBlaLab-s
-TheShoeBar-s
-NikeKicLou-s
-Aigle-s
-ArcTryx-s
-Superdry-s
-Palladium-s
-Converse-s
-MLB-s
-JackWolfsk-s
-CKJeans-s
-AdidasOrig-s
+    Lee-s
+VansShoes-s
+TnorthFace-s
+Adidas-s
+OnitsukaTr-s
+Fila-s
+NewBalance-s
+Puma-s
+LeCoqsport-s
+Champion-s
+NikeSpWear-s
+Clarks-s
+Skechers-s
+Cat-s
+Asics-s
+Zara-s
+AbercFitch-s
+MassimoDut-s
+Hollister-s
+Uniqlo-s
+Muji-s
+HM-s
+Guess-s
+Gap-s
+SimpleLivg-s
+Levis-s
+CharlKeith-s
+HiPanda-s
+MasferSU-s
+BoyLondon-s
+GXG-s
+MOCo-s
+PeaceBirdM-s
+Dazzle-s
+Selected-s
+JackJones-s
+Hazzys-s
+CKUnderwer-s
+Chocoolate-s
+MissSixty-s
+Sephora-s
+Kiehls-s
+Shiseido-s
+Nautica-s
+Dickies-s
+Nike-s
+KolonSport-s
+AdidasTerx-s
+Columbia-s
+Kailas-s
+Speedo-s
+Arena-s
+Reebok-s
+LacostFotw-s
+ClarksOrig-s
+UGG-s
+Ecco-s
+Beanpole-s
+ItYouth-s
+ArmaniExch-s
+GStarRaw-s
+Lacoste-s
+FredPerry-s
+Diesel-s
+Lululemon-s
+TmHilfiger-s
+JNBY-s
+CKPlatinum-s
+Gant-s
+JLindeberg-s
+FivePlus-s
+Ochirly-s
+Pandora-s
+Swarovski-s
+Aojo-s
+CKWatches-s
+IDo-s
+MJS-s
+KeerJewely-s
+DanielWell-s
+Lancome-s
+EsteeLaud-s
+Innisfree-s
+Watson-s
+SKII-s
+
 
     `
     b = c.split('\n').map(s => {
@@ -297,6 +355,7 @@ function getKV () {
 ["DrMartens-s","Dr.Martens"],
 ["CKPerformn-s","Calvin Klein PERFORMANCE"],
 ["LacostComp-s","LACOSTE Composite"],
+["LacostLive-s", "LACOSTE L!VE"],
 ["Croquis-s","CROQUIS"],
 ["JordanNike-s","JORDAN"],
 ["Descente-s","DESCENTE"],
@@ -420,6 +479,17 @@ a.forEach(o => {
 })
 return b;
 }
+
 </script>
+关于filter：
+1.左上角增加当前选中的图层名字显示（如果可以就做成可切换为当前workspace中已选中的图层列表（只要图层title即可））
+2.增加filter面板的标题（和结果数量）
+3.filter按钮的title和选项分别独立显示（评估技术难度）
+4.根据filter按钮的数量动态调整filter面板的高度，设置一个最大高度即可（超过最大高度滚动
+5.二级filter面板顶部和选中的filter按钮对其
+6.调整stroe chain面板的样式（换行）
+7.如果图层没有搜索功能，则filter面板整体上移
+8.如果图层没有搜索和filter，或者用户没有选中任何图层的时候，菜单栏的filter按钮隐藏
+9一些细节样式调整当面再补充吧～
 </body>
 </html>
