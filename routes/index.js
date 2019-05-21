@@ -1,12 +1,7 @@
-const fs = require('fs');
-const path = require('path');
-const zlib = require('zlib');
+const open = require('open');
 module.exports =  (router) => {
   router.get('/aaa', async function (ctx, next) {
-    // ctx.set('Content-Encoding', 'gzip');
-    // ctx.body = fs.statSync(path.join(__dirname, '../public/123.html'));
-    let s = path.join(__dirname, '../public/123.html');
-    ctx.body = fs.createReadStream(s).pipe(zlib.createGzip())
+    await open('http://localhost:8800');
   })
   router.get('/', async (ctx, next) => {
     ctx.state = {
