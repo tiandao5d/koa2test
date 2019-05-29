@@ -5,20 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="layui/css/layui.css">
-    <style>
-        #test1{
-            top: 20px;
-        }
-    </style>
+    <script src="js/jquery.js"></script>
 </head>
 <body>
-        <div id="test1"></div>
-    <script src="js/jquery.js"></script>
-    <script src="layui/layui.js"></script>
     <script>
-        let box = $('#test1')
-        console.log(box)
-    </script>
+var arr = [
+{"Color":"#FF0000","分类":"大片区赢家","现leap为":"Destination","Category":"Destination","主体类型":"商圈","Type":"Cluster","定义":"一站式的购物商圈，人们愿意花30分钟到2小时到达该点，并停留超过2小时的购物时间，人流量大，运营状况良好。","Definition ENG":"A general retail cluster serves all purpose, people are willing to travel from 30 minutes up to 2 hours and be able to spend at least 2 hours in the mall, high traffic, well run."},
+{"Color":"#4B0082","分类":"大片区奢侈品赢家","现leap为":"Destination Luxury ","Category":"Luxury Destination","主体类型":"商圈","Type":"Cluster","定义":"属于区域片区为数不多的奢侈品购物商圈，大多数来消费的顾客属于片区高收入人群。","Definition ENG":"It is one of a few luxury shopping destination in the area, the majority of the customers are wealthy."},
+{"Color":"#FFD700","分类":"大片区餐饮型赢家","现leap为":"Destination F&B cluster","Category":"F&B Destination","主体类型":"商圈","Type":"Cluster","定义":"很有吸引力的连锁/非连锁特色餐饮为主的商圈，辐射范围较广。","Definition ENG":"Very attractive F&B dominated venue/cluster, people are willing to travel to visit."},
+{"Color":"#66CDAA","分类":"大片区青少年型赢家","Category":"Youth Destination","主体类型":"商圈","Type":"Cluster","定义":"很有吸引力的青少年型购物商圈，主要客群是13-25岁的青少年，人流量大。","Definition ENG":"Very attractive youth venue, mainly targeting 13-25 yrs old customers, high traffic."},
+{"Color":"#666633","分类":"大片区办公型赢家","现leap为":"Destination Office cluster","Category":"Office Destination","主体类型":"商圈","Type":"Cluster","定义":"市区范围内热门的办公区商圈，集中了大型写字楼、商业配套，人流量大。","Definition ENG":"Within municipal area, the popular office cluster, contains high-raised office towers, sevices retails, with high traffic. "},
+{"Color":"#007478","分类":"片区型赢家","现leap为":"District","Category":"District Leader","主体类型":"商圈","Type":"Cluster","定义":"位于远离市区或者大片区赢家的地方，提供比较单一选择的购物商圈，也可以有娱乐及服务配套。人们愿意花30分钟到达该点，停留1小时以上的购物时间。有人流量，运营状况良好。","Definition ENG":"Located remotly from urban area or other destination shopping, It offers limited shopping selection plus entertainments and services. People mainly from nearby area, travel up to 30 minutes to get there, and able to spend more than 1 hours, good traffic, well run."},
+{"Color":"#198C19","分类":"社区型赢家","现leap为":"Community","Category":"Community Leader","主体类型":"商圈","Type":"Cluster","定义":"满足人们日常购物需要的小型社区型购物商圈，通常包含食品杂货。顾客一般来自同一个小区，步行/坐车15分钟范围内的距离。有人流量，运营情况良好。","Definition ENG":"It serves daily purchasing purpose, usually should have grocery shopping. People only come from the same residential area, with travel time 15 minutes. Good traffic, well run."},
+{"Color":"#CCFF00","分类":"餐饮型","现leap为":"F&B cluster","Category":"F&B","主体类型":"商圈","Type":"Cluster","定义":"社区型特色餐饮为主的商圈，辐射社区人群，有人流量，运营状况良好。","Definition ENG":"A community cluster dominated by F&B or serving as a F&B cluster, people come from the same community, good traffic."},
+{"Color":"#cccc99","分类":"办公型","现leap为":"Office cluster","Category":"Office","主体类型":"商圈","Type":"Cluster","定义":"小型办公区商圈，集中了写字楼、商业配套，人流量大。","Definition ENG":"Small office cluster, contains offices, sevices retails, with high traffic. "},
+{"Color":"#1800FF","分类":"重点关注","现leap为":"Future to watch","Category":"Future to watch","主体类型":"商圈","Type":"Cluster","定义":"较有价值的发展中商圈。","Definition ENG":"Key future cluster that worth monitoring."},
+
+];
+var a = {};
+var b = [];
+arr.forEach(o => {
+    b.push(o['Category'])
+a[o.Category] = {
+    name: o['分类'],
+    name_eng: o['Category'],
+    fill: o['Color'],
+    property_value: o['Category'],
+    shape: "b",
+    stroke: o['Color']
+}
+})
+var c = [];
+b.forEach(n => {
+    c.push(a[n])
+})
+console.log(JSON.stringify(a, null, 4), JSON.stringify(b, null, 4));
+console.log(c);
+        </script>
 </body>
 </html>

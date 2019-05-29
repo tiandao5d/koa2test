@@ -15,6 +15,7 @@
       bottom: 100px;
       overflow: auto;
     }
+    .li p,
     .li [uib-dropdown-toggle] {
       line-height: 60px;
       padding: 0 20px;
@@ -34,63 +35,114 @@
       background: #aaa;
       overflow: hidden;
     }
+    html::-webkit-scrollbar{width:0; }
   </style>
 </head>
 
 <body>
   <div class="page-body">
     <div ng-app="app" ng-controller="ctrl">
+      <li>asdf</li>
       <div class="box">
-          <div class="li">
-            <span uib-dropdown on-toggle="toggled(open)" dropdown-append-to-body="true">
-              <a href uib-dropdown-toggle>
-                Click me for a dropdown, yo!
-              </a>
-              <ul class="dropdown-menu" uib-dropdown-menu>
-                <li ng-repeat="a in xs">
-                  <a href>{{a}}</a>
-                </li>
-              </ul>
-            </span>
+          <div class="li" ng-if="abc">
+            <p>随便吧</p>
           </div>
         <div class="li" ng-repeat="x in arr">
           <span uib-dropdown on-toggle="toggled(open)" dropdown-append-to-body="true">
-            <a href uib-dropdown-toggle>
+            <a href uib-dropdown-toggle ng-mousedown="mdfn($event)">
               Click me for a dropdown, yo!
             </a>
             <ul class="dropdown-menu" uib-dropdown-menu>
-              <li ng-repeat="a in x.arr">
-                <a href>{{a}}</a>
-              </li>
-            </ul>
-          </span>
-        </div>
-        <div class="li">
-          <span is-open="abc" uib-dropdown on-toggle="toggled(open)" dropdown-append-to-body="true">
-            <a href uib-dropdown-toggle>
-              Click me for a dropdown, yo!
-            </a>
-            <ul class="dropdown-menu" uib-dropdown-menu>
-              <li ng-repeat="a in xs">
+              <li ng-repeat="a in x.arr" >
                 <a href>{{a}}</a>
               </li>
             </ul>
           </span>
         </div>
       </div>
+      <div style="margin: 100px auto;">
+        <span class="label label-info" ng-click="btnclick()">Default</span>
+        <!-- <div class="btn" uib-tooltip="123">这里是按键</div> -->
+        <div class="btn" popover-placement="bottom-right" uib-popover="123">这里是按键</div>
+        <div class="btn" xl-if="{{arr}}">这里是按键</div>
+      </div>
     </div>
   </div>
   yarn upgrade angular-ui-bootstrap@^2.5.0
   <script src="js/angular-1.5.js"></script>
-  <script src="js/ui-bootstrap-tpls-2.5.0.js"></script>
+  <script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
+  <style>
+    [xl-if-popup].popover {
+      display: block;
+    }
+    [xl-if-popup].popover.bottom-right > .arrow,
+    [xl-if-popup].popover.bottom-left > .arrow {
+      top: auto;
+      bottom: auto;
+      left: auto;
+      right: auto;
+      margin: 0;
+    }
+  </style>
   <script>
-    var app = angular.module('app', ['ui.bootstrap.dropdown'])
-    app.controller('ctrl', function ($scope) {
+    var app = angular.module('app', ['ui.bootstrap'])
+    app.directive('xlIf', [ '$uibTooltip', function($uibTooltip) {
+      var a = $uibTooltip('xlIf', 'popover', 'click', {
+        appendToBody: true,
+        placement: 'bottom-left'
+      });
+      return a;
+    }]).directive('xlIfPopup', function() {
+      return {
+        restrict: 'A',
+        scope: { content: '@' },
+        template: `
+  <div class="arrow"></div>
+  <div class="popover-inner">
+      <div class="popover-content">
+        <div style="padding:3px;display: inline-block;" ng-repeat="x in arr">
+          <span class="label label-info">{{x}}</span>
+        </div>
+      </div>
+  </div>
+        `,
+        link (scope, element, attr) {
+          let content = scope.content;
+          let arr = null;
+          try{
+            content = JSON.parse(content);
+          }catch(err){}
+          if ( content instanceof Array ) {
+            arr = content.map(o => o.id);
+          } else {
+            arr = [(content + '')]
+          }
+          scope.arr = arr;
+          
+        },
+        // compile () {
+        //   return {
+        //     post (scope, element, attr) {
+        //       scope.arr = ['1111']
+        //     }
+        //   }
+        // }
+      };
+    })
+    app.controller('ctrl', function ($scope, uibDropdownService, $uibTooltip) {
+      $scope.btnclick = function () {
+        // $scope.arr.length = $scope.arr.length - 1;
+      }
+      $scope.aaa = 'sdfasdf'
+      $scope.liFn = function (data) {
+        console.log(data)
+        return `<span class="label label-info">${data[data.length - 1]['id']}</span>`
+      }
       $scope.abc = false;
       let xs = [];
       $scope.arr = (function () {
         let oa = [];
-        for ( let i = 0; i < 10; i++ ) {
+        for ( let i = 0; i < 15; i++ ) {
           let obj = {};
           obj.id = (i + 1);
           obj.arr = (function () {
@@ -105,12 +157,9 @@
         }
         return oa;
       })();
-      // $scope.$watch('abc', function (x) {
-      //   if ( x ) {
-      //     // document.querySelector('html').scrollTop = 0;
-      //     console.log(x + 'yyyy')
-      //   }
-      // })
+      $scope.mdfn = function (e){
+        document.querySelector('html').scrollTop = 0;
+      }
       $scope.xs = xs;
       // $scope.toggled = function (x) {
       //   console.log(x)
