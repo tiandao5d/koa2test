@@ -37,6 +37,7 @@ app.use(bodyparser())
 
 // 设置跨域响应头
 async function cors(ctx, next) {
+  console.log(11)
   ctx.set('Access-Control-Allow-Origin', '*')
   await next()
 }

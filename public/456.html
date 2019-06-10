@@ -1,46 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <script src="js/jquery.js"></script>
-</head>
-<body>
-    <script>
-var arr = [
-{"Color":"#FF0000","分类":"大片区赢家","现leap为":"Destination","Category":"Destination","主体类型":"商圈","Type":"Cluster","定义":"一站式的购物商圈，人们愿意花30分钟到2小时到达该点，并停留超过2小时的购物时间，人流量大，运营状况良好。","Definition ENG":"A general retail cluster serves all purpose, people are willing to travel from 30 minutes up to 2 hours and be able to spend at least 2 hours in the mall, high traffic, well run."},
-{"Color":"#4B0082","分类":"大片区奢侈品赢家","现leap为":"Destination Luxury ","Category":"Luxury Destination","主体类型":"商圈","Type":"Cluster","定义":"属于区域片区为数不多的奢侈品购物商圈，大多数来消费的顾客属于片区高收入人群。","Definition ENG":"It is one of a few luxury shopping destination in the area, the majority of the customers are wealthy."},
-{"Color":"#FFD700","分类":"大片区餐饮型赢家","现leap为":"Destination F&B cluster","Category":"F&B Destination","主体类型":"商圈","Type":"Cluster","定义":"很有吸引力的连锁/非连锁特色餐饮为主的商圈，辐射范围较广。","Definition ENG":"Very attractive F&B dominated venue/cluster, people are willing to travel to visit."},
-{"Color":"#66CDAA","分类":"大片区青少年型赢家","Category":"Youth Destination","主体类型":"商圈","Type":"Cluster","定义":"很有吸引力的青少年型购物商圈，主要客群是13-25岁的青少年，人流量大。","Definition ENG":"Very attractive youth venue, mainly targeting 13-25 yrs old customers, high traffic."},
-{"Color":"#666633","分类":"大片区办公型赢家","现leap为":"Destination Office cluster","Category":"Office Destination","主体类型":"商圈","Type":"Cluster","定义":"市区范围内热门的办公区商圈，集中了大型写字楼、商业配套，人流量大。","Definition ENG":"Within municipal area, the popular office cluster, contains high-raised office towers, sevices retails, with high traffic. "},
-{"Color":"#007478","分类":"片区型赢家","现leap为":"District","Category":"District Leader","主体类型":"商圈","Type":"Cluster","定义":"位于远离市区或者大片区赢家的地方，提供比较单一选择的购物商圈，也可以有娱乐及服务配套。人们愿意花30分钟到达该点，停留1小时以上的购物时间。有人流量，运营状况良好。","Definition ENG":"Located remotly from urban area or other destination shopping, It offers limited shopping selection plus entertainments and services. People mainly from nearby area, travel up to 30 minutes to get there, and able to spend more than 1 hours, good traffic, well run."},
-{"Color":"#198C19","分类":"社区型赢家","现leap为":"Community","Category":"Community Leader","主体类型":"商圈","Type":"Cluster","定义":"满足人们日常购物需要的小型社区型购物商圈，通常包含食品杂货。顾客一般来自同一个小区，步行/坐车15分钟范围内的距离。有人流量，运营情况良好。","Definition ENG":"It serves daily purchasing purpose, usually should have grocery shopping. People only come from the same residential area, with travel time 15 minutes. Good traffic, well run."},
-{"Color":"#CCFF00","分类":"餐饮型","现leap为":"F&B cluster","Category":"F&B","主体类型":"商圈","Type":"Cluster","定义":"社区型特色餐饮为主的商圈，辐射社区人群，有人流量，运营状况良好。","Definition ENG":"A community cluster dominated by F&B or serving as a F&B cluster, people come from the same community, good traffic."},
-{"Color":"#cccc99","分类":"办公型","现leap为":"Office cluster","Category":"Office","主体类型":"商圈","Type":"Cluster","定义":"小型办公区商圈，集中了写字楼、商业配套，人流量大。","Definition ENG":"Small office cluster, contains offices, sevices retails, with high traffic. "},
-{"Color":"#1800FF","分类":"重点关注","现leap为":"Future to watch","Category":"Future to watch","主体类型":"商圈","Type":"Cluster","定义":"较有价值的发展中商圈。","Definition ENG":"Key future cluster that worth monitoring."},
 
-];
-var a = {};
-var b = [];
-arr.forEach(o => {
-    b.push(o['Category'])
-a[o.Category] = {
-    name: o['分类'],
-    name_eng: o['Category'],
-    fill: o['Color'],
-    property_value: o['Category'],
-    shape: "b",
-    stroke: o['Color']
-}
-})
-var c = [];
-b.forEach(n => {
-    c.push(a[n])
-})
-console.log(JSON.stringify(a, null, 4), JSON.stringify(b, null, 4));
-console.log(c);
-        </script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="css/ol.css">
+  <script src="js/ol.js"></script>
+  <style>
+    #map {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+
+  </style>
+</head>
+
+<body>
+    <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
+  <div id="map" class="map"></div>
+  <form>
+    <label>cluster distance</label>
+    <input id="distance" type="range" min="0" max="100" step="1" value="40" />
+  </form>
+  <script>
+    class CPointStyle {
+      constructor (imgsrc) {
+        this.dimg = imgsrc || 'images/001.png'; // 默认图片，如果某些图片无法加载就用这个代替
+      }
+      // imgsrc 图片地址
+      // size 转换后的canvas宽高 [20, 20]
+      imgToCanvas(imgsrc, size) {
+        let that = this;
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
+        let img = new Image();
+        return new Promise(a => {
+          img.onload = () => {
+            if (!size) {
+              size = [];
+              size[0] = img.width;
+              size[1] = img.height;
+            }
+            canvas.width = size[0];
+            canvas.height = size[1];
+            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, size[0], size[1]);
+            a(canvas);
+          }
+          img.onerror = () => {
+            that.imgToCanvas(that.dimg, size).then(s => {
+              a(s);
+            })
+          }
+          img.src = imgsrc || that.dimg;
+        })
+      }
+      // imgs = [{src: '', size: [20, 20]}]
+      // keys = ['src', 'size'],用于指定imgs中对象的key值的字符串，然后imgs对象中的src，size可以使任何字段名
+      async imgsTocvs (imgs, keys = {src: 'src', size: 'size'}) {
+        let pls = imgs.map(o => this.imgToCanvas(o[keys.src], o[keys.size]));
+        return Promise.all(pls);
+      }
+
+      // 快速创建一个ol.style.Icon
+      // 推荐直接使用canvas
+      olIcon ( canvas = {}, obj = {} ) {
+        return new ol.style.Style(Object.assign({
+          image: new ol.style.Icon(Object.assign({
+            img: canvas,
+            imgSize: [canvas.width, canvas.height]
+          }, obj.oIcon)),
+          zIndex: obj.zIndex
+        }, obj.oStyle));
+      }
+      // 快速创建一个ol.style.Text
+      olText ( obj = {} ) {
+        let stroke, fill;
+        if ( obj.strokeColor || obj.strokeWidth ) {
+          stroke = new ol.style.Stroke({
+              color: obj.strokeColor,
+              width: obj.strokeWidth
+            })
+        }
+        if ( obj.fillColor ) {
+          fill = new ol.style.Fill({
+              color: obj.fillColor
+            })
+        }
+        return new ol.style.Style(Object.assign({
+          text: new ol.style.Text(Object.assign({
+            text: obj.text || '',
+            font: obj.font,
+            fill: fill,
+            stroke: stroke
+          }, obj.oText)),
+          zIndex: obj.zIndex
+        }, obj.oStyle));
+      }
+    }
+    var cps = new CPointStyle();
+    
+
+    var imgsObj = {};
+    var imgs = ['images/target.png', 'https://static.easyicon.net/preview/122/1225510.gif',
+      'https://static.easyicon.net/preview/121/1215367.gif', 'https://static.easyicon.net/preview/119/1191382.gif'
+    ];
+    function randomArr (arr) {
+      return arr[parseInt(Math.random()*arr.length)];
+    }
+
+    var distance = document.getElementById('distance');
+
+    var count = 20000;
+    var features = new Array(count);
+    var e = 4500000;
+    for (var i = 0; i < count; ++i) {
+      var coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e];
+      features[i] = new ol.Feature(new ol.geom.Point(coordinates));
+      features[i].set('id', i);
+    }
+
+    var source = new ol.source.Vector({
+      // features: features,
+      loader: function () {
+        let iarr = imgs.map(s => {
+          return {src: s, size: [30,30]}
+        })
+        cps.imgsTocvs(iarr).then(args => {
+          features.forEach((o, i) => {
+            o.set('canvas', randomArr(args))
+          })
+          source.addFeatures(features);
+        })
+      }
+    });
+
+    var clusterSource = new ol.source.Cluster({
+      distance: parseInt(distance.value, 10),
+      source: source
+    });
+
+    var styleCache = {};
+    var num = 0;
+    var clusters = new ol.layer.Vector({
+      source: clusterSource,
+      style: function (feature) {
+        let canvas = feature.get('features')[0].get('canvas');
+        let ctx = canvas.getContext('2d');
+        // ctx.font = '20px FontAwesome';
+        // ctx.fillText('11');
+        ctx.font="20px FontAwesome";
+        // console.log(ctx.measureText("\uf2da"));
+ctx.fillText("\uf2da",5,22);
+        return [
+          cps.olIcon(canvas, {zIndex: 2}),
+          cps.olText({text: feature.get('features').length + '', fillColor: '#f00'})
+        ];
+      }
+    });
+    var raster = new ol.layer.Tile({
+      source: new ol.source.OSM()
+    });
+
+    var map = new ol.Map({
+      layers: [raster, clusters],
+      target: 'map',
+      view: new ol.View({
+        center: [0, 0],
+        zoom: 2
+      })
+    });
+
+    distance.addEventListener('input', function () {
+      clusterSource.setDistance(parseInt(distance.value, 10));
+    });
+
+  </script>
 </body>
+
 </html>
