@@ -8,24 +8,6 @@
   <link rel="stylesheet" href="css/bootstrap.css">
   <title>Document</title>
   <style>
-    .box {
-      position: absolute;
-      right: 0;
-      top: 500px;
-      bottom: 100px;
-      overflow: auto;
-    }
-    .li p,
-    .li [uib-dropdown-toggle] {
-      line-height: 60px;
-      padding: 0 20px;
-      display: block;
-      background: #eee;
-      border-bottom: solid 1px #ccc;
-    }
-    .dropdown-menu {
-      transform: translate(-100%, -60px);
-    }
     .page-body {
       position: fixed;
       left: 0;
@@ -35,174 +17,47 @@
       background: #aaa;
       overflow: hidden;
     }
-    html::-webkit-scrollbar{width:0; }
+    .box {
+      position: relative;
+      margin: 200px auto;
+      width: 500px;
+    }
+    .box span {
+      display: block;
+      width: 200px;
+      background: #fff;
+    }
+    .w100 {
+      max-width: 100%;
+    }
+    .w100 .tooltip-inner {
+      max-width: none;
+    }
   </style>
 </head>
 
 <body>
   <div class="page-body">
     <div ng-app="app" ng-controller="ctrl">
-      <li>asdf</li>
       <div class="box">
-          <div class="li" ng-if="abc">
-            <p>随便吧</p>
-          </div>
-        <div class="li" ng-repeat="x in arr">
-          <span uib-dropdown on-toggle="toggled(open)" dropdown-append-to-body="true">
-            <a href uib-dropdown-toggle ng-mousedown="mdfn($event)">
-              Click me for a dropdown, yo!
-            </a>
-            <ul class="dropdown-menu" uib-dropdown-menu>
-              <li ng-repeat="a in x.arr" >
-                <a href>{{a}}</a>
-              </li>
-            </ul>
-          </span>
-        </div>
-      </div>
-      <div style="margin: 100px auto;">
-        <span class="label label-info" ng-click="btnclick()">Default</span>
-        <!-- <div class="btn" uib-tooltip="123">这里是按键</div> -->
-        <div class="btn" popover-placement="bottom-right" uib-popover="phtml">这里是按键</div>
-        <div class="btn" popover-placement="top-left" leap-filter-popover="x in arr|,|x.id">这里是按键</div>
+        <span tooltip-class="w100"
+        tooltip-trigger="'click'"
+        uib-tooltip="123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312"
+        ng-bind="'DongGuanHuangJiangBiGuiYuanFeiCuiShan'"></span>
       </div>
     </div>
   </div>
-  yarn upgrade angular-ui-bootstrap@^2.5.0
-  <style>
-  [leap-filter-popover-popup].popover {
-    display: block;
-  }
-
-  [leap-filter-popover-popup].popover>.arrow {
-    top: auto;
-    bottom: auto;
-    left: auto;
-    right: auto;
-    margin: 0;
-  }
-  [leap-filter-popover-popup] .lfp-item {
-    padding:3px;
-    display: inline-block;
-  }
-  [leap-filter-popover-popup].top-right.popover>.arrow,
-  [leap-filter-popover-popup].bottom-right.popover>.arrow {
-    right: 6px;
-    left: auto;
-  }
-  [leap-filter-popover-popup].top-left.popover>.arrow,
-  [leap-filter-popover-popup].bottom-left.popover>.arrow {
-    left: 6px;
-  }
-  [leap-filter-popover-popup].left-top.popover>.arrow,
-  [leap-filter-popover-popup].right-top.popover>.arrow {
-    top: 6px;
-  }
-  [leap-filter-popover-popup].left-bottom.popover>.arrow,
-  [leap-filter-popover-popup].right-bottom.popover>.arrow {
-    bottom: 6px;
-    top: auto;
-  }
-  [leap-filter-popover-popup].right.popover>.arrow {
-    left: -11px;
-  }
-  [leap-filter-popover-popup].left.popover>.arrow {
-    left: 100%;
-  }
-  [leap-filter-popover-popup].top.popover>.arrow {
-    top: 100%;
-  }
-  [leap-filter-popover-popup].bottom.popover>.arrow {
-    top: -11px;
-  }
-  </style>
   <script src="js/angular-1.5.js"></script>
   <script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
   <script>
     //e5a19d3143116c7ab9
     var app = angular.module('app', ['ui.bootstrap'])
-    app
-    .directive('leapFilterPopover', function($compile, $uibPosition) {
-      return {
-        restrict: 'A',
-        link (scope, element, attr) {
-          console.log(arguments)
-          let triggerMap = {
-            'mouseenter': 'mouseleave',
-            'click': 'click',
-            'outsideClick': 'outsideClick',
-            'focus': 'blur',
-            'none': ''
-          };
-          let placement = attr['popoverPlacement'] || 'top';
-          let eventStr = 'click';
-          let dname = 'leapFilterPopover';
-          let aArr = attr[dname].split('|,|')
-          let $el = $compile(`
-          <div class="popover" leap-filter-popover-popup>
-            <div class="arrow"></div>
-            <div class="popover-inner">
-              <div class="popover-content">
-                  <div class="lfp-item" ng-repeat="${aArr[0]}"><span class="label label-info">{{${aArr[1]}}}</span></div>
-              </div>
-            </div>
-          </div>
-          `)(scope);
-          $arrow = angular.element($el[0].querySelector('.arrow'));
-          element.on(eventStr, () => {
-            let pcl = placement.indexOf('-') > 0 ? [placement, placement.split('-')[0]] : [placement];
-            $el.addClass(pcl.join(' '));
-            angular.element(document.body).append($el);
-            let p = $uibPosition.offset(element);
-            let c = $uibPosition.offset($el);
-            let l = p.left;
-            let t = p.top;
-            t += p.height;
-            l -= (p.width - c.width);
-            $el.css({
-              left: l + 'px',
-              top: t + 'px'
-            });
-          })
-        }
-      };
+    app.filter('sf', function () {
+      return function (s) {
+        return s
+      }
     })
-    app.controller('ctrl', function ($scope, uibDropdownService, $uibTooltip, $window) {
-      $scope.btnclick = function () {
-        $scope.arr.length = $scope.arr.length - 1;
-      }
-      //$sce.trustAsHtml('<b style="color: red">I can</b> have <div class="label label-success">HTML</div> content');
-      $scope.aaa = 'sdfasdf'
-      $scope.liFn = function (data) {
-        console.log(data)
-        return `<span class="label label-info">${data[data.length - 1]['id']}</span>`
-      }
-      $scope.abc = false;
-      let xs = [];
-      $scope.arr = (function () {
-        let oa = [];
-        for ( let i = 0; i < 15; i++ ) {
-          let obj = {};
-          obj.id = (i + 1);
-          obj.arr = (function () {
-            let y = [];
-            for ( let i = 0; i < 10; i++ ) {
-              y.push(i);
-            }
-            return y;
-          })();
-          oa.push(obj);
-          xs.push(i);
-        }
-        return oa;
-      })();
-      $scope.mdfn = function (e){
-        document.querySelector('html').scrollTop = 0;
-      }
-      $scope.xs = xs;
-      // $scope.toggled = function (x) {
-      //   console.log(x)
-      // }
+    app.controller('ctrl', function ($scope) {
     })
 
   </script>

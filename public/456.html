@@ -2,185 +2,306 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-  <link rel="stylesheet" href="css/ol.css">
-  <script src="js/ol.js"></script>
-  <style>
-    #map {
-      position: fixed;
-      top: 100px;
-      left: 0;
-      bottom: 0;
-      right: 0;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="css/ol.css">
+    <script src="js/ol.js"></script>
+    <style>
+        #map {
+            position: fixed;
+            top: 100px;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    </style>
 </head>
 
 <body>
     <i class="fa fa-thermometer-three-quarters" aria-hidden="true"></i>
-  <div id="map" class="map"></div>
-  <form>
-    <label>cluster distance</label>
-    <input id="distance" type="range" min="0" max="100" step="1" value="40" />
-  </form>
-  <script>
-    class CPointStyle {
-      constructor (imgsrc) {
-        this.dimg = imgsrc || 'images/001.png'; // 默认图片，如果某些图片无法加载就用这个代替
-      }
-      // imgsrc 图片地址
-      // size 转换后的canvas宽高 [20, 20]
-      imgToCanvas(imgsrc, size) {
-        let that = this;
-        let canvas = document.createElement('canvas');
-        let ctx = canvas.getContext('2d');
-        let img = new Image();
-        return new Promise(a => {
-          img.onload = () => {
-            if (!size) {
-              size = [];
-              size[0] = img.width;
-              size[1] = img.height;
+    <div id="map" class="map"></div>
+    <form>
+        <label>cluster distance</label>
+        <input id="distance" type="range" min="0" max="100" step="1" value="40" />
+    </form>
+    <script>
+        window.onload = function () {
+
+            class CPointStyle {
+            constructor(imgsrc, fontFamily) {
+                this.dimg = imgsrc || 'images/001.png'; // 默认图片，如果某些图片无法加载就用这个代替
+                this.fontFamily = fontFamily || 'FontAwesome';
             }
-            canvas.width = size[0];
-            canvas.height = size[1];
-            ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, size[0], size[1]);
-            a(canvas);
-          }
-          img.onerror = () => {
-            that.imgToCanvas(that.dimg, size).then(s => {
-              a(s);
-            })
-          }
-          img.src = imgsrc || that.dimg;
-        })
-      }
-      // imgs = [{src: '', size: [20, 20]}]
-      // keys = ['src', 'size'],用于指定imgs中对象的key值的字符串，然后imgs对象中的src，size可以使任何字段名
-      async imgsTocvs (imgs, keys = {src: 'src', size: 'size'}) {
-        let pls = imgs.map(o => this.imgToCanvas(o[keys.src], o[keys.size]));
-        return Promise.all(pls);
-      }
+            // imgsrc 图片地址
+            // size 转换后的canvas宽高 [20, 20]
+            imgToCanvas(imgsrc, size) {
+                let that = this;
+                let canvas = document.createElement('canvas');
+                let ctx = canvas.getContext('2d');
+                let img = new Image();
+                return new Promise(a => {
+                    img.onload = () => {
+                        if (!size) {
+                            size = [];
+                            size[0] = img.width;
+                            size[1] = img.height;
+                        }
+                        canvas.width = size[0];
+                        canvas.height = size[1];
+                        ctx.drawImage(img, 0, 0, img.width, img.height, 0, 0, size[0], size[1]);
+                        a(canvas);
+                    }
+                    img.onerror = () => {
+                        that.imgToCanvas(that.dimg, size).then(s => {
+                            a(s);
+                        })
+                    }
+                    img.src = imgsrc || that.dimg;
+                })
+            }
+            // imgs = [{src: '', size: [20, 20]}]
+            // keys = ['src', 'size'],用于指定imgs中对象的key值的字符串，然后imgs对象中的src，size可以使任何字段名
+            async imgsTocvs(imgs, keys = {
+                src: 'src',
+                size: 'size'
+            }) {
+                let pls = imgs.map(o => this.imgToCanvas(o[keys.src], o[keys.size]));
+                return Promise.all(pls);
+            }
 
-      // 快速创建一个ol.style.Icon
-      // 推荐直接使用canvas
-      olIcon ( canvas = {}, obj = {} ) {
-        return new ol.style.Style(Object.assign({
-          image: new ol.style.Icon(Object.assign({
-            img: canvas,
-            imgSize: [canvas.width, canvas.height]
-          }, obj.oIcon)),
-          zIndex: obj.zIndex
-        }, obj.oStyle));
-      }
-      // 快速创建一个ol.style.Text
-      olText ( obj = {} ) {
-        let stroke, fill;
-        if ( obj.strokeColor || obj.strokeWidth ) {
-          stroke = new ol.style.Stroke({
-              color: obj.strokeColor,
-              width: obj.strokeWidth
-            })
+            // 将img，字体合并为一个canvas
+            mergeImgFont(arr) {
+                let that = this;
+                let canvas = document.createElement('canvas');
+                let ctx = canvas.getContext('2d');
+                let w = 0,
+                    h = 0; // 用于定义新的canvas的宽高
+                // 文字的模板对象默认值
+                let fobj = {
+                    type: 'font', // 声明这个是字体
+                    text: '\uf2be', // 文字内容
+                    color: '#0f0', // 文字颜色
+                    fontFamily: that.fontFamily, // 字体，和css的字体属于一致
+                    fontSize: 30, // 文字大小，字号
+                    fxp: 0, // 默认的字体x轴偏移量，因为字体居中不容易
+                    fyp: -4, // 默认的字体y轴偏移量，因为字体居中不容易，值越大越往下
+                    zIndex: 0 // 层级排序，越大越靠上
+                }
+                // 图片的模板对象默认值
+                let iobj = {
+                    type: 'icon', // 声明这个是图片
+                    canvas: null, // 可以直接给一个canvas，img的HTML对象，就可以不需要地址，如果是img必须是onload之后
+                    zIndex: 0 // 层级排序，越大越靠上
+                }
+                // 按照zIndex排序
+                arr.sort((a, b) => {
+                    return (a.zIndex || 0) - (b.zIndex || 0);
+                });
+                // 初始化数据
+                arr.forEach((o, i) => {
+                    if (o.type === 'icon') { // 图片数据渲染之前初始化
+                        o = Object.assign({}, iobj, o);
+                        o.w = o.canvas.width;
+                        o.h = o.canvas.height;
+                        if (o.w > w) {
+                            w = o.w;
+                        }
+                        if (o.h > h) {
+                            h = o.h;
+                        }
+                    } else if (o.type === 'font') { // 文字数据渲染之前初始化
+                        o = Object.assign({}, fobj, o);
+                        o.fontSize = parseInt(o.fontSize);
+                        o.font = `normal normal normal ${o.fontSize}px/1 ${o.fontFamily}`;
+                        ctx.font = o.font;
+                        let tw = ctx.measureText(o.text);
+                        o.w = Math.ceil(tw.width);
+                        o.h = o.fontSize;
+                        if (o.w > w) {
+                            w = o.w;
+                        }
+                        if (o.h > h) {
+                            h = o.h;
+                        }
+                    }
+                    arr[i] = o;
+                });
+                // 定义画布宽高
+                canvas.width = w;
+                canvas.height = h;
+                // 将数组中的内容画到新的画布中
+                arr.forEach(o => {
+                    if (o.type === 'icon') {
+                        ctx.drawImage(o.canvas, (w - o.w) * 0.5, (h - o.h) * 0.5);
+                    } else if (o.type === 'font') {
+                        let x = ((w - o.w) * 0.5 + o.fxp);
+                        let y = ((h - o.h) * 0.5 + o.h + o.fyp);
+                        ctx.fillStyle = o.color;
+                        ctx.font = o.font;
+                        console.log(o.font)
+                        ctx.fillText(o.text, x, y);
+                    }
+                })
+                console.log(arr)
+                return canvas;
+            }
+
+            // 快速创建一个ol.style.Icon
+            // 推荐直接使用canvas
+            olIcon(canvas = {}, obj = {}) {
+                return new ol.style.Style(Object.assign({
+                    image: new ol.style.Icon(Object.assign({
+                        img: canvas,
+                        imgSize: [canvas.width, canvas.height]
+                    }, obj.oIcon)),
+                    zIndex: obj.zIndex
+                }, obj.oStyle));
+            }
+            // 快速创建一个ol.style.Text
+            olText(obj = {}) {
+                let stroke, fill;
+                if (obj.strokeColor || obj.strokeWidth) {
+                    stroke = new ol.style.Stroke({
+                        color: obj.strokeColor,
+                        width: obj.strokeWidth
+                    })
+                }
+                if (obj.fillColor) {
+                    fill = new ol.style.Fill({
+                        color: obj.fillColor
+                    })
+                }
+                return new ol.style.Style(Object.assign({
+                    text: new ol.style.Text(Object.assign({
+                        text: obj.text || '',
+                        font: obj.font,
+                        fill: fill,
+                        stroke: stroke
+                    }, obj.oText)),
+                    zIndex: obj.zIndex
+                }, obj.oStyle));
+            }
         }
-        if ( obj.fillColor ) {
-          fill = new ol.style.Fill({
-              color: obj.fillColor
+        var cps = new CPointStyle();
+console.log(cps)
+        var json = [{
+            type: 'font',
+            text: '\uf2cd',
+            color: '#f00',
+            fontSize: 40
+        },
+        {
+            type: 'font',
+            text: '\uf2ce',
+            color: '#0f0',
+            fontSize: 30
+        },
+        {
+            type: 'icon',
+            src: 'https://static.easyicon.net/preview/122/1225510.gif',
+            size: [20, 20]
+        }]
+        async function cccc() {
+            let icons = json.filter(o => (o.src && !o.canvas))
+            let cvs = await cps.imgsTocvs(icons);
+            json.forEach(o => {
+                if ((o.src && !o.canvas)) {
+                    o.canvas = cvs.shift();
+                }
             })
+            let cv = cps.mergeImgFont(json);
+            document.body.appendChild(cv);
         }
-        return new ol.style.Style(Object.assign({
-          text: new ol.style.Text(Object.assign({
-            text: obj.text || '',
-            font: obj.font,
-            fill: fill,
-            stroke: stroke
-          }, obj.oText)),
-          zIndex: obj.zIndex
-        }, obj.oStyle));
-      }
-    }
-    var cps = new CPointStyle();
-    
+        cccc()
 
-    var imgsObj = {};
-    var imgs = ['images/target.png', 'https://static.easyicon.net/preview/122/1225510.gif',
-      'https://static.easyicon.net/preview/121/1215367.gif', 'https://static.easyicon.net/preview/119/1191382.gif'
-    ];
-    function randomArr (arr) {
-      return arr[parseInt(Math.random()*arr.length)];
-    }
-
-    var distance = document.getElementById('distance');
-
-    var count = 20000;
-    var features = new Array(count);
-    var e = 4500000;
-    for (var i = 0; i < count; ++i) {
-      var coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e];
-      features[i] = new ol.Feature(new ol.geom.Point(coordinates));
-      features[i].set('id', i);
-    }
-
-    var source = new ol.source.Vector({
-      // features: features,
-      loader: function () {
-        let iarr = imgs.map(s => {
-          return {src: s, size: [30,30]}
-        })
-        cps.imgsTocvs(iarr).then(args => {
-          features.forEach((o, i) => {
-            o.set('canvas', randomArr(args))
-          })
-          source.addFeatures(features);
-        })
-      }
-    });
-
-    var clusterSource = new ol.source.Cluster({
-      distance: parseInt(distance.value, 10),
-      source: source
-    });
-
-    var styleCache = {};
-    var num = 0;
-    var clusters = new ol.layer.Vector({
-      source: clusterSource,
-      style: function (feature) {
-        let canvas = feature.get('features')[0].get('canvas');
-        let ctx = canvas.getContext('2d');
-        // ctx.font = '20px FontAwesome';
-        // ctx.fillText('11');
-        ctx.font="20px FontAwesome";
-        // console.log(ctx.measureText("\uf2da"));
-ctx.fillText("\uf2da",5,22);
-        return [
-          cps.olIcon(canvas, {zIndex: 2}),
-          cps.olText({text: feature.get('features').length + '', fillColor: '#f00'})
+        var imgsObj = {};
+        var imgs = ['images/target.png', 'https://static.easyicon.net/preview/122/1225510.gif',
+            'https://static.easyicon.net/preview/121/1215367.gif', 'https://static.easyicon.net/preview/119/1191382.gif'
         ];
-      }
-    });
-    var raster = new ol.layer.Tile({
-      source: new ol.source.OSM()
-    });
 
-    var map = new ol.Map({
-      layers: [raster, clusters],
-      target: 'map',
-      view: new ol.View({
-        center: [0, 0],
-        zoom: 2
-      })
-    });
+        function randomArr(arr) {
+            return arr[parseInt(Math.random() * arr.length)];
+        }
 
-    distance.addEventListener('input', function () {
-      clusterSource.setDistance(parseInt(distance.value, 10));
-    });
+        var distance = document.getElementById('distance');
 
-  </script>
+        var count = 20000;
+        var features = new Array(count);
+        var e = 4500000;
+        for (var i = 0; i < count; ++i) {
+            var coordinates = [2 * e * Math.random() - e, 2 * e * Math.random() - e];
+            features[i] = new ol.Feature(new ol.geom.Point(coordinates));
+            features[i].set('id', i);
+        }
+
+        var source = new ol.source.Vector({
+            // features: features,
+            loader: function () {
+                let iarr = imgs.map(s => {
+                    return {
+                        src: s,
+                        size: [30, 30]
+                    }
+                })
+                cps.imgsTocvs(iarr).then(args => {
+                    features.forEach((o, i) => {
+                        o.set('canvas', randomArr(args))
+                    })
+                    source.addFeatures(features);
+                })
+            }
+        });
+
+        var clusterSource = new ol.source.Cluster({
+            distance: parseInt(distance.value, 10),
+            source: source
+        });
+
+        var styleCache = {};
+        var num = 0;
+        var clusters = new ol.layer.Vector({
+            source: clusterSource,
+            style: function (feature) {
+                let canvas = feature.get('features')[0].get('canvas');
+                let ctx = canvas.getContext('2d');
+                // ctx.font = '20px FontAwesome';
+                // ctx.fillText('11');
+                ctx.font = "20px FontAwesome";
+                // console.log(ctx.measureText("\uf2da"));
+                ctx.fillText("\uf2da", 5, 22);
+                return [
+                    cps.olIcon(canvas, {
+                        zIndex: 2
+                    }),
+                    cps.olText({
+                        text: feature.get('features').length + '',
+                        fillColor: '#f00'
+                    })
+                ];
+            }
+        });
+        var raster = new ol.layer.Tile({
+            source: new ol.source.OSM()
+        });
+
+        var map = new ol.Map({
+            layers: [raster, clusters],
+            target: 'map',
+            view: new ol.View({
+                center: [0, 0],
+                zoom: 2
+            })
+        });
+
+        distance.addEventListener('input', function () {
+            clusterSource.setDistance(parseInt(distance.value, 10));
+        });
+
+        }
+    </script>
 </body>
 
 </html>
