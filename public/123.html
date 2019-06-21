@@ -2,65 +2,121 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="css/bootstrap.css">
-  <title>Document</title>
-  <style>
-    .page-body {
-      position: fixed;
-      left: 0;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      background: #aaa;
-      overflow: hidden;
-    }
-    .box {
-      position: relative;
-      margin: 200px auto;
-      width: 500px;
-    }
-    .box span {
-      display: block;
-      width: 200px;
-      background: #fff;
-    }
-    .w100 {
-      max-width: 100%;
-    }
-    .w100 .tooltip-inner {
-      max-width: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>Document</title>
+    <style>
+        .page-body {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            background: #aaa;
+            overflow: hidden;
+        }
+
+        .box {
+            position: relative;
+            margin: 200px auto;
+            width: 500px;
+        }
+
+        .box span {
+            display: block;
+            width: 200px;
+            background: #fff;
+        }
+
+        .w100 {
+            max-width: 100%;
+        }
+
+        .w100 .tooltip-inner {
+            max-width: none;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="page-body">
-    <div ng-app="app" ng-controller="ctrl">
-      <div class="box">
-        <span tooltip-class="w100"
-        tooltip-trigger="'click'"
-        uib-tooltip="123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312123121231212312"
-        ng-bind="'DongGuanHuangJiangBiGuiYuanFeiCuiShan'"></span>
-      </div>
+    <div class="page-body">
+        <div ng-app="app" ng-controller="ctrl">
+            <div class="box">
+                {{checkModel}}
+                <div></div>
+                <div class="btn-group">
+                    <label class="btn btn-primary" ng-model="checkModel.left" uib-btn-checkbox>Left</label>
+                    <label class="btn btn-primary" ng-model="checkModel.middle" uib-btn-checkbox>Middle</label>
+                    <label class="btn btn-primary" ng-model="checkModel.right" uib-btn-checkbox>Right</label>
+                </div>
+                <div></div>
+                <!-- Single button -->
+                <div class="btn-group" dropdown-append-to="yy" uib-dropdown is-open="status.isopen">
+                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle
+                        ng-disabled="disabled">
+                        Button dropdown <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                        <li role="menuitem"><a href="#">Action</a></li>
+                        <li role="menuitem"><a href="#">Another action</a></li>
+                        <li role="menuitem"><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li role="menuitem"><a href="#">Separated link</a></li>
+                    </ul>
+                </div>
+                <div></div>
+                <div class="btn btn-primary" ng-disabled="ngd()">第三地方</div>
+                <div></div>
+                <button uib-popover="{{dynamicPopover.content}}" popover-class="sdf-sdfasd-sdf"
+                    popover-append-to-body="true" popover-title="{{dynamicPopover.title}}" type="button"
+                    class="btn btn-default">Dynamic Popover</button>
+            </div>
+        </div>
     </div>
-  </div>
-  <script src="js/angular-1.5.js"></script>
-  <script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
-  <script>
-    //e5a19d3143116c7ab9
-    var app = angular.module('app', ['ui.bootstrap'])
-    app.filter('sf', function () {
-      return function (s) {
-        return s
-      }
-    })
-    app.controller('ctrl', function ($scope) {
-    })
 
-  </script>
+    <script src="js/angular-1.5.js"></script>
+    <script src="js/ajv.bundle.js"></script>
+    <script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
+    <script>
+        //e5a19d3143116c7ab9
+        var app = angular.module('app', ['ui.bootstrap'])
+        app.controller('ctrl', function ($scope) {
+            $scope.ngd = function () {
+                console.log(1)
+                return true;
+            };
+            $scope.checkModel = {};
+            $scope.dynamicPopover = {
+                content: '11111',
+                title: '2222'
+            }
+        })
+        var data = {
+            a: 123,
+            b: 1
+        }
+        var vobj = {
+            $schema: 'http://json-schema.org/draft-04/schema#',
+            properties: {
+                a: {
+                    type: 'number'
+                },
+                b: {
+                    errorMessage: {
+                        type: 'aaa 大是大非'
+                    },
+                    type: 'string'
+                }
+            },
+            required: ['a']
+        }
+        var ajv = new Ajv();
+        var valid = ajv.validate(vobj, data);
+        console.log(valid, ajv.errorsText(), ajv.errors[0])
+
+    </script>
 </body>
 
 </html>
