@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "dev": "nodemon app.js --ignore public"
+    "dev": "nodemon app.js --ignore public",
+    "test": "jest"
   },
   "dependencies": {
     "debug": "~2.6.8",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "babel-eslint": "7.1.1",
-    "eslint": "3.18.0"
+    "eslint": "3.18.0",
+    "jest": "^24.8.0"
   }
 }
