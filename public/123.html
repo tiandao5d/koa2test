@@ -124,21 +124,22 @@
                     </div>
                 <div></div>
                 <!-- Single button -->
-                <div class="btn-group" dropdown-append-to="yy" uib-dropdown is-open="status.isopen">
-                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle
-                        ng-disabled="disabled">
+                <div class="btn-group" uib-dropdown>
+                    <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle>
                         Button dropdown <span class="caret"></span>
                     </button>
-                    <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                        <li role="menuitem"><a href="#">Action</a></li>
-                        <li role="menuitem"><a href="#">Another action</a></li>
-                        <li role="menuitem"><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li role="menuitem"><a href="#">Separated link</a></li>
-                    </ul>
+                    <div uib-dropdown-menu class="dropdown-menu" role="menu">
+                        sdfsdf
+                    </div>
                 </div>
-                <div></div>
-                <div class="btn btn-primary" ng-disabled="ngd()">第三地方</div>
+                <select ng-model="boxyyy">
+                    <option ng-value="x" ng-repeat="x in boxarr">{{x}}</option>
+                </select>
+                <div class="label label-info tag">
+                        a big company
+                        <i class="btn-remove">x</i>
+                    </div>
+                <div class="btn btn-primary" ng-click="ngd()">第三地方</div>
                 <div style="height: 15px" uib-tooltip="水电费 阿斯蒂芬"></div>
                 <button uib-popover="{{dynamicPopover.content}}" popover-class="sdf-sdfasd-sdf"
                     popover-append-to-body="true" popover-title="{{dynamicPopover.title}}" type="button"
@@ -177,17 +178,35 @@
                 `
             }
         })
-        app.controller('ctrl', function ($scope) {
+        app.controller('ctrl', function ($scope, $uibModal) {
+            let a = {b: {c: {d: 123}}};
+            let b = angular.copy(a);
+            b.b.c = 1;
+            console.log(a, b)
             $scope.ngd = function () {
-                console.log(1)
-                return true;
+                $uibModal.open({
+                    template: '<div>{{aa}}{{modal.box}}<div ng-click="$dismiss()">在</div></div>',
+                    controller ( $uibModalInstance, $scope ) {
+                        $scope.aa = '123'
+                        this.box = 456;
+                        console.log($scope)
+                        
+                    },
+                    controllerAs: 'modal',
+                    resolve: {
+                        a () {
+                            return 'b'
+                        }
+                    }
+                })
             };
             $scope.checkModel = {};
             $scope.dynamicPopover = {
                 content: '11111',
                 title: '2222'
             }
-            $scope.boxyyy = 'Left'
+            $scope.boxyyy = 'Left';
+            $scope.boxarr = ['Left', 'Right', 'Bottom', 'Top']
         })
         var data = {
             a: 123,
