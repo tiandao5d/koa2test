@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/animate.css">
     <title>Document</title>
     <style>
         .page-body {
@@ -101,12 +102,39 @@
             transform: scale3D(0, 0, 1);
   } 
 }
+.ngui-toast {
+    position: fixed;
+    z-index: 9999;
+    width: 300px;
+    color: #fff;
+    border-radius: 0;
+    background: #337ab7;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, .3);
+    padding: 15px;
+    top: 15px;
+    right: 15px;
+}
+.ngui-toast.warning {
+    color: #fff;
+    background: #f0ad4e;
+}
+.ngui-toast.error {
+    color: #fff;
+    background: #d9534f;
+}
+.ngui-toast.success {
+    color: #fff;
+    background: #5cb85c;
+}
+.ngui-toast.info {
+    color: #fff;
+    background: #5bc0de;
+}
     </style>
 </head>
 
 <body>
     <div class="page-body">
-
         <div ng-app="app" ng-controller="ctrl">
                 <div square-loading></div>
             <div class="box">
@@ -147,7 +175,6 @@
             </div>
         </div>
     </div>
-
     <script src="js/angular-1.5.js"></script>
     <script src="js/ajv.bundle.js"></script>
     <script src="js/ui-bootstrap-tpls-2.2.0.js"></script>
@@ -182,23 +209,119 @@
             let a = {b: {c: {d: 123}}};
             let b = angular.copy(a);
             b.b.c = 1;
-            console.log(a, b)
-            $scope.ngd = function () {
-                $uibModal.open({
-                    template: '<div>{{aa}}{{modal.box}}<div ng-click="$dismiss()">在</div></div>',
-                    controller ( $uibModalInstance, $scope ) {
-                        $scope.aa = '123'
-                        this.box = 456;
-                        console.log($scope)
-                        
-                    },
-                    controllerAs: 'modal',
-                    resolve: {
-                        a () {
-                            return 'b'
+            // 一个提示工具
+            class NGUIToast {
+                constructor ( defOption ) {
+                    // 给定的animate.css的动画对应，一个是出一个是入
+                    this.aniArr = [['bounceIn', 'bounceOut'],['bounceInDown', 'bounceOutDown'],['bounceInLeft', 'bounceOutLeft'],['bounceInRight', 'bounceOutRight'],['bounceInUp', 'bounceOutUp'],['fadeIn', 'fadeOut'],['fadeInDown', 'fadeOutDown'],['fadeInDownBig', 'fadeOutDownBig'],['fadeInLeft', 'fadeOutLeft'],['fadeInLeftBig', 'fadeOutLeftBig'],['fadeInRight', 'fadeOutRight'],['fadeInRightBig', 'fadeOutRightBig'],['fadeInUp', 'fadeOutUp'],['fadeInUpBig', 'fadeOutUpBig'],['flipInX', 'flipOutX'],['flipInY', 'flipOutY'],['lightSpeedIn', 'lightSpeedOut'],['rotateIn', 'rotateOut'],['rotateInDownLeft', 'rotateOutDownLeft'],['rotateInDownRight', 'rotateOutDownRight'],['rotateInUpLeft', 'rotateOutUpLeft'],['rotateInUpRight', 'rotateOutUpRight'],['slideInUp', 'slideOutUp'],['slideInDown', 'slideOutDown'],['slideInLeft', 'slideOutLeft'],['slideInRight', 'slideOutRight'],['zoomIn', 'zoomOut'],['zoomInDown', 'zoomOutDown'],['zoomInLeft', 'zoomOutLeft'],['zoomInRight', 'zoomOutRight'],['zoomInUp', 'zoomOutUp'],['rollIn', 'rollOut']];
+                    this.typeArr = ['warning', 'error', 'success', 'info', 'normal'];
+                    this.defAni = this.randomAni();
+                    this.hasAni = ('animation' in document.body.style);
+                    this.defOption = {
+                        html: '啥也没有',
+                        timer: 3000,
+                        curAni: this.defAni,
+                        toBox: document.body,
+                        type: '' // 'warning' 'error' 'success' 'info'，样式
+                    }
+                    Object.assign(this.defOption, defOption);
+                }
+                randomArrItem ( arr ) {
+                    let max = arr.length - 1;
+                    let min = 0;
+                    return arr[parseInt(Math.random()*(max - min + 1) + min)];
+                }
+                randomAni () { // 随机选择一个动画
+                    return this.randomArrItem(this.aniArr);
+                }
+                randomType () {
+                    return this.randomArrItem(this.typeArr);
+                }
+                open ( option = {} ) {
+                    if ( typeof option === 'string' ) { // 直接默认显示字符
+                        option = {html: option}
+                    }
+                    option = Object.assign({}, this.defOption, option);
+                    let div = document.createElement('div');
+
+                    let toBox = typeof option.toBox === 'string' ? document.querySelector(option.toBox) : option.toBox;
+                    let curAni = option.curAni; // 可以自定义动画
+                    let timer = option.timer; // 消失的时间
+                    let html = option.html; // 显示的内容，可以是html
+                    let type = option.type; // 类型显示不同的颜色'warning' 'error' 'success' 'info'，也可以当成类名添加
+                    let hasAni = this.hasAni;
+                    if ( type ) {
+                        div.classList.add(type);
+                    }
+                    div.innerHTML = html;
+                    if ( this.hasAni ) { // 支持动画
+                        div.classList.add(curAni[0], 'animated', 'ngui-show', 'ngui-toast');
+                        div.addEventListener('click', () => {
+                            clearTimeout(option.outIndex);
+                            div.classList.remove(curAni[0], curAni[1], 'animated', 'ngui-show');
+                            div.classList.add(curAni[1], 'animated');
+                        });
+                        div.addEventListener('animationend', animationend);
+                    } else { // 不支持动画
+                        div.classList.add('ngui-toast');
+                        div.addEventListener('click', () => {
+                            clearTimeout(option.outIndex);
+                            toBox.removeChild(div);
+                        });
+                        timerBind()
+                    }
+                    div.addEventListener('mouseenter', () => { // 悬浮清除计时
+                        clearTimeout(option.outIndex);
+                    });
+                    div.addEventListener('mouseleave', () => { // 离开绑定计时
+                        timerBind();
+                    });
+                    toBox.appendChild(div);
+                    div.nguiToastOption = option;
+                    function animationend () {
+                        if ( div.classList.contains('ngui-show') ) {
+                            timerBind();
+                        } else {
+                            toBox.removeChild(div);
                         }
                     }
+                    function timerBind () { // 延迟绑定
+                        option.outIndex = setTimeout(() => {
+                            if ( hasAni ) {
+                                option.outIndex = setTimeout(() => {
+                                    div.classList.remove(curAni[0], curAni[1], 'animated', 'ngui-show');
+                                    div.classList.add(curAni[1], 'animated');
+                                }, timer);
+                            } else {
+                                toBox.removeChild(div);
+                            }
+                        }, timer);
+                    }
+                }
+            }
+            let nguiToast = $scope.nguiToast = new NGUIToast();
+            $scope.ngd = function () {
+                nguiToast.index = nguiToast.index ? nguiToast.index + 1 : 1;
+                nguiToast.open({
+                    type: nguiToast.randomType(),
+                    curAni: nguiToast.randomAni(),
+                    html: '搞点好玩的'
                 })
+                // $uibModal.open({
+                //     template: '<div>{{aa}}{{modal.box}}<div ng-click="$dismiss()">在</div></div>',
+                //     controller ( $uibModalInstance, $scope ) {
+                //         $scope.aa = '123'
+                //         this.box = 456;
+                //         console.log($scope)
+                        
+                //     },
+                //     controllerAs: 'modal',
+                //     resolve: {
+                //         a () {
+                //             return 'b'
+                //         }
+                //     }
+                // })
             };
             $scope.checkModel = {};
             $scope.dynamicPopover = {

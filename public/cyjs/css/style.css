@@ -1,0 +1,147 @@
+html {
+    font-size: 16px;
+}
+
+.nav-box {
+    position: relative;
+    z-index: 99999;;
+}
+.nav-box .nav-body {
+  height: 50px;
+  box-shadow: 0 5px 5px #aaa;
+  padding: 0 0 0 15px;
+  background: #fff;
+  position: relative;
+}
+
+.nav-box .navbar-logo {
+  height: 100%;
+  float: left;
+}
+
+.nav-box .navbar-logo img {
+  height: 100%;
+}
+
+.nav-box .logo-separate {
+    float: left;
+    border-left: solid 1px #999;
+    height: 50%;
+    margin: 0 10px 0;
+    position: relative;
+    top: 25%;
+}
+
+.nav-box .navbar-nav>li>a {
+  color: #555;
+  background: none !important;
+  padding: 0;
+  margin: 0 5px;
+}
+
+.nav-box .nav-menu {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+}
+
+.nav-box .nav-menu .nav,
+.nav-box .navbar-nav>li {
+  height: 100%;
+}
+
+.nav-box .navbar-nav>li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-box .nav-lang {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+}
+
+.nav-box .dropdown-menu {
+  min-width: 0;
+  border: 0;
+  padding: 0;
+}
+
+.nav-box .dropdown.open::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: #224194;
+}
+
+.nav-box .dropdown-menu>li>a {
+  padding: 0 15px;
+  line-height: 36px;
+  position: relative;
+}
+
+.nav-box .dropdown-menu>li>a:after {
+  content: '';
+  height: 1px;
+  background: #f4f4f4;
+  position: absolute;
+  bottom: 0;
+  right: 5px;
+  left: 5px;
+}
+
+.nav-box .nav-mbtn {
+  background: #224194;
+  padding: 10px;
+  display: none;
+  float: left;
+  height: 100%;
+}
+
+.nav-box .nav-mbtn a {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+@media screen and (min-width: 1050px) {
+  .nav-box .nav-body {
+    height: 100px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .nav-box .nav-mbtn {
+    display: block;
+  }
+
+  .nav-box .nav-menu .nav {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    width: 100px;
+    height: auto;
+    margin: 0;
+    display: none;
+  }
+
+  .nav-box .nav-menu.active .nav {
+    display: block;
+  }
+
+  .nav-box .nav-menu .nav>li {
+    float: none;
+    height: 50px;
+  }
+  .nav-box .navbar-nav .open .dropdown-menu {
+    position: absolute;
+    left: auto;
+    right: 100%;
+    top: 0;
+  }
+}

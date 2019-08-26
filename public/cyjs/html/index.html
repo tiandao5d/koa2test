@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/owl.carousel.min.css">
+    <link rel="stylesheet" href="../css/fullpage.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .index-item {
+            width: 100%;
+            height: 100%;
+        }
+
+        .index-item1 {
+            background: url(../img/img003.png) center center no-repeat;
+        }
+
+        .index-item2 {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: #eee;
+            display: flex;
+            align-items: center;
+        }
+
+        .ii2-box1 {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .ii2-box1 img {
+            width: 100%;
+        }
+
+        .ii2-box1 .ii21-body {
+            position: absolute;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0;
+        }
+
+        .ii2-box2 {
+            position: relative;
+            height: 4rem;
+        }
+        .ii22-p1,
+        .ii22-p1 img {
+            height: 100%;
+        }
+        .ii22-p2 {
+            position: absolute;
+            padding-left: 200px;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .ii22-p2 .ob-item {
+            width: 100%;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff;
+            border: solid 1px #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav-box"></div>
+    <div id="fullpage">
+        <div class="section active">
+            <div class="index-item index-item1"></div>
+        </div>
+        <div class="section">
+            <div class="index-item index-item2">
+                <div class="index-item-body">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="ii2-box1">
+                                <img src="../img/img003.png">
+                                <div class="ii21-body">
+                                    <div class="ii21-p1">dfg</div>
+                                    <div class="ii21-p1">dfg</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="ii2-box1">
+                                <img src="../img/img003.png">
+                                <div class="ii21-body">
+                                    <div class="ii21-p1">dfg</div>
+                                    <div class="ii21-p1">dfg</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="ii2-box1">
+                                <img src="../img/img003.png">
+                                <div class="ii21-body">
+                                    <div class="ii21-p1">dfg</div>
+                                    <div class="ii21-p1">dfg</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="ii2-box1">
+                                <img src="../img/img003.png">
+                                <div class="ii21-body">
+                                    <div class="ii21-p1">dfg</div>
+                                    <div class="ii21-p1">dfg</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ii2-box2">
+                        <div class="ii22-p1">
+                            <img src="../img/img005.png">
+                        </div>
+                        <div class="ii22-p2">
+                            <div class="owl-carousel img_owl">
+                                <div class="ob-item">11111</div>
+                                <div class="ob-item">11111</div>
+                                <div class="ob-item">11111</div>
+                                <div class="ob-item">11111</div>
+                                <div class="ob-item">11111</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section">Some 3</div>
+        <div class="section">Some 4</div>
+    </div>
+    <div class="nav-box"></div>
+    <script src="../js/jquery-1.12.4.min.js"></script>
+    <script src="../js/owl.carousel.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/fullpage.min.js"></script>
+    <script src="../js/xljs.js"></script>
+    <script>
+        new fullpage('#fullpage');
+
+        $('.img_owl').owlCarousel({
+            loop: true,
+            margin: 10,
+            autoplay: true,
+            dots: false
+        });
+    </script>
+</body>
+
+</html>
