@@ -12,6 +12,7 @@ const bodyparser = require('koa-bodyparser')
 const logger = require('koa-logger')
 const debug = require('debug')('koa2:server')
 const path = require('path')
+// var browserSync = require("browser-sync").create();
 
 const config = require('./config')
 const routes = require('./routes')
@@ -27,8 +28,8 @@ app.use(bodyparser())
   .use(logger())
   .use(require('koa-static')(__dirname + '/public'))
   .use(views(path.join(__dirname, '/views'), {
-    options: {settings: {views: path.join(__dirname, 'views')}},
-    map: {'njk': 'nunjucks'},
+    options: { settings: { views: path.join(__dirname, 'views') } },
+    map: { 'njk': 'nunjucks' },
     extension: 'njk'
   }))
   .use(cors)
@@ -43,10 +44,17 @@ async function cors(ctx, next) {
 }
 
 routes(router)
-app.on('error', function(err, ctx) {
+app.on('error', function (err, ctx) {
   console.log(err)
   logger.error('server error', err, ctx)
 })
+
+// browserSync.init({
+//   server: './public',
+//   browser: 'chrome',
+//   port: config.port
+// });
+// browserSync.watch('./public/123.html').on('change', browserSync.reload)
 
 module.exports = app.listen(config.port, () => {
   console.log(`Listening on http://localhost:${config.port}`)

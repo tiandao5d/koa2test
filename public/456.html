@@ -2,97 +2,25 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <script src="js/d3.v3.js"></script>
-  <style>
-    svg {
-      width: 300px;
-      height: 300px;
-      background: #f4f4f4;
-      margin: 100px auto;
-      display: block;
-      position: relative;
-      top: 500px;
-    }
-
-    .boxdiv {
-      width: 200px;
-      height: 200px;
-      margin: 100px auto;
-      background: red;
-    }
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
 </head>
 
 <body>
-  <div class="boxdiv"></div>
-  <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
-    <!-- <path d="M150 0 L75 200 L225 200 Z" fill="#f00"></path> -->
-    <text x="0" y="15" fill="red" font-size="20px">I love SVG</text>
-  </svg>
-  <script>
-    document.querySelector('.boxdiv')
-      .addEventListener('mousedown', function (e) {
-        console.log(e)
-      })
-function yyaa() {
-  let a = [1];
-let b = [2];
-a.concat(b);
-console.log(a, b)
-}
-yyaa()
-    function getType(obj) {
-      let type = Object.prototype.toString.call(obj);
-      type = type.slice(8, -1).toLocaleLowerCase();
-      if (type === 'number' && !obj && obj !== 0) {
-        return 'NaN';
-      }
-      return type;
-    }
-    console.log(getType(NaN))
-    var ya = {
-      a: 1
-    }
-    var yb = {
-      b: 2
-    }
-    Object.assign(ya, yb);
-    console.log(ya, yb)
-    let svg = d3.select('svg');
-    let arr = [
-      [123.21157109092424, 41.80654628121226],
-      [109.41157109101461, 41.80654628121214],
-      [109.4115710910146, 54.26971239408158],
-      [123.21157109092425, 54.26971239408158],
-      [123.21157109092424, 41.80654628121226]
-    ]
-    let tarr = [116.149994054937, 47.78040044109912];
-    console.log(svg)
-
-    function addPath(arr) {
-      let a = '';
-      arr.forEach((sr, i) => {
-        a += (i === 0 ? 'M' : 'L');
-        a += (sr.join(','));
-      })
-      a += 'Z';
-      return a;
-    }
-
-    function aa() {
-      let xarr = arr.map(ar => ar[0]);
-      return Math.max.apply(null, xarr) - Math.min.apply(null, xarr)
-    }
-    console.log(aa())
-    let a = addPath(arr);
-    svg.append('path').attr('d', a)
-
-  </script>
+    <script>
+        function y
+        (a,
+        b) {
+            let o = {}
+            return a + b;
+        }
+        console.log([y])
+        let s = y.toString();
+        s = s.match(/function[^\{]+/)[0].replace(/\s+/g, '').match(/\([\s\S]+\)/)[0].slice(1,-1).split(',')
+            console.log(s)
+    </script>
 </body>
 
 </html>
