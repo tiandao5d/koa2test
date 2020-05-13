@@ -1,58 +1,170 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-
-<body>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="./js/jsSHA.js"></script>
+  </head>
+  <body>
+    <button onclick="btnclick()">aa</button>
     <script>
-let a = `function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, NotificationProvider) {
-    'ngInject';
+      let userInfo = {
+        token:
+          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODkzMzE1ODQsImlhdCI6MTU4OTI0NTE4NCwibmJmIjoxNTg5MjQ1MTg0LCJpZGVudGl0eSI6Inh1bGluIn0.0cep6V0ByCchhA32TIRUhH0IZpXAbak2X6kzMAPFIfI",
+        secrets: "IQxm9SWgmYaUpakRq4Nj6lnvwZYe9Yiw",
+      };
+      let method = "POST";
+      let url =
+        "https://dev-api.leap.localgravity.com.cn/layers/global_icl_public_transports/_search";
+      let data = {
+        search: null,
+        filter: {
+          lgl_sku: [],
+          icl_status: ["open", "planned", "construction", "potential"],
+          lgl_category: [],
+          lgl_format: [],
+          geo3_id: [],
+          bbox: [
+            113.91320631014342,
+            22.482041363852503,
+            114.155535825397,
+            22.638985399850966,
+          ],
+        },
+        coord_sys: "gww",
+        offset: 0,
+        sort: null,
+        size: 50,
+        aggs: "point",
+        with_names: false,
+      };
 
-    $stateProvider  
-        .state('venue', {
-            abstract: true,
-            views: {
-                'main': {
-                    templateUrl: 'venue.html',
-                    controller: 'VenueController as VenueCtrl'
-                },var a = ($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, NotificationProvider) => {
-    'ngInject';
-                'nav': {
-                    templateUrl: 'mynav.html',
-                    controller: 'MyNavbarController as MyNavbarCtrl'
-                }var a = function OnConfig($stateProvider, $locationProvider, $urlRouterProvider, $httpProvider, NotificationProvider) {
-    'ngInject';
-            }`
-    let b = null;
-    // b = a.replace(/([a-z]+.+\s+([^\s]+[\s]*=[\s]*))*function[^"']+['|"]ngInject['|"]/g, (s, $1, $2) => {
-    //     console.log(s, $1, $2)
-    // })
+      function btnclick() {
+        let options = {
+          method,
+          url,
+          data,
+          responseType: "arraybuffer",
+        };
+        axios(options)
+          // axios({url: '/user'})
+          .then((res) => {
+            responseFormat(res);
+            console.log("res: =======", res);
+          })
+          .catch((res) => {
+            console.log("err: =======", res);
+          });
+      }
+      axios.interceptors.request.use(
+        function (config) {
+          let userInfo = {
+            token:
+              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODkzMzE1ODQsImlhdCI6MTU4OTI0NTE4NCwibmJmIjoxNTg5MjQ1MTg0LCJpZGVudGl0eSI6Inh1bGluIn0.0cep6V0ByCchhA32TIRUhH0IZpXAbak2X6kzMAPFIfI",
+            secrets: "IQxm9SWgmYaUpakRq4Nj6lnvwZYe9Yiw",
+          };
+          let headers = config.headers || {};
+          let method = config.method;
+          let token = userInfo.token;
+          let secrets = userInfo.secrets;
+          let url = config.url;
 
-    b = a.replace(/([a-z]+\s+(.+)\s*=[\s]*)*([\w\s]*)\((.*)\)[^{]*\{[^"']+['|"]ngInject['|"]/g, (s, $1, $2, $3, $4) => {
-        let n = ($2 && $2.trim()) || ($3 && ($3.split('function')[1] || '').trim());
-        let arr = $4.replace(/\s+/, '').split(',');
-        arr = JSON.stringify(arr);
-        return `\n${n}.$inject = ${arr};\n` + s;
-    })
-    // b = a.match(/([\s]+[^\s]+[\s]*=[\s]*)*function[^"']+['|"]ngInject['|"]/g);
-    // b = b.map(s => {
-    //     s = s.trim().replace(/\s+/g, ' ');
-    //     let n = '';
-    //     if ( s.includes('=') ) {
-    //         n = s.split('=')[0].trim();
-    //     } else {
-    //         n = s.split('function')[1].split('(')[0].trim();
-    //     }
-    //     let y = s.split(')')[0].split('(')[1].replace(/\s+/g, '').split(',');
-    //     return {name: n, arr: JSON.stringify(y)};
-    // })
-console.log(b)
+          headers = Object.assign(
+            {},
+            getHeaders({ url, token, secrets, method }),
+            headers
+          );
+          config.headers = headers;
+          config.timeout = 20000;
+          return config;
+        },
+        function (err) {
+          return Promise.reject(err);
+        }
+      );
+      axios.interceptors.response.use(
+        function (response) {
+          response = responseFormat(response);
+          return response;
+        },
+        function (err) {
+          return Promise.reject(err);
+        }
+      );
+
+      function getHeaders({ url, token, secrets, method } = optoins) {
+        method = method.toLocaleUpperCase();
+        let headers = {
+          Authorization: "Bearer " + token,
+          "X-Request-From": 1,
+        };
+        let currentTimestamp = Math.floor(Date.now() / 1000);
+        let shaObj = new jsSHA("SHA-256", "TEXT");
+        let hmac = null;
+        let urlObj = new URL(url);
+        shaObj.setHMACKey(secrets, "TEXT");
+        shaObj.update(`${method} ${urlObj.pathname} ${currentTimestamp}`);
+        hmac = shaObj.getHMAC("HEX");
+        headers["LG-Timestamp"] = currentTimestamp;
+        headers["LG-Content-Sig"] = hmac;
+        return headers;
+      }
+      function arrayBuffer2Str(arrayBuffer) {
+        let result = "",
+          len = arrayBuffer.length,
+          start = 0,
+          end = 0,
+          bufferSize = Math.pow(2, 8) - 1;
+        for (; start < len; start += bufferSize) {
+          end = start + bufferSize;
+          end = end > len ? len : end;
+          result += String.fromCharCode.apply(
+            null,
+            arrayBuffer.subarray(start, end)
+          );
+        }
+        return result;
+      }
+
+      function decode(buffer) {
+        let data = new Uint8Array(buffer);
+
+        let binaryString = "";
+        for (var i = 0; i < data.byteLength; i++) {
+          data[i] = ~data[i];
+          binaryString = String.fromCharCode(data[i]) + binaryString;
+        }
+        return decodeURIComponent(escape(binaryString));
+      }
+
+      function responseFormat(response) {
+        let r = null;
+        let data = response.data;
+        let config = response.config || {};
+        let responseType =
+          config.responseType && config.responseType.toLocaleLowerCase();
+        let headers = config.headers || {};
+        let contentType = (headers["Content-Type"] || "").toLocaleLowerCase();
+        if (responseType === "arraybuffer") {
+          if (contentType.includes("application/x.lgde")) {
+            r = decode(data);
+            r = JSON.parse(r);
+          } else if (contentType.includes("application/json")) {
+            r = arrayBuffer2Str(new Uint8Array(data));
+            r = JSON.parse(r);
+          } else if (contentType.includes("image/jpeg")) {
+            r = data;
+          } else {
+            r = String.fromCharCode.apply(null, new Uint8Array(data));
+          }
+        }
+        response.data = r;
+        return response;
+      }
+
+      btnclick();
     </script>
-</body>
-
+  </body>
 </html>

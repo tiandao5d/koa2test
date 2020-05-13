@@ -8,8 +8,7 @@ function join(p) {
 
 module.exports = (router) => {
   router.get('/user', async function (ctx, next) {
-    console.log(22)
-    ctx.body = vd;
+    ctx.body = '胜多负少';
   })
 }
 

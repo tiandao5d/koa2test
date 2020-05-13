@@ -24,6 +24,7 @@ onerror(app)
 
 // middlewares
 app.use(bodyparser())
+  .use(cors)
   .use(json())
   .use(logger())
   .use(require('koa-static')(__dirname + '/public'))
@@ -32,13 +33,11 @@ app.use(bodyparser())
     map: { 'njk': 'nunjucks' },
     extension: 'njk'
   }))
-  .use(cors)
   .use(router.routes())
   .use(router.allowedMethods())
 
 // 设置跨域响应头
 async function cors(ctx, next) {
-  console.log(11)
   ctx.set('Access-Control-Allow-Origin', '*')
   await next()
 }
