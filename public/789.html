@@ -1,17 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-        asdf
-        <script>
-                let a = localStorage.getItem('a');
-                localStorage.removeItem('a');
-                console.log(a)
-        </script>
+  <script>
+
+    let colors = [
+      [255, 99, 132]
+      [255, 159, 64]
+      [255, 205, 86]
+      [75, 192, 192]
+      [54, 162, 235]
+      [153, 102, 255]
+      [201, 203, 207]
+    ]
+    function getColor() {
+      let arr = [];
+      let max = 5;
+      while (arr.length < max) {
+        let index = parseInt(Math.random() * colors.length);
+        if (!arr.includes(index)) {
+          arr.push(index);
+        }
+      }
+      arr = arr.map(index => colors[index]);
+      return arr;
+    }
+
+    let getColor = (() => {
+      let colors = [
+        [255, 99, 132]
+        [255, 159, 64]
+        [255, 205, 86]
+        [75, 192, 192]
+        [54, 162, 235]
+        [153, 102, 255]
+        [201, 203, 207]
+      ]
+      return (max = 5) => {
+        let arr = [];
+        while (arr.length < max) {
+          let index = parseInt(Math.random() * colors.length);
+          if (!arr.includes(index)) {
+            arr.push(index);
+          }
+        }
+        arr = arr.map(index => colors[index]);
+        return arr;
+      }
+    })();
+    console.log(getColor(3))
+  </script>
 </body>
+
 </html>

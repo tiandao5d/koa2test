@@ -28,6 +28,7 @@ app.use(bodyparser())
   .use(json())
   .use(logger())
   .use(require('koa-static')(__dirname + '/public'))
+  .use(require('koa-static')(__dirname + '/publicy'))
   .use(views(path.join(__dirname, '/views'), {
     options: { settings: { views: path.join(__dirname, 'views') } },
     map: { 'njk': 'nunjucks' },

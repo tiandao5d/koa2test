@@ -4,167 +4,127 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <script src="./js/jsSHA.js"></script>
   </head>
   <body>
-    <button onclick="btnclick()">aa</button>
     <script>
-      let userInfo = {
-        token:
-          "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODkzMzE1ODQsImlhdCI6MTU4OTI0NTE4NCwibmJmIjoxNTg5MjQ1MTg0LCJpZGVudGl0eSI6Inh1bGluIn0.0cep6V0ByCchhA32TIRUhH0IZpXAbak2X6kzMAPFIfI",
-        secrets: "IQxm9SWgmYaUpakRq4Nj6lnvwZYe9Yiw",
-      };
-      let method = "POST";
-      let url =
-        "https://dev-api.leap.localgravity.com.cn/layers/global_icl_public_transports/_search";
-      let data = {
-        search: null,
-        filter: {
-          lgl_sku: [],
-          icl_status: ["open", "planned", "construction", "potential"],
-          lgl_category: [],
-          lgl_format: [],
-          geo3_id: [],
-          bbox: [
-            113.91320631014342,
-            22.482041363852503,
-            114.155535825397,
-            22.638985399850966,
-          ],
-        },
-        coord_sys: "gww",
-        offset: 0,
-        sort: null,
-        size: 50,
-        aggs: "point",
-        with_names: false,
-      };
+      function syncCache(fn) {
+        // 列队等待的数据
+        let cacheData = {};
+        let args = Array.prototype.slice.call(arguments, 1);
+        let that = this;
+        // 缓存时间毫秒数，超过这个时间会重新请求
+        let cacheTime = 60 * 60 * 1000;
 
-      function btnclick() {
-        let options = {
-          method,
-          url,
-          data,
-          responseType: "arraybuffer",
-        };
-        axios(options)
-          // axios({url: '/user'})
-          .then((res) => {
-            responseFormat(res);
-            console.log("res: =======", res);
-          })
-          .catch((res) => {
-            console.log("err: =======", res);
-          });
-      }
-      axios.interceptors.request.use(
-        function (config) {
-          let userInfo = {
-            token:
-              "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1ODkzMzE1ODQsImlhdCI6MTU4OTI0NTE4NCwibmJmIjoxNTg5MjQ1MTg0LCJpZGVudGl0eSI6Inh1bGluIn0.0cep6V0ByCchhA32TIRUhH0IZpXAbak2X6kzMAPFIfI",
-            secrets: "IQxm9SWgmYaUpakRq4Nj6lnvwZYe9Yiw",
-          };
-          let headers = config.headers || {};
-          let method = config.method;
-          let token = userInfo.token;
-          let secrets = userInfo.secrets;
-          let url = config.url;
-
-          headers = Object.assign(
-            {},
-            getHeaders({ url, token, secrets, method }),
-            headers
-          );
-          config.headers = headers;
-          config.timeout = 20000;
-          return config;
-        },
-        function (err) {
-          return Promise.reject(err);
-        }
-      );
-      axios.interceptors.response.use(
-        function (response) {
-          response = responseFormat(response);
-          return response;
-        },
-        function (err) {
-          return Promise.reject(err);
-        }
-      );
-
-      function getHeaders({ url, token, secrets, method } = optoins) {
-        method = method.toLocaleUpperCase();
-        let headers = {
-          Authorization: "Bearer " + token,
-          "X-Request-From": 1,
-        };
-        let currentTimestamp = Math.floor(Date.now() / 1000);
-        let shaObj = new jsSHA("SHA-256", "TEXT");
-        let hmac = null;
-        let urlObj = new URL(url);
-        shaObj.setHMACKey(secrets, "TEXT");
-        shaObj.update(`${method} ${urlObj.pathname} ${currentTimestamp}`);
-        hmac = shaObj.getHMAC("HEX");
-        headers["LG-Timestamp"] = currentTimestamp;
-        headers["LG-Content-Sig"] = hmac;
-        return headers;
-      }
-      function arrayBuffer2Str(arrayBuffer) {
-        let result = "",
-          len = arrayBuffer.length,
-          start = 0,
-          end = 0,
-          bufferSize = Math.pow(2, 8) - 1;
-        for (; start < len; start += bufferSize) {
-          end = start + bufferSize;
-          end = end > len ? len : end;
-          result += String.fromCharCode.apply(
-            null,
-            arrayBuffer.subarray(start, end)
-          );
-        }
-        return result;
-      }
-
-      function decode(buffer) {
-        let data = new Uint8Array(buffer);
-
-        let binaryString = "";
-        for (var i = 0; i < data.byteLength; i++) {
-          data[i] = ~data[i];
-          binaryString = String.fromCharCode(data[i]) + binaryString;
-        }
-        return decodeURIComponent(escape(binaryString));
-      }
-
-      function responseFormat(response) {
-        let r = null;
-        let data = response.data;
-        let config = response.config || {};
-        let responseType =
-          config.responseType && config.responseType.toLocaleLowerCase();
-        let headers = config.headers || {};
-        let contentType = (headers["Content-Type"] || "").toLocaleLowerCase();
-        if (responseType === "arraybuffer") {
-          if (contentType.includes("application/x.lgde")) {
-            r = decode(data);
-            r = JSON.parse(r);
-          } else if (contentType.includes("application/json")) {
-            r = arrayBuffer2Str(new Uint8Array(data));
-            r = JSON.parse(r);
-          } else if (contentType.includes("image/jpeg")) {
-            r = data;
-          } else {
-            r = String.fromCharCode.apply(null, new Uint8Array(data));
+        // 以key为唯一值，加入缓存列队，args为fn的执行参数
+        function addCacheQueue(key, args) {
+          let item = cacheData[key];
+          let curTime = +new Date();
+          // 已经执行过异步函数，得到异步返回值了，在缓存时间内，所以直接返回内容
+          if (item) {
+            if (item.res) {
+              if (curTime - item.ts < cacheTime) {
+                // 如果经常使用，则继续缓存，重置上次缓存时间
+                //  称之为频率缓存
+                item.ts = curTime;
+                return Promise.resolve(item.res);
+              } else {
+                item = null;
+              }
+            } else if (item.err) {
+              item = null;
+            }
           }
+          return new Promise((resolve) => {
+            // 已经执行了异步函数，但是没有返回，记录列队
+            if (item) {
+              item.cbs.push(resolve);
+            } else {
+              // 执行异步函数
+              item = {
+                key,
+                args,
+                ts: 0, // 记录时间戳
+                res: null, // 记录正确返回
+                err: null, // 记录错误返回
+                cbs: [resolve],
+              };
+              // 加入列队数据，向前添加
+              cacheData[key] = item;
+              tryFn(item);
+            }
+          });
         }
-        response.data = r;
-        return response;
+
+        // 执行函数
+        function tryFn(item) {
+          return fn
+            .apply(that, item.args)
+            .then((res) => {
+              item.res = res;
+              // 请求成功后开始记录缓存时间
+              item.ts = +new Date();
+              return res;
+            })
+            .catch((err) => {
+              item.err = err;
+              return err;
+            })
+            .finally(() => {
+              // 执行列队回调
+              item.cbs.forEach((cb) => cb(item.res, item.err));
+              // 置空列队回调
+              item.cbs = [];
+              return 0;
+            });
+        }
+
+        return function () {
+          // 用户的fn函数的执行参数
+          let newArgs = Array.prototype.slice.call(arguments);
+          // 可以为缓存的唯一值
+          let key = newArgs.pop();
+          newArgs = args.concat(newArgs);
+          // 判断key有效，也就是函数的最后一个参数是可以用来当成key的，自定义key
+          // 无效的话直接将参数转成字符串作为key
+          if (!(key && typeof key === "string" && key.startsWith("_XLKEY"))) {
+            newArgs.push(key);
+            key = JSON.stringify(newArgs); // 参数为key值，用于缓存的key
+          }
+          return addCacheQueue(key, newArgs);
+        };
       }
 
-      btnclick();
+      function a(...args) {
+        return new Promise((resolve, reject) => {
+          console.log("==========");
+          setTimeout(() => {
+            resolve(args);
+          }, 3000);
+        });
+      }
+      let b = syncCache(a);
+      b(2, "_XLKEYboxyyydd").then((res) => {
+        console.log(res);
+      });
+      b(2).then((res) => {
+        console.log(res);
+      });
+      b(2).then((res) => {
+        console.log(res);
+      });
+      b(4).then((res) => {
+        console.log(res);
+        setTimeout(() => {
+          b(4, "_XLKEYboxyyydd").then((res) => {
+            console.log("2秒缓存", res);
+          });
+        }, 2000);
+        setTimeout(() => {
+          b(4, "_XLKEYboxyyydd").then((res) => {
+            console.log("8秒不读缓存", res);
+          });
+        }, 8000);
+      });
     </script>
   </body>
 </html>
