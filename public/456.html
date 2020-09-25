@@ -1,130 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script>
-      function syncCache(fn) {
-        // 列队等待的数据
-        let cacheData = {};
-        let args = Array.prototype.slice.call(arguments, 1);
-        let that = this;
-        // 缓存时间毫秒数，超过这个时间会重新请求
-        let cacheTime = 60 * 60 * 1000;
 
-        // 以key为唯一值，加入缓存列队，args为fn的执行参数
-        function addCacheQueue(key, args) {
-          let item = cacheData[key];
-          let curTime = +new Date();
-          // 已经执行过异步函数，得到异步返回值了，在缓存时间内，所以直接返回内容
-          if (item) {
-            if (item.res) {
-              if (curTime - item.ts < cacheTime) {
-                // 如果经常使用，则继续缓存，重置上次缓存时间
-                //  称之为频率缓存
-                item.ts = curTime;
-                return Promise.resolve(item.res);
-              } else {
-                item = null;
-              }
-            } else if (item.err) {
-              item = null;
-            }
-          }
-          return new Promise((resolve) => {
-            // 已经执行了异步函数，但是没有返回，记录列队
-            if (item) {
-              item.cbs.push(resolve);
-            } else {
-              // 执行异步函数
-              item = {
-                key,
-                args,
-                ts: 0, // 记录时间戳
-                res: null, // 记录正确返回
-                err: null, // 记录错误返回
-                cbs: [resolve],
-              };
-              // 加入列队数据，向前添加
-              cacheData[key] = item;
-              tryFn(item);
-            }
-          });
-        }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .div1 {
+      width: 100px;
+      height: 100px;
+      border-radius: 100px 0 0;
+      background: #f00;
+    }
 
-        // 执行函数
-        function tryFn(item) {
-          return fn
-            .apply(that, item.args)
-            .then((res) => {
-              item.res = res;
-              // 请求成功后开始记录缓存时间
-              item.ts = +new Date();
-              return res;
-            })
-            .catch((err) => {
-              item.err = err;
-              return err;
-            })
-            .finally(() => {
-              // 执行列队回调
-              item.cbs.forEach((cb) => cb(item.res, item.err));
-              // 置空列队回调
-              item.cbs = [];
-              return 0;
-            });
-        }
+    .div3 {
+      width: 0;
+      height: 0;
+      border: solid 100px #f00;
+      border-radius: 100px;
+      border-color: #f00 transparent transparent transparent;
+    }
 
-        return function () {
-          // 用户的fn函数的执行参数
-          let newArgs = Array.prototype.slice.call(arguments);
-          // 可以为缓存的唯一值
-          let key = newArgs.pop();
-          newArgs = args.concat(newArgs);
-          // 判断key有效，也就是函数的最后一个参数是可以用来当成key的，自定义key
-          // 无效的话直接将参数转成字符串作为key
-          if (!(key && typeof key === "string" && key.startsWith("_XLKEY"))) {
-            newArgs.push(key);
-            key = JSON.stringify(newArgs); // 参数为key值，用于缓存的key
-          }
-          return addCacheQueue(key, newArgs);
-        };
-      }
+    ul {
+      display: flex;
+    }
+    li {
+      order: 2;
+      width: 180px;
+    }
+    .li1 {
+    order: 1;  
+    }
+    .li2 {
+      flex-grow: 1;
+    }
+  </style>
+</head>
 
-      function a(...args) {
-        return new Promise((resolve, reject) => {
-          console.log("==========");
-          setTimeout(() => {
-            resolve(args);
-          }, 3000);
-        });
-      }
-      let b = syncCache(a);
-      b(2, "_XLKEYboxyyydd").then((res) => {
-        console.log(res);
-      });
-      b(2).then((res) => {
-        console.log(res);
-      });
-      b(2).then((res) => {
-        console.log(res);
-      });
-      b(4).then((res) => {
-        console.log(res);
-        setTimeout(() => {
-          b(4, "_XLKEYboxyyydd").then((res) => {
-            console.log("2秒缓存", res);
-          });
-        }, 2000);
-        setTimeout(() => {
-          b(4, "_XLKEYboxyyydd").then((res) => {
-            console.log("8秒不读缓存", res);
-          });
-        }, 8000);
-      });
-    </script>
-  </body>
+<body>
+  flex-wrap: nowrap | wrap | wrap-reverse;
+  nowrap（默认）：不换行。
+  wrap：换行，第一行在上方。
+  wrap-reverse：换行，第一行在下方。
+
+  项目在主轴上的对齐方式。
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+  flex-start（默认值）：左对齐
+  flex-end：右对齐
+  center： 居中
+  space-between：两端对齐，项目之间的间隔都相等。
+  space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍。
+
+  定义项目在交叉轴上如何对齐。
+  align-items: flex-start | flex-end | center | baseline | stretch;
+  flex-start：交叉轴的起点对齐。
+  flex-end：交叉轴的终点对齐。
+  center：交叉轴的中点对齐。
+  baseline: 项目的第一行文字的基线对齐。
+  stretch（默认值）：如果项目未设置高度或设为auto，将占满整个容器的高度。
+  <div class="div1"></div>
+  <div class="div3"></div>
+  <ul>
+    <li class="li2">222</li>
+    <li class="li1">111</li>
+    <li class="li3">333</li>
+  </ul>
+  <script>
+    let lis = [...document.querySelectorAll('li')];
+    document.querySelector('ul').addEventListener('click', (e) => {
+      console.log(lis.indexOf(e.target))
+    })
+let user = {
+  c: 1,
+   a: {
+     t(){
+       return this.c
+     }
+   }
+}
+let a = user.a.t;
+setTimeout(() => {
+  console.log('a1', user.a.t())
+})
+console.log('a2', a())
+  </script>
+</body>
+
 </html>

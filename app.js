@@ -2,6 +2,7 @@ const Koa = require('koa')
 const Router = require('koa-router')
 const app = new Koa()
 const router = new Router()
+const open = require('open');
 
 const views = require('koa-views')
 const co = require('co')
@@ -57,5 +58,5 @@ app.on('error', function (err, ctx) {
 // browserSync.watch('./public/123.html').on('change', browserSync.reload)
 
 module.exports = app.listen(config.port, () => {
-  console.log(`Listening on http://localhost:${config.port}`)
-})
+  console.log(`Listening on http://localhost:${config.port}`);
+});
