@@ -75,6 +75,1321 @@
       </div>
 
 
+      ##饥荒
+
+      【用法】：点击Tab键上边的那个键进入操作台，Ctrl+L关闭这个界面
+    
+      1.生成
+    
+      指令1：c_spawn("物品或生物代码",数量)
+    
+      指令2：DebugSpawn("物品或生物代码")
+    
+      可以在鼠标的位置生成物品或生物
+    
+      2.给予
+    
+      指令：c_give("物品代码",数量)
+    
+      可以在物品栏或背包里生成物品，如果物品栏满了就会掉在地上
+    
+      例子：想生成猎狗，则输入：c_spawn("hound")
+    
+      例子：想获得8个草，则输入：c_give("cutgrass",8)
+    
+      3.设置生命
+    
+      指令：c_sethealth(百分数)
+    
+      可以把生命值（不是上限）设置为百分之多少，注：使用小数代替百分数，如0.8=80%
+    
+      例：设置生命值为50%，则输入：c_sethealth(0.5)
+    
+      4.设置精神
+    
+      指令：c_setsanity(百分数)
+    
+      同上
+    
+      例：设置精神值为50%，则输入：c_setsanity(0.5)
+    
+      5.设置饥饿
+    
+      指令：c_sethunger(百分数)
+    
+      同上
+    
+      例：设置饥饿值为50%，则输入：c_sethunger(0.5)
+    
+      6.上帝模式
+    
+      指令：c_godmode()
+    
+      一般情况不会受伤挨饿掉精神
+    
+      7.设置速度
+    
+      指令：c_speed(值)
+    
+      标准速度为“1”，值越大速度越快
+    
+      例：设置为标准速度的10倍，则输入：c_speed(10)
+    
+      补：下洞穴或切换世界或上船或退出游戏会关闭上帝模式，不要在怪物多的时候退游戏哦，还有吃有脑残惩罚的食物依然会降低脑残，可以通过花或食物来回复，帽子之类的无效
+    
+      8.创造模式
+    
+      指令：GetPlayer().components.builder:GiveAllRecipes()
+    
+      可以制作全物品
+    
+      9.设置生命上限
+    
+      指令：GetPlayer().components.health:SetMaxHealth(值)
+    
+      设置生命上限为值那么大
+    
+      例：设置生命上限为87，则输入：GetPlayer().components.health:SetMaxHealth(87)
+    
+      10.设置精神上限
+    
+      指令：GetPlayer().components.sanity:SetMax(值)
+    
+      同上
+    
+      例：设置精神上限为500，则输入：GetPlayer().components.sanity:SetMax(500)
+    
+      11.设置饥饿上限
+    
+      指令：GetPlayer().components.hunger:SetMax(值)
+    
+      同上
+    
+      例：设置饥饿上限为364，则输入：GetPlayer().components.hunger:SetMax(364)
+    
+      12.停止饥饿
+    
+      指令：GetPlayer().components.hunger:Pause(true)
+    
+      你的角色不再饥饿
+    
+      13.变成海狸（吴迪专用）
+    
+      指令：GetPlayer().components.beaverness:SetPercent(1)
+    
+      14.传送
+    
+      指令：c_gonext("代码")
+    
+      把你传送到附近的“代码”的位置
+    
+      例：传送到附近的牛的位置，则输入：c_gonest("beefalo")
+    
+      15.删除
+    
+      指令：TheInput:GetWorldEntityUnderMouse():Remove()
+    
+      删除你鼠标所在位置的物体
+    
+      16.地图全开
+    
+      指令：GetWorld().minimap.MiniMap:ShowArea(0,0,0,10000)
+    
+      退出游戏时失效
+    
+      17.跳过一天
+    
+      指令：GetClock():MakeNextDay()
+    
+      18.跳过几天
+    
+      指令：for x = 1, 值 do GetClock():MakeNextDay() end
+    
+      跳过值那么多的天数
+    
+      ！！！跳过太多的天数会卡死
+    
+      例：跳过50天，则输入：for x = 1, 50 do GetClock():MakeNextDay() end
+    
+      19.跳过一段时间
+    
+      指令：LongUpdate(值)
+    
+      时钟每格30个单位，一整天是480个单位
+    
+      例：跳过4格时间，则输入：LongUpdate(120)
+    
+      20.设置时间段
+    
+      指令：GetClock():SetSegs(白天,黄昏,夜晚)
+    
+      时钟一共有16个格，白天黄昏夜晚加在一起必须为16
+    
+      例：白天7格，黄昏8格，夜晚1格，则输入：GetClock():SetSegs(7,8,1)
+    
+      21.跳过时间段
+    
+      指令：GetClock():NextPhase()
+    
+      跳过当前时间段，比如白天跳到黄昏
+    
+      22.开始春天(DLC1)
+    
+      指令：GetSeasonManager():StartSpring()
+    
+      23.开始夏天
+    
+      指令：GetSeasonManager():StartSummer()
+    
+      24.开始秋天（DLC1）
+    
+      指令：GetSeasonManager():StartAutumn()
+    
+      25.开始冬天
+    
+      指令：GetSeasonManager():StartWinter()
+    
+      26.开始下雨
+    
+      指令：GetSeasonManager():StartPrecip()
+    
+      27.停止下雨
+    
+      指令：GetSeasonManager():StopPrecip()
+    
+      28.生成闪电
+    
+      指令：GetSeasonManager():DoLightningStrike(Vector3(GetPlayer().Transform:GetWorldPosition()))
+    
+      如果周围没有避雷针，那闪电将会击中你
+    
+      29.测量距离
+    
+      指令：print(math.sqrt(GetPlayer():GetDistanceSqToInst(TheInput:GetWorldEntityUnderMouse())))
+    
+      在控制台信息（Ctrl+L）中显示角色到鼠标物品之间的距离
+    
+      30.解锁角色
+    
+      指令：GetPlayer().profile:UnlockCharacter("角色名称")
+    
+      和：GetPlayer().profile:Save()
+    
+      可以解锁多个角色
+    
+      例：GetPlayer().profile:UnlockCharacter("willow")
+    
+      GetPlayer().profile:UnlockCharacter("wickerbottom")
+    
+      GetPlayer().profile:Save()
+    
+      或全部解锁
+    
+      指令：GetPlayer().profile:UnlockEverything()
+    
+      （强迫症）31.清除死亡记录
+    
+      指令：ErasePersistentString("morgue")
+    
+      重启游戏可以看到变化
+    
+      二、寻找代码
+    
+      1.Wiki（Wikia）查找法（95%）（http://dont-starve-game.wikia.com/wiki/Don%27t_Starve_Game_Wiki）
+    
+      在饥荒Wiki（Wikia）里搜索你要找的物品的英文名
+    
+      如，找沙子（sand）的代码，搜索sand找到sand页面，介绍里有DebugSpawn，后面的就是代码
+    
+      Wiki几乎有所有物品的代码，但有时游戏更新的时候可能跟不上
+    
+      2.文件搜索法（70%）
+    
+      在游戏目录/data中搜索你想要找的物品的英文名
+    
+      如，找芦苇（cut reeds）的代码，在目录里搜索cut
+    
+      找到相关的LUA文件，文件名就是代码
+    
+      这个方法虽然比Wiki快，但准确度不高
+    
+      如你要找“像鲨鱼的生物”（sea hound），但怎么着都找不到
+    
+      因为它的代码与名字毫无关系，是sharx
+    
+      材料: .
+    
+      【猪镇】
+    
+      cork软木
+    
+      零碎衣料：Clippings
+    
+      荨麻：cutnettle
+    
+      蔓草（铲掉的荨麻藤）：dug_nettle
+    
+      捕蝇器长茎-Flytrap Stalk：venus_stalk
+    
+      铁矿石:iron
+    
+      块茎-Tuber：tuber_crop
+    
+      合金-Alloy：alloy
+    
+      闪电羽毛-Thunder Feather：feather_thunder
+    
+      雀眼鹰羽毛-Peagawk Plume：peagawkfeather
+    
+      河马鹿角-Hippopotamoose Antler：hippo_antler
+    
+      帕塔潘羽毛-Platapine Quile：bill_quill
+    
+      金粉-Gold Dust：gold_dust
+    
+      有毒的毒剑蛙腿/烹饪过的毒剑蛙腿-Poison Dartfrog Legs：froglegs_poison/froglegs_poison_cooked
+    
+      通往城市的钥匙-Key to the City：key_to_city
+    
+      皇家美术馆钥匙-Royal Gallery Key：pedestal_key
+    
+      玛法法王后（雕像）- Queen Malfalfa ：trinket_giftshop_1
+    
+      皇宫美景明信片-Post Card of the Royal Palace：trinket_giftshop_3
+    
+      一罐喷彩摩丝-Can of Silly String：trinket_giftshop_4
+    
+      猪猪币-Oinc（金币）：oinc
+    
+      十枚猪猪币-Tenpiece Oinc（银币）：oinc10
+    
+      装饰猪猪币-Centapiece Oinc（纸币）：oinc100
+    
+      魔法水-Magic Water：waterdrop
+    
+      安保协约-Security Contract：securitycontract
+    
+      房屋产权证-Deed of home ownership：deed
+    
+      山贼藏宝图-Bandit Stash Map：banditmap
+    
+      失落的圣象-Lost Idol：relic_1
+    
+      失落的图腾-Lost Totem：relic_2
+    
+      文物碎片-Relic Fragment：relic_3
+    
+      蓝母猪-Blue Sow：relic_4
+    
+      宝钻松露-Jeweled Truffle：relic_5
+    
+      维沃虫甲壳-Weevole Carapace：weevole_carapace
+    
+      甲壳-Chitin：chitin
+    
+      蛇骨-Snake Bone：snake_bone
+    
+      钻地龙头骨-Pugalisk Skull：pugalisk_skull
+    
+      【工具】
+    
+      剪刀-Shears：shears
+    
+      行政锤子-Executive Hammer：city_hammer
+    
+      钻地龙手杖-Pugalisk Wand：bonestaff
+    
+      鸟哨-Bird Whistle：antler
+    
+      放大镜-Magnifying Glass：magnifying_glass
+    
+      金平底锅-Gold Pan：goldpan
+    
+      驱虫灵-Bug B'Gone：bugrepellent
+    
+      软木碗型划艇-Cork Bowl Canoe：corkboat
+    
+      蛇皮帆-Snakeskin Sail：snakeskinsail
+    
+      警报解除工具-Disarming Tools：disarming_kit
+    
+      圆头锤-Ball Pein Hammer：ballpein_hammer
+    
+      帝王权杖-Regal Scepter：pig_scepter
+    
+      宝鸟胗石-Ro Bin Gizzard Stone：ro_bin_gizzard_stone
+    
+      宝鸟箱-Ro Bin：ro_bin
+    
+      费洛蒙石-Pherostone：pheromonestone
+    
+      【武器】
+    
+      拐棍-Stalking Stick：walkingstick
+    
+      戟-Halberd：halberd
+    
+      软木棒-Cork Bat：cork_bat
+    
+      手持加农炮-Blunderbuss：blunderbuss
+    
+      【穿戴】
+    
+      沙姆雷特面具-Shamlet Mask（韦伯的皮面具）：disguisehat
+    
+      软木蜡烛帽-Cork Candle Hat：candlehat
+    
+      维沃虫披肩-Weevole Mantle：armor_weevole
+    
+      人蚁套装-Mant Suit：antsuit
+    
+      人蚁面具-Mant Mask：antmaskhat
+    
+      华丽的头盔-Fancy Helmet：metalplatehat
+    
+      锡制套装-Tin Suit：armor_metalplate
+    
+      防毒面罩-Gas Mask：gasmaskhat
+    
+      雷霆之帽-Thunderhat：thunderhat
+    
+      木髓帽-Pith Hat：pithhat
+    
+      蛇皮帽-Snakeskin Hat：snakeskinhat
+    
+      蛇皮夹克-Snakeskin Jacket：armor_snakeskin
+    
+      皇家王冠-Royal Crown：pigcrownhat
+    
+      蝙蝠蒙面斗篷-Cowl：bathat
+    
+      山贼帽-Swashy Hat：bandithat
+    
+      雀眼鹰帽子（这个应该是后面会加入的东西，已经可以刷出来使用了）：peagawkfeatherhat
+    
+      花粉热帽子（这个也是新东西，估计后面会加入）：hayfeverhat
+    
+      【食物】
+    
+      鱼-fish：fish
+    
+      炸块茎-Fried Tuber：tuber_crop_cooked
+    
+      开花块茎-Blooming Tuber：tuber_bloom_crop
+    
+      油炸开花块茎-Fried Blooming Tuber：tuber_bloom_crop_cooked
+    
+      蜜汁-Nectar：nectar_pod
+    
+      烹饪过的藕-Cooked Lotus Root：lotus_flower_cooked
+    
+      熟种荚-Cooked Seed Pod：teatree_nut_cooked
+    
+      芦笋/烹饪过的芦笋-Asparagus/Cooked Asparagus：asparagus/asparagus_cooked
+    
+      芦笋汤-Asparagus Soup：asparagussoup
+    
+      芦荟/烹饪过的芦荟-Aloe / Cooked Aloe：aloe/aloe_cooked
+    
+      拉蒂什/烹饪过的拉蒂什-Radish / Cooked Radish：radish/_cooked
+    
+      荨麻卷-Nettle Rolls：nettlelosange
+    
+      蛇骨汤-Snake Bone Soup：snakebonesoup
+    
+      茶-Tea：tea
+    
+      冰茶-Iced Tea：icedtea
+    
+      蒸火腿三明治-Steamed Ham Sandwich：steamedhamsandwich
+    
+      黏黏的蛋糕-Gummy Cake：gummy_cake
+    
+      香辣蔬菜刺-Spicy Vegetable Stinger：spicyvegstinger
+    
+      硬壳玉米卷-Hard Shell Tacos：hardshell_tacos
+    
+      黑豆饭-Feijoada：feijoada
+    
+      熟了的黏糊鼻涕虫-Cooked Gummy Slug：slugbug_cooked
+    
+      烹饪过的蝽象-Cooked Bean Bugs：jellybug_cooked
+    
+      【建筑】
+    
+      摇头风扇-Oscillating Fan：basefan
+    
+      熔炼器-Smelter：smelter
+    
+      洒水器-Sprinkler（测试发现每次刷这个都崩，慎刷）：sprinkler
+    
+      软木桶-Cork Barrel：corkchest
+    
+      霍格思普科斯特-Hogus Porkusator：hogusporkusator
+    
+      翔天飞船-Skyworthy：porkland_exit/porkland_entrance
+    
+      商店老板的桌子-desk：pigman_shopkeeper_desk
+    
+      灯柱-Lamp Post：city_lamp
+    
+      草坪装饰1（规则分段式）：lawnornament_1
+    
+      草坪装饰2（错乱分段式）：lawnornament_2
+    
+      草坪装饰3（伞状树）：lawnornament_3
+    
+      草坪装饰4（尖树状）：lawnornament_4
+    
+      草坪装饰5（双层树状）：lawnornament_5
+    
+      草坪装饰6（开花）：lawnornament_6
+    
+      草坪装饰7（粉色）：lawnornament_7
+    
+      复杂精致的修剪灌木（猪）-Angry Pig：topiary_1
+    
+      复杂精致的修剪灌木（嚎叫猪）-Howling Werepig：topiary_2
+    
+      复杂精致的修剪灌木（牛）-Yawning Beefalo：topiary_3
+    
+      复杂精致的修剪灌木（猪王）-Pig King：topiary_4
+    
+      倾斜小屋-Slanty Shanty：playerhouse_city
+    
+      猪伯利矿石交易所-Swinesbury Mineral Exchange：pig_shop_bank
+    
+      猪伯利学院-Swinesbury Academy：pig_shop_academy
+    
+      猪伯利市政大厅-Swinesbury Cityhall：pig_shop_cityhall
+    
+      银猪槽熟食店-The Sterling Trough Deli：pig_shop_deli
+    
+      猪伯利精选食品店-Swinesbury Fine Grocer's：pig_shop_produce
+    
+      猪猪小姐花艺店-Miss Sow's Floral Arrangements：pig_shop_florist
+    
+      猪猪与居居杂货店-Pigg and Pigglet's General Store：pig_shop_general
+    
+      卷尾巴泥巴浴健康会馆-Curly Tails Mud Spa：pig_shop_hoofspa
+    
+      飞猪横来奥术商店-The Flying Pig Arcane Shop：pig_shop_arcane
+    
+      野猪獠牙武器店-The Boar's Tusk Weapon Shop：pig_shop_weapons
+    
+      俊猪耳帽子店-The Sow's Ear Hat Shop：pig_shop_hatshop
+    
+      “猪栏”奇闻异物馆-'The Sty' Oddities Emporium：pig_shop_antiquities
+    
+      皇宫-Palace：pig_palace
+    
+      农宅（石头猪人房）：pighouse_farm
+    
+      采石小屋（外表跟上面的没差，但上面出来农场猪，这个出来矿工猪）：pighouse_mine
+    
+      市内住宅-Town House（大概可以随机刷出8种房子）：pighouse_city
+    
+      守望塔/守望塔（皇家）-Watch Tower：pig_guard_tower/pig_guard_tower_palace
+    
+      毒云（就是驱虫灵喷出来的毒气）：gascloud
+    
+      石片-Stone Slab：rock_flippable
+    
+      雷鸟窝-Thundernest：thunderbirdnest
+    
+      气泡泳池-Sparkling Pool：sedimentpuddle
+    
+      诱惑的石像：pig_ruins_idol
+    
+      巨砾：pig_ruins_artichoke
+    
+      用来砸的锅-A Smashing Pot：smashingpot
+    
+      破碎的石脸（只有脸）：pig_ruins_head
+    
+      破碎的石脸（有两颗金牙的猪人）：pig_ruins_pig
+    
+      破碎的石脸（有金子的蚁人）：pig_ruins_ant
+    
+      破碎的图腾：pig_ruins_plaque
+    
+      破碎的火炬：pig_ruins_torch
+    
+      墙壁火炬：pig_ruins_torch_wall
+    
+      墙壁火炬（蓝色的）：pig_ruins_torch_wall_blue
+    
+      墙上的藤蔓：pig_ruins_torch_wall_vines_east/west/north
+    
+      遗迹入口（去猪二岛）：pig_ruins_entrance/pig_ruins_exit（后者是没有藤蔓的）
+    
+      遗迹入口（去蛇岛）：pig_ruins_entrance2/pig_ruins_exit2（后者是没有藤蔓的）
+    
+      遗迹入口（蚁人雕像）：pig_ruins_entrance3
+    
+      遗迹入口（无雕像）：pig_ruins_entrance_small
+    
+      遗迹入口（去日晷岛）：pig_ruins_entrance4
+    
+      遗迹入口（日晷遗迹）：pig_ruins_entrance5
+    
+      猪猪末日日历-Aporkalypse Calendar：aporkalypse_clock
+    
+      猪猪末日日历-Aporkalypse Calendar（最外圈）：aporkalypse_clock1
+    
+      猪猪末日日历-Aporkalypse Calendar（中间圈）：aporkalypse_clock2
+    
+      猪猪末日日历-Aporkalypse Calendar（最内圈）：aporkalypse_clock3
+    
+      倒回踏板（猪猪末日日历）：aporkalypse_rewind_plate
+    
+      加速踏板（猪猪末日日历）：aporkalypse_fastforward_plate
+    
+      地洞的光：pig_ruins_light_beam/roc_cave_light_beam
+    
+      地洞里的机关石头：pig_ruins_pressure_plate
+    
+      青春不老泉-Fountain of Youth：pugalisk_fountain
+    
+      摇摇欲坠的柱子：pugalisk_ruins_pillar
+    
+      不祥的雕刻：pugalisk_trap_door
+    
+      古代城墙（出现在蛇岛祭坛附近的那种）：wall_pig_ruins_repaired
+    
+      古代城墙（同楼上的一样，不过是破坏的）：wall_pig_ruins
+    
+      地下陷阱（刷在地上不会触发）：pig_ruins_spear_trap
+    
+      毁掉的长矛陷阱：pig_ruins_spear_trap_broken
+    
+      石化的蛋（大鸟巣里的）：roc_nest_egg1/2/3/4
+    
+      饱受风霜的小屋：roc_nest_house
+    
+      生锈的灯：roc_nest_rusty_lamp
+    
+      大鸟巣：roc_nest
+    
+      蜂蜜箱：antchest
+    
+      蚁穴-Antcomb Home：antcombhome
+    
+      灯塔：ant_cave_lantern
+    
+      许愿井-Wishing Well：deco_ruins_fountain
+    
+      末日之井-End's Well：deco_ruins_endswell
+    
+      猪猪末日日历-Aporkalypse Calendar：aporkalypse_clock
+    
+      人蚁丘陵-Mant Hill：anthill/anthill_exit（前者会崩档，后者不会）
+    
+      曼德拉丘陵：mandrakehouse
+    
+      龟裂洞穴-Cave Cleft：vampirebatcave
+    
+      大蚊群-Gnat Mound：gnatmound
+    
+      粪堆-Dung Pile：dungpile
+    
+      粪球-Dung Ball：dungball
+    
+      钟乳石王座：antqueen_throne
+    
+      出生地的东西：porkland_intro_basket/balloon/trunk/flags/scrape/suitcase/sandbag
+    
+      【生物】
+    
+      皮皮鸡-Peep Hen（新物种）：peekhen
+    
+      折龙草-Snap Dragon（新物种）：snapdragon
+    
+      鸡-Chicken（新物种）：chicken
+    
+      斑斑马-Zeb（新物种）：zeb
+    
+      变色龙麦克斯-Maxameleon：porkland_intro
+    
+      猪守卫-Royal Guard：pigman_royalguard（普通）/pigman_royalguard_2（皇家）
+    
+      卷尾巴泥巴浴健康会馆老板-Beautician：pigman_beautician_shopkeep/pigman_beautician
+    
+      猪猪与居居杂货店老板-Banker：pigman_bamker_shopkeep/pigman_banker/pigman_shopkeep
+    
+      猪猪小姐花艺店老板-Florist：pigman_florist_shopkeep/pigman_florist
+    
+      猪伯利学院老板-Professor：pigman_professor_shopkeep/pigman_professor
+    
+      猪伯利精选食品店/银猪槽熟食店老板-Storeowner：pigman_storeowner
+    
+      玛法法王后-Pig Queen：pigman_queen
+    
+      农场猪人-Farmer：pigman_farmer
+    
+      修理工猪人-Worker：pigman_mechanic
+    
+      市长猪人-Mayor：pigman_mayor
+    
+      矿工猪人-Miner：pigman_miner
+    
+      穿绿马甲的猪人-Usher：pigman_usher
+    
+      戴面具的猪人-Masked Pig（猪小偷）：pigbandit
+    
+      “猪栏”奇闻异物馆老板-Collector：pigman_collector_shopkeep/pigman_collector
+    
+      飞猪横来奥术商店老板-Erudite：pigman_erudite_shopkeep/pigman_erudite
+    
+      野猪獠牙武器店老板-Hunter：pigman_hunter_shopkeep/pigman_hunter
+    
+      俊猪耳帽子店老板-Hatmaker：pigman_hatmaker_shopkeep/pigman_hatmaker
+    
+      工蚁-Mant：antman
+    
+      兵蚁：antman_warrior
+    
+      人蚁战士之卵：antman_warrior_egg
+    
+      女人蚁王后-Queen Womant：antqueen
+    
+      雷鸟-Thunderbird：thunderbird
+    
+      鸽子/一群鸽子-Pigeon：pigeon/pigeon_swarm
+    
+      鹦鹉（蓝）-Polly Parrot：parrot_blue
+    
+      翠鸟-Kingfisher：kingfisher
+    
+      古代神灵-Ancient Spirit：pigghost
+    
+      蜘蛛猴-Spider Monkey：spider_monkey
+    
+      雀眼鹰-Peagawk：peagawk
+    
+      大鸟-BFB：roc_head/leg/tail
+    
+      石蛋-Stone Egg（孵切斯特）：roc_robin_egg
+    
+      毒剑蛙-Poison Dartfrog：frog_poison
+    
+      毒蛇-Viper：snake_amphibious
+    
+      狐狸-Pog：pog
+    
+      钻地龙-Pugalisk：pugalisk
+    
+      齿状捕蝇器-Snaptooth Flytrap：adult_flytrap
+    
+      齿状捕蝇器幼苗-Snaptooth Seedling：mean_flytrap
+    
+      萤火虫-Glowfly（白天也有的那种）：glowfly
+    
+      黏糊的鼻涕虫-Gummy Slug：slugbug
+    
+      蝽象-Bean Bugs：jellybug
+    
+      蚊群-Gnat Swarm：gnat
+    
+      金戈登-Pangolden：pangolden
+    
+      铁巨人-Iron Hulk：ancient_robot_ribs/head/claw/leg
+    
+      吸血蝙蝠-Vampire Bat：vampirebat
+    
+      大蛆-Giant Grub：giantgrub
+    
+      河马-Hippopotamoose：hippopotamoose
+    
+      皮可果/橙色皮可果-Piko：piko/piko_orange
+    
+      屎壳郎-Dung Beetle：dungbeetle
+    
+      蝎子-Scorpion：scorpion
+    
+      维沃虫-Weevole：weevole
+    
+      帕塔潘-Platapine：bill
+    
+      曼德拉人-Elder Mandrake：mandrakeman
+    
+      疯狂甲虫-Rabid Beetle：rabid_beetle
+    
+      远古先驱者-Ancient Herald：：ancient_herald
+    
+      【植物】
+    
+      树篱-Hedge（3种）：hedge_cone/hedge_layered/hedge_block
+    
+      高草丛：grass_tall
+    
+      茶树-Tea Tree：teatree_tall/short/normal/stump/burnt
+    
+      有松鼠的茶树-Tea Tree：teatree_piko_nest
+    
+      种荚-Seed Pod：teatree_nut
+    
+      森林芒刺果-Jungle Burr：burr
+    
+      利爪棕榈树-Claw Palm Tree：clawpalmtree/clawpalmtree_tall/short/stump
+    
+      棕榈树苗-Claw Palm Sapling：clawpalmtree_sapling
+    
+      雨林大树-Rainforest Tree：rainforesttree_rot/_tall/_short/_stump/_burnt
+    
+      被茧缠住的树-Cocooned Tree：spider_monkey_tree/spider_monkey_tree_tall/short/normal/stump/burnt
+    
+      块茎树-Tuber Trees：tubertree/_tall/_short/_burnt/_stump
+    
+      开花的块茎树-Blooming Tuber Tree：/
+    
+      饱受风霜的树：roc_nest_tree1/2
+    
+      饱受风霜的枝丫：roc_nest_branch1/2
+    
+      饱受风霜的灌木：roc_nest_bush
+    
+      饱受风霜的棍子：roc_nest_debris1/2/3/4
+    
+      饱受风霜的树干：roc_nest_trunk
+    
+      莲藕：lotus
+    
+      莲花-Lotus Flower：lotus_flower
+    
+      睡莲-Lily Pad：lilypad
+    
+      荨麻藤-Nettle Vine：nettle
+    
+      粗大的带叶枝芽：tree_pillar
+    
+      悬挂着的藤蔓（有攻击性的）：grabbing_vine
+    
+      荆棘-Bramble：bramblespike
+    
+      魔花-Magic Flower：lifeplant
+    
+      【地皮】
+    
+      草原草皮（就是草坪上的地皮）：turf_lawn
+    
+      石路草皮-Stone Road Turf：turf_cobbleroad
+    
+      平石地皮-Flat Stone Turf：turf_foundation
+    
+      精心护理草皮：turf_fields
+    
+      苔藓草皮：turf_moss
+    
+      古石草皮（该地皮铲掉获得一块石块，原地变成浓密雨林草皮，铲不掉）：turf_pigruins
+    
+      有毒草皮（这个地皮铲不掉，并且干草叉会直接坏掉）：turf_gasjungle
+    
+      浓密雨林草皮（这个地皮铲不掉）：turf_deeprainforest
+    
+      雨林草皮：turf_rainforest
+    
+      胡子地毯-Beard Hair Rug：turf_beard_hair
+    
+      【屋内装饰】
+    
+      刺猬地毯：rug_hedgehog
+    
+      编织地毯：rug_braid
+    
+      胡子地毯：rug_beard
+    
+      圆形地毯：rug_circle
+    
+      犯罪地毯：rug_crime
+    
+      市政厅边角毯：rug_cityhall_corners
+    
+      皮毛地毯：rug_fur
+    
+      蹄印地毯：rug_hoofprint
+    
+      皮革地毯：rug_leather
+    
+      金属地毯：rug_metal
+    
+      钉板地毯：rug_nailbed
+    
+      椭圆地毯：rug_oval
+    
+      八角地毯：rug_octagon
+    
+      豪猪皮毛地毯：rug_porcupuss
+    
+      宫殿地毯：rug_palace_runner
+    
+      橡胶地毯：rug_rubbermat
+    
+      大型地毯：rug_rectangle
+    
+      眼之地毯：rug_round
+    
+      旋涡地毯：rug_swirl
+    
+      方形地毯：rug_square
+    
+      足球地毯：rug_tiles
+    
+      虫洞地毯：rug_wormhole
+    
+      丝网地毯：rug_web
+    
+      帽子店摆设：hatbox1/2
+    
+      洒水特效：water_spray（我会刷这个出来配合其他东西当喷泉O(∩_∩)O哈哈~）
+    
+      【DS】
+    
+      cutgrass草(材料)
+    
+      flint燧石
+    
+      twigs小树枝
+    
+      rocks岩石(材料)
+    
+      thulecite(铥矿)
+    
+      marble(大理石)
+    
+      log木材(材料)
+    
+      goldnugget金块(材料)
+    
+      cutreeds芦苇(材料)
+    
+      honeycomb蜂巢(材料)
+    
+      pigskin猪皮(材料)
+    
+      poop便便(材料)
+    
+      silk蜘蛛丝(材料)
+    
+      spidergland蜘蛛腺体
+    
+      ash灰
+    
+      boards木板
+    
+      charcoal木炭
+    
+      rope绳子(材料)
+    
+      cutstone石砖(材料)
+    
+      nitre硝石(材料)
+    
+      papyrus草纸(材料)
+    
+      petals花瓣
+    
+      houndstooth犬牙
+    
+      boneshard骨头碎片
+    
+      stinger蜂刺(材料)
+    
+      beardhair胡子
+    
+      FEATHER_ROBIN_WINTER雪雀羽毛
+    
+      FEATHER_ROBIN红色羽毛
+    
+      bee蜜蜂
+    
+      fireflies萤火虫
+    
+      beefalowool牛毛
+    
+      redgem红宝石(材料)
+    
+      bluegem蓝色宝石
+    
+      purplegem紫宝石(材料)
+    
+      butterflywings蝴蝶翅膀
+    
+      deerclops_eyeball独眼巨鹿的眼球
+    
+      goose_feather唐鸭羽毛
+    
+      gears齿轮
+    
+      gunpowder火药
+    
+      horn角
+    
+      livinglog有生命的木材
+    
+      mandrake曼德拉草
+    
+      nightmarefuel噩梦燃料
+    
+      pinecone松果(材米
+    
+      tentaclespots触手皮
+    
+      walrus_ tusk 海象长
+    
+      工具:
+    
+      axe斧子
+    
+      hammer锤子
+    
+      shovel铲耔
+    
+      pickaxe鹤嘴锄
+    
+      pitchfork草叉
+    
+      hammer锤子
+    
+      fishingrod鱼竿
+    
+      razor剃刀
+    
+      bugnet虫网
+    
+      umbrella雨伞
+    
+      cane步行手杖
+    
+      sewing_kit针线包
+    
+      bedroll straw乾床垫
+    
+      tent帐篷
+    
+      heatrock保温石头
+    
+      healingsalve治疗药膏
+    
+      backpack龅
+    
+      piggyback猪背包
+    
+      krampus_ sack坎普斯背包
+    
+      chester切斯特
+    
+      chester. eyebone切斯特眼杖
+    
+      treasurechest宝箱
+    
+      birdcage鸟笼
+    
+      birdtrap邬陷阱
+    
+      trap陷阱
+    
+      trap_ teeth 雅陷阱
+    
+      dirtpile魔杖
+    
+      diviningrod魔杖持有者(就是个底座)
+    
+      diviningrodbase魔杖基地
+    
+      diviningrodstart魔杖和持有者
+    
+      blueprint科技图(随即给)
+    
+      天气:
+    
+      rain下雨.
+    
+      snow'下雪.
+    
+      建筑:
+    
+      beebox蜂箱
+    
+      rabbithole兔子窝
+    
+      pighouse猪之家
+    
+      mermhouse人之家
+    
+      spiderden蜘蛛巢穴(-
+    
+      tallbirdnest鸽离
+    
+      walrus_ camp海象窝
+    
+      beehive野生蜂巢
+    
+      wasphive人蜂巢
+    
+      homesign路标牌
+    
+      gravestone墓碑
+    
+      mound坟墓
+    
+      pond池塘
+    
+      resurrectionstone试金石
+    
+      rainometer雨计
+    
+      winterometer寒冰温度计
+    
+      insanityrock猪王祭坛小尖角
+    
+      sanityrock猪王祭坛大尖角
+    
+      marblepillar大理石柱子
+    
+      marbletree大理石树
+    
+      statueharp竖琴雕像(主教边上的)
+    
+      statuemaxwell麦斯威尔雕像
+    
+      horizontal_ maxwellight 麦斯威尔之光(晚上一靠近就亮)
+    
+      vertical_ maxwellight 麦斯威尔之光
+    
+      maxwellphonograph留声机
+    
+      maxwelllock噩梦锁头
+    
+      maxwellthrone噩梦王座
+    
+      teleportato_ checkmate 传送机底座
+    
+      adventure_ portal冒险之门
+    
+      basalt玄武岩
+    
+      食物:
+    
+      butter黄油
+    
+      egg鸡蛋
+    
+      froglegs青蛙腿
+    
+      petals_ evil 恶魔花瓣(食材)
+    
+      seeds种子
+    
+      icebox冰箱
+    
+      cookpot煮肉
+    
+      锅
+    
+      meatrack晒肉架
+    
+      spoiledfood腐烂变质的食物
+    
+      照明:
+    
+      bonfire篝火堆(不发光,但能烤肉)
+    
+      campfire营火
+    
+      campfirefire地上的小火苗
+    
+      firepit石头营火
+    
+      nightlight暗夜照明灯
+    
+      pigtorch猪头火炬
+    
+      pumpkin_ lantern 南瓜灯
+    
+      torch火炬
+    
+      torchfire炬上的火
+    
+      willowfire薇洛之火
+    
+      植物:
+    
+      sapling树苗
+    
+      berrybush浆果灌木
+    
+      carrot胡萝卜
+    
+      evergreens常青树
+    
+      grass草(植物)
+    
+      reeds芦苇(植物)
+    
+      flower花
+    
+      flower_ evil 邪恶之花
+    
+      marsh_ bush 尖刺灌木
+    
+      marsh_ tree 针叶树
+    
+      portal_ home草
+    
+      portal_ level 草
+    
+      plant normal农作物
+    
+      动物:
+    
+      babybeefalo最小的牦牛
+    
+      beefalo牦牛
+    
+      pigking猪王
+    
+      pigman二师兄
+    
+      rabbit兔子
+    
+      tallbirdegg鸡蛋
+    
+      smallbird幼年高鸟
+    
+      tallbird高鸟
+    
+      spidereggsack蜘蛛卵
+    
+      spider蜘蛛
+    
+      spiderqueen蜘蛛女皇
+    
+      butterfly蝴蝶
+    
+      honey蜂蜜
+    
+      flies苍蝇
+    
+      mosquito苍蝇
+    
+      fish鱼
+    
+      merm鱼人
+    
+      frog青蛙
+    
+      hound猎狗
+    
+      houndbone猎犬尸骨
+    
+      houndmound猎犬丘(猎犬会起出现)
+    
+      perd火鸡
+    
+      tentacle触手
+    
+      ghost幽灵
+    
+      bishop主教
+    
+      knight发条骑士
+    
+      deerclops独眼巨鹿
+    
+      krampus小偷
+    
+      leif树人雷夫
+    
+      walrus海象
+    
+      walrus_ dart海象的飞镖
+    
+      penguin企鹅
+    
+      战斗:
+    
+      amulet护身符
+    
+      armor grass草之铠甲
+    
+      armor marble大理石铠甲
+    
+      armor sanity夜魔铠甲
+    
+      armor wood之铠甲
+    
+      trunkvest树干背心
+    
+      sweatervest小巧背心
+    
+      spear矛
+    
+      boomerang回旋镖
+    
+      firestaff火魔杖
+    
+      icestaff冰魔杖
+    
+      hambat火腿球棒
+    
+      nightsword暗夜剑
+    
+      onemanband独奏乐器
+    
+      panflute排箫
+    
+      tentaclespike狼牙棒
+    
+      bandage绷带
+    
+      beemine蜜蜂炸弹
+    
+      resurrectionstatue复活木偶
+    
+      麦斯威尔:
+    
+      deadlyfeast致命的盛宴(料理)
+    
+      maxwell麦斯威尔
+    
+      maxwellendgame老去的麦斯威尔
+    
+      maxwellhead麦斯威尔的头
+    
+      maxwellhead_ trigger 麦斯威尔的头
+    
+      maxwellintro麦斯威尔脚下的影子
+    
+      maxwelkey影子钥匙
+    
+      maxwellight麦斯威尔之光(晚上一靠近就亮)
+    
+      teleportato_ base 恶魔底座
+    
+      teleportato_ _crank 圆环
+    
+      teleportato potato身体
+    
+      teleportato_ box盒子
+    
+      teleportato_ ring戒指
+    
+      diviningrodbase魔杖基地
+    
+      #Boss
+    
+      Deerclops冬鹿
+    
+      Bearger秋熊
+    
+      Dragonfly夏蝇
+    
+      Moose春鸭
+    
+      minotaur犀牛
+    
+      海难boss：tigershark（虎鲨）twister（飓风boss）twister_seal（飓风boss本体）
     </div>
   </div>
   <div class="cvs"></div>
