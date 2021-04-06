@@ -1,6 +1,5 @@
 const fs = require("fs");
 const path = require("path");
-const extract = require("extract-zip");
 const decompress = require("decompress");
 let { eachDir } = require("../services/fsformat");
 module.exports = (router) => {
@@ -20,7 +19,7 @@ module.exports = (router) => {
 async function unzipMods(src = "/Users/linxu/work/don't", tosrc = "/Users/linxu/work/don't/def") {
   console.log("解压开始");
   let list = eachDir({ src, level: 1 }).filter((o) => o.name.endsWith(".zip"));
-  for(let item of list){
+  for (let item of list) {
     await fn(item.src, path.join(tosrc, getName(item.name)));
   }
   console.log("解压完成");
@@ -34,12 +33,12 @@ async function unzipMods(src = "/Users/linxu/work/don't", tosrc = "/Users/linxu/
   async function fn(source, target) {
     let arr = [];
     try {
-    await decompress(source, target, {
-      map(file) {
-        arr.push(file.path);
-        return file;
-      },
-    });
+      await decompress(source, target, {
+        map(file) {
+          arr.push(file.path);
+          return file;
+        },
+      });
     } catch (err) {
       console.log(source, "这个路径到这个路径", target, "的解压出错了，错误信息如下");
       console.log(err);
@@ -52,4 +51,56 @@ async function unzipMods(src = "/Users/linxu/work/don't", tosrc = "/Users/linxu/
   }
 }
 
+// 此方法为深层次的对象合并，但不考虑深拷贝，只考虑对象 [object, Object]，
+// 不考虑数组，函数，时间等引用类型，一个深层次的 Object.assign方法
+// 主要用途是数据补全，给一个默认格式，然后可以默认补全后面的数据
+// 保证数据的完整性
+const assignObj = (function assignObj() {
+  function isObject(val) {
+    return Object.prototype.toString.call(val) === "[object Object]";
+  }
+  function fn(obj1, obj2) {
+    if (!(isObject(obj1) && isObject(obj2))) {
+      return obj1;
+    }
+    for (let k in obj2) {
+      let val1 = obj1[k];
+      let val2 = obj2[k];
+      if (isObject(val1) && isObject(val2)) {
+        obj1[k] = fn(val1, val2);
+      } else {
+        obj1[k] = typeof val2 === "object" ? JSON.parse(JSON.stringify(val2)) : val2;
+      }
+    }
+    return obj1;
+  }
+  return function (item1, ...args) {
+    if (!(args.length > 0)) {
+      return item1;
+    }
+    return args.reduce((total, item) => {
+      return fn(total, item);
+    }, item1);
+  };
+})();
 
+function abc(nums = [8, 8], target = 8) {
+  let a = -1;
+  let b = -1;
+  for (let i = 0; i < nums.length; i++) {
+    if (a === -1) {
+      if (nums[i] === target) {
+        a = i;
+        b = i;
+      }
+    } else {
+      if (nums[i] === target) {
+        b = i;
+      } else {
+        break;
+      }
+    }
+  }
+  return [a, b]
+}
+console.log(abc());
