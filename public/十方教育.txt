@@ -6,9 +6,37 @@ WiFi
 lin.xu@tenclass.com
 sishen470,X
 
+gitlab
+lin.xu@tenclass.com
+sishen470
+
 3. 开通中台系统 http://pichu-uat.tenclass.com/ 帐号，企业微信扫码登录后，@赵尊霞 进行权限分配， 听几场我们自己的直播，熟悉业务
 使用手册【必看】：https://docs.qq.com/doc/DY0tLcEFuRWp2RGhQ （使用企业微信扫码登录）
 4. 开通tapd账号：找 @唐凯峰 进行开通，加入到产研中台项目 
 使用手册【必看】：Tapd 入门使用手册
 5. 研发人员 gitlab 账号，找@杨吉  进行开通，开通后，找导师/leader开通相应gitlab仓库
 访问地址：https://gitlab.weike.fm/
+
+# Hosts 文件添加如下两行，sudo vim /etc/hosts
+# windows 在 C:\Windows\System32\drivers\etc\hosts
+# windows 如果有权限问题，把 host 复制到桌面，编辑完再复制到原位置
+
+81.71.145.204 apollo-service-apollo-configservice.apollo
+81.71.145.204 apollo-service-apollo-configservice
+
+http://pichu-stage.tenclass.com/course_v2/content/2686?tab=base
+命名规则
+https://longsee.feishu.cn/docs/doccn4DPPfbprvaLM1F6UAvtG0e#0T95MW
+xl-re-sass_box
+
+图片问题
+https://crm.tingshubao.net/
+ahreal.huang@ilanxin.cn
+123456
+
+设计稿问题
+https://app.mockplus.cn/team/aghhaofrmj
+
+后台系统登录
+lhr@gmail.com
+123456
