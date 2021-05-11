@@ -1,6 +1,10 @@
 WiFi 
-账号：Bianhao-LXWT
-密码：#Bianhao@606#
+1、账号:Bianhao-GT 
+密码：#Bianhao@369#
+2、 Bianhao-LXWT 
+密码： #Bianhao@606#
+3、Bianhao-guest    
+密码：#Bianhao666888#
 
 企业邮箱 https://exmail.qq.com/
 lin.xu@tenclass.com
@@ -40,3 +44,88 @@ https://app.mockplus.cn/team/aghhaofrmj
 后台系统登录
 lhr@gmail.com
 123456
+
+// 发版地址
+https://longsee.feishu.cn/docs/doccnbWDurVNegBHakFJfP4QDne#ml8RCZ
+
+// 打包工具 jenkins
+http://ci.tingshubao.net/job/BBG/
+账号：lin_xu
+密码：lin_xu
+
+
+// 阿波罗配置
+stage-apollo：http://apollo-stage.tenclass.com
+
+// api存放地址
+http://yapi.tenclass.com/project/193/interface/api/31012
+lin.xu@tenclass.com
+sishen470
+
+stage-frotend
+sgO8MBq7m9PP1vNG
+
+// 值班
+https://docs.qq.com/sheet/DY2ljbHVaU3pPWE1L?tab=s5ptip
+
+
+如果需要发版的话，请对应改名后的项目：
+meowth（前端获客路径）shop-fe
+ponyta（前端支付项目）pay-fe
+wigglytuff（前端学习项目）study-fe
+alakazam（前端登录项目）sso-fe
+pichu （前端CRM项目） crm-fe
+
+
+// 十方座位表
+https://docs.qq.com/sheet/DVVdMemRlTEp5RGxM?tab=bb08j2
+
+__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjM0Nzg65b6Q55CzIiwiZXhwIjoxNjIzMDMzNDUzfQ.4PEcJladTboa5dZMpcCKkFyw_kGpacP9xzar1ynEm1k
+// 米哥遗产
+http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjM1MTrogIHnsbMiLCJleHAiOjE2MjIyNTQyOTh9.Mqq_p3h3tHwnbXkxnTOUOHs5CbnXTJ94QyIskVbup9k
+
+
+3. ARMS
+飞书文档：https://longsee.feishu.cn/docs/doccnPcdE09fpkfnjy2JN1g6ob0#
+阿里云地址：https://signin.aliyun.com/login.htm?spm=5176.12901015.yrepazatz.6.1c4a525cuvo9u9&callback=https%3A%2F%2Fwww.aliyun.com%2F%3Fspm%3D5176.3047821.0.0.6ebf70b4BJjoXG#/main
+账号： developer@1798803447531659.onaliyun.com
+密码：k8BG!qp{3fmKMwa|TERwznJZNt&MSb76
+查看监控地址：https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Farms.console.aliyun.com%2F#/home
+账号1：zixin.ye@1798803447531659.onaliyun.com
+密码：  123456qq
+地址：https://arms.console.aliyun.com/?spm=5176.12818093.ProductAndService--ali--widget-home-product-recent.dre1.5adc16d0Q7xGTc#/home
+
+#### 进度约定
+- 0% - 79%：表示开发阶段：可能的状态有：开发中、联调中、设计审核、产品审核
+- 80% - 89%：表示测试阶段：可能的状态有：已提测、等待测试、修复测试反馈问题等
+- 90% - 99%：表示准发版阶段：可能的状态有：测试通过代发版、由于其他原因暂不发版等
+- 100%：表示完成发版阶段
+
+
+
+#### 备注约定
+备注是对工作的进度、状态及是否存在其他问题的补充，约定格式如下：
+
+任务序号 + 任务标题 + （任务进度 + 任务状态 + 其他补充）
+
+例如：
+
+1、大课交付1.0 (进度70%，开发中，UI设计稿调整三版导致整体进度延期2天)
+2、B端新增概况主页（进度85%，测试中）
+
+
+
+#### 大需求的拆解约定
+大需求主要关注整体进度，因此汇报的时候需分为整体汇总及拆分汇总，
+
+如：
+
+4、女娲云教室SaaS一期B端（进度50%，开发中）
+- 登录（进度70%）
+- 云教室（进度30%）
+- 课程模块（进度69%）
+- 公共组件与UI高保真（进度50%）
+#### 下周进度：
+1、如果是新需求：  xxxx(进度0%， 下周开发)
+2、如果是进行中的需求： xxxx(进度50%，继续开发或联调)
+3、如果是暂停的需求： xxxx（进度30%，由于xxx原因，需求暂停，或延后到xxx @徐琳 ）

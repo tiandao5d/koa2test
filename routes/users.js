@@ -103,4 +103,4 @@ function abc(nums = [8, 8], target = 8) {
   }
   return [a, b]
 }
-console.log(abc());
+// console.log(abc());

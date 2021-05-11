@@ -2,6 +2,8 @@ const open = require("open");
 const users = require("./users.js");
 const fs = require("fs");
 const path = require("path");
+const test = require('../services/test')
+test()
 module.exports = (router) => {
   router.get("/abc", async (ctx, next) => {
     await new Promise((res) => {
