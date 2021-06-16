@@ -1,0 +1,37 @@
+// git 流程
+// 人多，代码冲突可能性太高，规范git流程
+
+// 拉取开发分支
+git fetch -a
+git checkout -b xl-feat-xx origin/uat
+
+// 开发完成有了commit后，保存自己的开发分支到远程
+// 避免电脑出问题造成不便
+git push origin xl-feat-xx
+
+// 提交 需要合并到 stage 的代码
+// commitId为自己开发分支上新开发的commitId
+// 如果有多条，可以合并为一条
+git fetch -a
+git checkout -b xl-feat-xx_stage origin/stage
+git cherry-pick <commitId>
+git push origin xl-feat-xx_stage
+
+// 上线后删除自己的远程分支
+git push -d origin xl-feat-xx_stage
+
+
+// crm-fe 项目 问题
+布局太死扩展困难
+冗余 文件 代码 太多
+文件层级太深
+
+
+---团队有贡献
+im的git公用分支推行
+crm-fe布局调整，减小页面渲染压力
+---想法，老大的支持和提醒
+改变crm-fe的整体布局，删除crm-fe的冗余代码
+推行代码注释，git提交规范，命名规范
+---不足
+比较静心与代码，管理上差些，业务跟进上差些
