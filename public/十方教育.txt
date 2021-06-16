@@ -80,8 +80,11 @@ pichu （前端CRM项目） crm-fe
 // 十方座位表
 https://docs.qq.com/sheet/DVVdMemRlTEp5RGxM?tab=bb08j2
 
+dev
 __token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjM0Nzg65b6Q55CzIiwiZXhwIjoxNjIzMDMzNDUzfQ.4PEcJladTboa5dZMpcCKkFyw_kGpacP9xzar1ynEm1k
-// 米哥遗产
+stage 
+__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjk4Mzg65b6Q55CzIiwiZXhwIjoxNjI0NTA4MDAwfQ.aFDI2Axy3crVGZnRCofxdWpZslsp8QcgfXmlIJppwtA
+// 米哥赠送
 http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjM1MTrogIHnsbMiLCJleHAiOjE2MjIyNTQyOTh9.Mqq_p3h3tHwnbXkxnTOUOHs5CbnXTJ94QyIskVbup9k
 
 
@@ -94,7 +97,7 @@ http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIU
 账号1：zixin.ye@1798803447531659.onaliyun.com
 密码：  123456qq
 地址：https://arms.console.aliyun.com/?spm=5176.12818093.ProductAndService--ali--widget-home-product-recent.dre1.5adc16d0Q7xGTc#/home
-
+https://study-stage.tenclass.com/shop/00001/nuwa_cloud/6414?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjQxNjU6VHJpc3RlIiwiZXhwIjoxNjIzNDcwODEyfQ.c1jelzf0iRdbkMmDM0UTs6UBFNxEpLPFFrWtluphwNQ
 #### 进度约定
 - 0% - 79%：表示开发阶段：可能的状态有：开发中、联调中、设计审核、产品审核
 - 80% - 89%：表示测试阶段：可能的状态有：已提测、等待测试、修复测试反馈问题等
@@ -129,3 +132,35 @@ http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIU
 1、如果是新需求：  xxxx(进度0%， 下周开发)
 2、如果是进行中的需求： xxxx(进度50%，继续开发或联调)
 3、如果是暂停的需求： xxxx（进度30%，由于xxx原因，需求暂停，或延后到xxx @徐琳 ）
+
+nuwa-im-fe 自己的分支打包
+ci/cd -> pipelines -> stages
+
+// crm-fe 项目 问题
+布局太死扩展困难
+冗余 文件 代码 太多
+文件层级太深
+
+// git 流程
+人多，代码冲突可能性太高，规范git流程
+
+
+https://pichu.tenclass.com/edu_center/connect_preview/preview/409
+
+// trtc
+https://web.sdk.qcloud.com/trtc/webrtc/doc/zh-cn/Client.html
+
+// live 服务 api 地址
+http://172.18.30.157:8080/swagger-ui.html#/C%E7%AB%AF%E6%8E%A5%E5%8F%A3/roomCreateUsingGET
+
+// 业务服务 api 地址
+https://yapi.tenclass.com/project/81/interface/api/cat_9783
+
+
+// 带新人
+
+加一下飞书：https://longsee.feishu.cn/invite/member/A8GZ8VxycZCWCvII
+
+新人手册：https://longsee.feishu.cn/docs/doccn2Gyq3RfjR38sWRJ6R58qYW
+
+体验报告

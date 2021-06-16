@@ -25,8 +25,8 @@ onerror(app);
 
 // middlewares
 app
-  .use(bodyparser())
   .use(cors)
+  .use(bodyparser())
   .use(json())
   .use(logger())
   .use(require("koa-static")(__dirname + "/public"))

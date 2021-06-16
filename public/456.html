@@ -9,49 +9,8 @@
 </head>
 
 <body>
-    <script>
-        /**
-         * grid-template-rows // 行模板
-         * grid-template-columns // 列模板
-         * grid-template-areas // 区域模板
-         * grid-auto-flow // 
-         * grid-row-gap // 行间隔
-         * grid-column-gap // 列间隔
-         * grid-gap // 行
-        */
-        // let a = []
-        // var obj = new Proxy(a, {
-        //     get: function (target, key, receiver) {
-        //         // console.log(arguments)
-        //         console.log(`getting ${key}!`);
-        //         return Reflect.get(target, key, receiver);
-        //     },
-        //     set: function (target, key, value, receiver) {
-        //         console.log(`setting ${key}!`);
-        //         return Reflect.set(target, key, value, receiver);
-        //     }
-        // });
-        // // obj[obj.length] = 123
-        // obj.push(456)
-        // // console.log(obj, a)
-        let x = {a: 1, b: 1}
-        function fn(o, k, v) {
-            Object.defineProperty(o, k, {
-                get(){
-                    console.log('get')
-                    return v;
-                },
-                set(nv){
-                    console.log('set')
-                    v = nv
-                }
-            })
-        }
-        for(let k in x){
-            fn(x, k, x[k]);
-        }
-        x.a = 123;
-        console.log(x.a)
+
+<script>
     </script>
 </body>
 
