@@ -2,16 +2,102 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="./js/socket.io.js"></script>
 </head>
 
 <body>
+  <div>
+    <video id="v1" autoplay></video>
+    <video id="v2" autoplay></video>
+    <div style="height: 50px;">456</div>
+    <input type="text" id="user">
+    <button onclick="call()">开始</button>
+    <button onclick="accept()">接受</button>
+  </div>
+  <script>
+    /*
+    {desc: {…}, uid: "111"} "111"
+4456.html:1 Uncaught (in promise) DOMException: Failed to execute 'addIceCandidate' on 'RTCPeerConnection': Error processing ICE candidate
+456.html:1 Uncaught (in promise) DOMException: Failed to execute 'createAnswer' on 'RTCPeerConnection': PeerConnection cannot create an answer in a state other than have-remote-offer or have-local-pranswer.
+    */
+    const user = document.getElementById('user')
+    const socket = io("http://172.18.210.152:8800/chat");
+    socket.on('vcall_rtcmsg', (res) => {
+      const uid = user.value
+      console.log(res, uid)
+      if (uid !== res.uid) {
+        if (res.desc) {
+          answer(res)
+        } else if (res.candidate) {
+          candidate(res)
+        }
+      }
+    })
+    if (localStorage.getItem('uid')) {
+      user.value = localStorage.getItem('uid')
+    }
+    user.onchange = () => {
+      localStorage.setItem('uid', user.value)
+    }
+    let v1 = document.getElementById('v1')
+    let v2 = document.getElementById('v2')
+    let pc = new RTCPeerConnection(null)
+    pc.ontrack = gotRemoteStream;
+    pc.onicecandidate = onIceCandidate;
+    let isf = false
 
-<script>
-    </script>
+    function call() {
+      isf = true
+      const uid = user.value
+      vinit()
+      pc.createOffer({
+        offerToReceiveAudio: 1,
+        offerToReceiveVideo: 1
+      }).then((desc) => {
+        pc.setLocalDescription(desc)
+        socket.emit('vcall_rtcmsg', { desc, uid })
+      });
+    }
+    function answer(res) {
+      pc.setRemoteDescription(res.desc)
+    }
+    function accept() {
+      const uid = user.value
+      vinit()
+      pc.createAnswer().then((desc) => {
+        pc.setLocalDescription(desc)
+        socket.emit('vcall_rtcmsg', { desc, uid })
+      });
+    }
+    async function vinit() {
+      const localStream = await navigator.mediaDevices
+        .getUserMedia({
+          audio: false,
+          video: true
+        })
+      v1.srcObject = localStream
+      localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+    }
+
+    function gotRemoteStream(e) {
+      let remoteStream = new MediaStream()
+      remoteStream.addTrack(e.track, remoteStream);
+      v2.srcObject = remoteStream;
+    }
+    function onIceCandidate(event) {
+      // console.log(event)
+      // pc.addIceCandidate(event.candidate)
+      const uid = user.value
+      socket.emit('vcall_rtcmsg', { candidate: event.candidate, uid })
+    }
+    function candidate(res) {
+      pc.addIceCandidate(res.candidate)
+    }
+  </script>
 </body>
 
 </html>

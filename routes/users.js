@@ -26,24 +26,16 @@ module.exports = (router) => {
     const liveUserId = ctx.query.liveUserId || "xll";
     const token = ctx.query.token || "10010";
     const obj = await fetch(
-      `https://live-stage.nuwaclass.com/live/c/room/v1/preRoom?liveUserId=${liveUserId}&token=${token}`,
-    ).then(res => res.json()).catch(err => {
-      return err
-    });
+      `https://live-stage.nuwaclass.com/live/c/room/v1/preRoom?liveUserId=${liveUserId}&token=${token}`
+    )
+      .then((res) => res.json())
+      .catch((err) => {
+        return err;
+      });
     console.log(obj);
     ctx.body = obj;
   });
 };
-fetch(
-  "https://live-dev.nuwaclass.com/c/room/v1/preRoom?liveUserId=b0f8dd9553723cd80c07f73d3f863541",
-  { headers: { token: "a6003085ec0048869a78c1769f9e2337" } }
-)
-  .then((res) => {
-    return res.json();
-  })
-  .then((res) => {
-    console.log(res);
-  });
 // 解压steam 上的 mods
 async function unzipMods(src = "/Users/linxu/work/don't", tosrc = "/Users/linxu/work/don't/def") {
   console.log("解压开始");
@@ -132,4 +124,3 @@ function abc(nums = [8, 8], target = 8) {
   }
   return [a, b];
 }
-// console.log(abc());

@@ -92,7 +92,7 @@ http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIU
 飞书文档：https://longsee.feishu.cn/docs/doccnPcdE09fpkfnjy2JN1g6ob0#
 阿里云地址：https://signin.aliyun.com/login.htm?spm=5176.12901015.yrepazatz.6.1c4a525cuvo9u9&callback=https%3A%2F%2Fwww.aliyun.com%2F%3Fspm%3D5176.3047821.0.0.6ebf70b4BJjoXG#/main
 账号： developer@1798803447531659.onaliyun.com
-密码：k8BG!qp{3fmKMwa|TERwznJZNt&MSb76
+密码：k8M.nHhdCky60dDy%P
 查看监控地址：https://account.aliyun.com/login/login.htm?oauth_callback=https%3A%2F%2Farms.console.aliyun.com%2F#/home
 账号1：zixin.ye@1798803447531659.onaliyun.com
 密码：  123456qq
@@ -104,6 +104,11 @@ https://study-stage.tenclass.com/shop/00001/nuwa_cloud/6414?__token=eyJ0eXAiOiJK
 - 90% - 99%：表示准发版阶段：可能的状态有：测试通过代发版、由于其他原因暂不发版等
 - 100%：表示完成发版阶段
 
+// 阿波罗
+http://apollo-stage.tenclass.com
+
+stage-frotend
+sgO8MBq7m9PP1vNG
 
 
 #### 备注约定
@@ -156,6 +161,8 @@ http://172.18.30.157:8080/swagger-ui.html#/C%E7%AB%AF%E6%8E%A5%E5%8F%A3/roomCrea
 // 业务服务 api 地址
 https://yapi.tenclass.com/project/81/interface/api/cat_9783
 
+打印机文档
+https://longsee.feishu.cn/docs/doccnBgK6htTDWssBRlWvRhy4Cd
 
 // 带新人
 
@@ -163,4 +170,30 @@ https://yapi.tenclass.com/project/81/interface/api/cat_9783
 
 新人手册：https://longsee.feishu.cn/docs/doccn2Gyq3RfjR38sWRJ6R58qYW
 
-体验报告
+gitlab 找 杨吉 提供自己的邮箱账号
+https://gitlab.weike.fm/
+收一下邮件
+
+yapi 账号 叶子鑫 提供自己的账号
+https://yapi.tenclass.com/
+
+飞书 自己开账号，然后申请加入
+https://longsee.feishu.cn/invite/member/A8GZ8VxycZCWCvII
+
+企业微信登录tapd 叶子鑫拉进
+
+幕客 UI合作时UI拉进
+
+http://ci.tingshubao.net jenkins 账号 何梦飞
+
+https://exmail.qq.com/login
+
+体验报告，周报，日报
+
+
+新人文档完善： 
+1、开通账号权限：飞书、git、企业邮箱、幕客、yapi、jenkins、
+2、拉人进群：微信值班群、企微群
+3、座位表
+4、带新人溜一圈
+5、新人产品体验报告

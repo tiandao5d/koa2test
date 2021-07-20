@@ -65,11 +65,7 @@ function abc() {
   var chat = io.of("/chat").on("connection", (socket) => {
     // 实时通讯视频聊天
     socket.on("vcall_rtcmsg", async (msg) => {
-      // await new Promise((res) => {
-      //   setTimeout(() => {
-      //     res();
-      //   }, 3000);
-      // });
+      console.log(msg)
       chat.emit("vcall_rtcmsg", msg);
     });
   });
