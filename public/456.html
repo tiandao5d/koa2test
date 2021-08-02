@@ -10,93 +10,181 @@
 </head>
 
 <body>
-  <div>
-    <video id="v1" autoplay></video>
-    <video id="v2" autoplay></video>
+  <!-- <div>
+    <video id="vid" autoplay></video>
     <div style="height: 50px;">456</div>
     <input type="text" id="user">
-    <button onclick="call()">开始</button>
-    <button onclick="accept()">接受</button>
-  </div>
+    <button id="callButton">Call</button>
+    <button id="acceptButton">Accept</button>
+    <button id="hangUpButton">Hang Up</button>
+  </div> -->
   <script>
     /*
     {desc: {…}, uid: "111"} "111"
 4456.html:1 Uncaught (in promise) DOMException: Failed to execute 'addIceCandidate' on 'RTCPeerConnection': Error processing ICE candidate
 456.html:1 Uncaught (in promise) DOMException: Failed to execute 'createAnswer' on 'RTCPeerConnection': PeerConnection cannot create an answer in a state other than have-remote-offer or have-local-pranswer.
     */
-    const user = document.getElementById('user')
-    const socket = io("http://172.18.210.152:8800/chat");
-    socket.on('vcall_rtcmsg', (res) => {
-      const uid = user.value
-      console.log(res, uid)
-      if (uid !== res.uid) {
-        if (res.desc) {
-          answer(res)
-        } else if (res.candidate) {
-          candidate(res)
-        }
-      }
+    // const user = document.getElementById('user')
+    // const vid = document.getElementById('vid')
+    // const callButton = document.getElementById('callButton');
+    // const acceptButton = document.getElementById('acceptButton');
+    // const hangUpButton = document.getElementById('hangUpButton');
+    // const socket = initIo()
+    // const remoteStream = new MediaStream();
+    // let localStream, pc
+
+    // initUid()
+    // callButton.onclick = start
+    // acceptButton.onclick = accept
+    // hangUpButton.onclick = stop
+    // // 初始化socket
+    // function initIo() {
+    //   const socket = io("http://172.18.210.152:8800/chat");
+
+    //   socket.on('vcall_rtcmsg', (res) => {
+    //     const uid = user.value
+    //     if (uid !== res.uid) {
+    //       onSocketMsg(res)
+    //     }
+    //   })
+
+    //   return socket
+    // }
+    // function emit({ desc }) {
+    //   const uid = user.value
+    //   socket.emit('vcall_rtcmsg', { desc, uid })
+    // }
+
+    // // socket消息监听
+    // async function onSocketMsg(res) {
+    //   console.log(res)
+    //   const desc = res.desc
+    //   if (desc.type === 'answer') {
+    //     pc.setRemoteDescription(desc)
+    //   } else if (desc.type === 'offer') {
+    //     if (!pc) {
+    //       const obj = await initPC2()
+    //       pc = obj.pc
+    //     }
+    //     pc.setRemoteDescription(desc)
+    //     createPranswer(pc)
+    //   } else if (desc.type === 'pranswer') {
+    //     pc.setRemoteDescription(desc)
+    //   }
+    // }
+
+    // // 初始化用户数据
+    // function initUid() {
+    //   if (localStorage.getItem('uid')) {
+    //     user.value = localStorage.getItem('uid')
+    //   }
+    //   user.onchange = () => {
+    //     localStorage.setItem('uid', user.value)
+    //   }
+    // }
+
+    // // 初始化本地流
+    // async function initLocalStream() {
+    //   return navigator.mediaDevices.getUserMedia({
+    //     audio: true,
+    //     video: true
+    //   })
+    // }
+
+    // // 初始化pc
+    // async function initPC() {
+    //   const pc = new RTCPeerConnection({
+    //     rtcpMuxPolicy: "require",
+    //     bundlePolicy: "max-bundle",
+    //     iceServers: [{ urls: ["stun:turn2.l.google.com"] }],
+    //     certificates: [{}],
+    //   })
+    //   const localStream = await initLocalStream()
+    //   vid.srcObject = localStream
+    //   localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
+    //   return { pc, localStream }
+    // }
+
+    // async function createOffer(pc) {
+    //   return pc.createOffer({
+    //     offerToReceiveAudio: 1,
+    //     offerToReceiveVideo: 1
+    //   }).then(desc => {
+    //     pc.setLocalDescription(desc)
+    //     emit({ desc })
+    //     return desc
+    //   })
+    // }
+
+    // function initPC2() {
+    //   const pc = new RTCPeerConnection({
+    //     rtcpMuxPolicy: "require",
+    //     bundlePolicy: "max-bundle",
+    //     iceServers: [{ urls: ["stun:turn2.l.google.com"] }],
+    //     certificates: [{}],
+    //   })
+    //   pc.ontrack = (e) => {
+    //     vid.srcObject = remoteStream;
+    //     remoteStream.addTrack(e.track, remoteStream);
+    //   }
+    //   return { pc }
+    // }
+
+    // async function createPranswer(pc) {
+    //   return pc.createAnswer().then(desc => {
+    //     desc.sdp = desc.sdp.replace(/a=recvonly/g, 'a=inactive');
+    //     desc.type = 'pranswer';
+    //     pc.setLocalDescription(desc)
+    //     emit({ desc })
+    //     return desc
+    //   })
+    // }
+
+    // async function createAnswer(pc) {
+    //   return pc.createAnswer().then(desc => {
+    //     desc.sdp = desc.sdp.replace(/a=inactive/g, 'a=recvonly');
+    //     desc.type = 'answer';
+    //     pc.setLocalDescription(desc)
+    //     emit({ desc })
+    //     return desc
+    //   })
+    // }
+
+
+    // async function start() {
+    //   if (!pc) {
+    //     const obj = await initPC()
+    //     localStream = obj.localStream
+    //     pc = obj.pc
+    //   }
+    //   createOffer(pc)
+    // }
+    // function accept() {
+    //   createAnswer(pc)
+    // }
+    // function stop() {
+    //   console.log('stop')
+    // }
+
+
+    // vip全能 js
+    let ya = [{ "name": "PR第十二课：字幕2", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/53c9a4cb5285890817521257920/v.f100030.mp4" }, { "name": "第二十六课：优秀的转场", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/37e9b6cf5285890811786604354/v.f100030.mp4" }, { "name": "PR第一章：01-03", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/cc11c2c65285890811319192054/v.f100030.mp4" }, { "name": "PR第二章：04-06", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/5fa6a94c5285890811352057297/v.f100030.mp4" }, { "name": "PR第三章：07—09", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3b24c0cf5285890811358600489/v.f100030.mp4" }, { "name": "PR第十课：PR剪辑的方法", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f1840c6b5285890811364552419/v.f100030.mp4" }, { "name": "PR第十三课：音频1", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3d5105295285890811436627081/v.f100030.mp4" }, { "name": "PR第十四课：音频2", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/d54ae5545285890811438577545/v.f100030.mp4" }, { "name": "PR第十五课", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/268258105285890811439716635/v.f100030.mp4" }, { "name": "PR第十六课", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a13516d85285890811468899161/v.f100030.mp4" }, { "name": "PR第十七课：抠像1", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/6d97b4845285890811471644060/v.f100030.mp4" }, { "name": "PR第十八课：抠像2", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3220180b5285890811477243930/v.f100030.mp4" }, { "name": "PR第十九节：多机位剪辑", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/ff151b2a5285890811480071774/v.f100030.mp4" }, { "name": "第二十课茶吧机商业案例", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/34d3e0b95285890811484100040/v.f100030.mp4" }, { "name": "第二十一课：调色基础菜单学习01", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/09b24aee5285890812079722176/v.f100030.mp4" }, { "name": "第二十二课：调色基础菜单学习02", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/332b5be55285890812080126906/v.f100030.mp4" }, { "name": "第二十三课：调色基础菜单学习03", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3a743b895285890812080468424/v.f100030.mp4" }, { "name": "第二十四课：实战调色01", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/7de15aa15285890812081034417/v.f100030.mp4" }, { "name": "第二十五课：实战调色02", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8266f3025285890812081213536/v.f100030.mp4" }, { "name": "第二十九课：专题片剪辑01", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/1cde4d845285890812011907319/v.f100030.mp4" }, { "name": "第三十课：专题片剪辑02", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/612743e65285890812012598017/v.f100030.mp4" }, { "name": "PR第二十七课：无缝转场1", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/36b037e65285890816643251062/v.f100030.mp4" }, { "name": "PR第二十八课：无缝转场2", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3fe40c945285890816643637617/v.f100030.mp4" }, { "name": "PR第十一课：字幕1", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/58ba26d05285890817521493941/v.f100030.mp4" }, { "name": "PR第九课：了解关键帧与蒙版", "url": "https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/7b4c02e95285890818107263380/v.f754006.mp4" }]
+    // vip
+    let yb = [{"name":"PR第九课：了解关键帧与蒙版","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/2970057d5285890818106031052/v.f754006.mp4"},{"name":"PR第十二课：字幕2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/825e3e465285890817518255110/v.f100030.mp4"},{"name":"第二十六课：优秀的转场","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/826a41625285890812081219620/v.f100030.mp4"},{"name":"PR第一章：01-03","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/d3103dab5285890811319490670/v.f100030.mp4"},{"name":"PR第二章：04-06","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f4564a495285890811347060395/v.f100030.mp4"},{"name":"PR第三章：07—09","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/56d528c35285890811355743040/v.f100030.mp4"},{"name":"PR第十课：PR剪辑的方法","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a27d09eb5285890811363492480/v.f100030.mp4"},{"name":"PR第十三课：音频1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/643bff415285890812613375012/v.f100030.mp4"},{"name":"PR第十四课：音频2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8173a9ea5285890811437294171/v.f100030.mp4"},{"name":"PR第十五课","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/5e65194d5285890811440777291/v.f100030.mp4"},{"name":"PR第十六课","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a2f6d3385285890811468914695/v.f100030.mp4"},{"name":"PR第十七课：抠像1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/5ff2bb045285890811471093314/v.f100030.mp4"},{"name":"PR第十八课：抠像2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/e4f1c2ee5285890811476217906/v.f100030.mp4"},{"name":"第十九节课：多机位剪辑","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/885de2d15285890811478635471/v.f100030.mp4"},{"name":"第二十课：茶吧机商业案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/0ca76f6b5285890811480611496/v.f100030.mp4"},{"name":"第二十一课：调色基础菜单学习01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/07b839f25285890812079673553/v.f100030.mp4"},{"name":"第二十二课：调色基础菜单学习02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/30e4f15c5285890812080030570/v.f100030.mp4"},{"name":"第二十三课：调色基础菜单学习03","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3ca41ac85285890812080546453/v.f100030.mp4"},{"name":"第二十四课：实战调色01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/460934655285890812080953511/v.f100030.mp4"},{"name":"第二十五课：实战调色02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/4f26b4d95285890811783578348/v.f100030.mp4"},{"name":"第三十课：专题片剪辑02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/1157a86a5285890812011425699/v.f100030.mp4"},{"name":"第二十九课：专题片剪辑01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a965b88a5285890812013389517/v.f100030.mp4"},{"name":"PR第二十七课：无缝转场1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/5b9148d85285890816640774937/v.f100030.mp4"},{"name":"PR第二十八课：无缝转场2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/9a44a70d5285890816641135448/v.f100030.mp4"},{"name":"PR第十一课：字幕1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/0442d0cd5285890817520125659/v.f100030.mp4"}]
+    // 全能第二阶段ae
+    let yc = [{"name":" 第38课：E3D动画引擎与世界变换2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/2c9544465285890818670900320/v.f754006.mp4"},{"name":" 第40课：E3D公用2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/55c9ff5c5285890818681248389/v.f754006.mp4"},{"name":" 第21课：AE形状图层功能","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/5f5121135285890818681671650/v.f754006.mp4"},{"name":" 第41课：E3D渲染设置1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/93628f045285890818685699086/v.f754006.mp4"},{"name":"第22课：形状图层特效","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/64cc18f75285890818806576480/v.f754006.mp4"},{"name":"第23课：MG转场案例制作","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a84c60b25285890818807154266/v.f754006.mp4"},{"name":" 第24课：模糊效果与UI动效","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/af4ad6b15285890818807452732/v.f754006.mp4"},{"name":" 第25课：AE图层样式","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f7438a355285890818808208592/v.f754006.mp4"},{"name":" 第42课：E3D渲设置22","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/26d8ee2c5285890818914365401/v.f754006.mp4"},{"name":"第26课：故障风格效果案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f590c19b5285890818808197906/v.f754006.mp4"},{"name":"第23课：单点 两点跟踪","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f2bdf12d5285890813941455416/v.f100030.mp4"},{"name":"第24课：平行边角定位","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3d8599c95285890813942372620/v.f100030.mp4"},{"name":"第25课：画面稳定处理","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/4b5fc8735285890813942951483/v.f100030.mp4"},{"name":"第26课：1跟踪反求与实景合成","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/7f3af4805285890814002683411/v.f100030.mp4"},{"name":"第27课：场景跟踪案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a19d5ede5285890813998067755/v.f100030.mp4"},{"name":"第27课：生成","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/4ad2d44e5285890814925103964/v.f100030.mp4"},{"name":"第28课：风格化","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/51e4f3155285890814925414966/v.f100030.mp4"},{"name":" 第34课：E3D基础界面、挤压功能","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/bd1db71d5285890818349847771/v.f754006.mp4"},{"name":" 第35课：E3D粒子复制","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/ed6e0bab5285890818350524418/v.f754006.mp4"},{"name":" 第1课：认识界面和素材基本操作","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/486159765285890818487801825/v.f754006.mp4"},{"name":" 第2课：合成窗口操作，预览和效果添加","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8a58f51c5285890818488399305/v.f754006.mp4"},{"name":" 第3课：图层基本属性和关键帧动画","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/0e6aa9115285890818490342880/v.f754006.mp4"},{"name":" 第4课：幻灯片制作与渲染输出","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/cfc2c1975285890818529925480/v.f754006.mp4"},{"name":" 第5课：keylight抠像处理","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/614943f65285890818562727851/v.f754006.mp4"},{"name":" 第6课：蒙版与遮罩效果","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/9dedb2f35285890818563024596/v.f754006.mp4"},{"name":" 第7课：多重曝光效果合成制作","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a545fd125285890818563371428/v.f754006.mp4"},{"name":" 第8课：运动规律-动画曲线编辑器","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/ac36b6625285890818563667796/v.f754006.mp4"},{"name":"第9课：父子层级与动态拼贴","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/eb4276115285890818564074822/v.f754006.mp4"},{"name":" 第10课：手写字制作与音频波形","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/45cf0f155285890818565614708/v.f754006.mp4"},{"name":"第11课：变换效果制作导视栏","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3fd0afcb5285890818572160803/v.f754006.mp4"},{"name":" 第12课：常用表达式效果","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/505c9e395285890818572893192/v.f754006.mp4"},{"name":"第13课：循环表达式应用","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/83ee75c05285890818576849653/v.f754006.mp4"},{"name":"第14课：AE三维层属性详解","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/16a8d59a5285890818578511956/v.f754006.mp4"},{"name":"第15课：影视级三维合成效果","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8e44fb315285890818610035995/v.f754006.mp4"},{"name":"第16课：与现实的光影交互","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/7ef5f29a5285890818613497665/v.f754006.mp4"},{"name":"第17课：四大调色命令与图层混合","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/c7a269c75285890818621050428/v.f754006.mp4"},{"name":" 第36课：E3D粒子外观2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/65f95b8e5285890818623211398/v.f754006.mp4"},{"name":"第37课：E3D辅助通道与群组公用2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/6f513aea5285890818623617042/v.f754006.mp4"},{"name":"第38课：E3D三角光效动画案例2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/ba86209f5285890818624595948/v.f754006.mp4"},{"name":" 第19课：MG文字动画案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/bcdbb7b15285890818624696230/v.f754006.mp4"},{"name":" 第20课：AE破碎文字案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/7aecc1475285890818661140172/v.f754006.mp4"},{"name":" 2第44课：E3D芯片1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/645a10035285890818959853539/v.f754006.mp4"},{"name":" 第43课：E3D输出设置2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/2b612ef25285890818914549007/v.f754006.mp4"},{"name":"2第45课：E3D芯片2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/92566eac5285890818960432810/v.f754006.mp4"},{"name":"2第46课：E3D实景合成1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/843627105285890819053917245/v.f754006.mp4"},{"name":"4 第47课：E3D实景合成2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/093d36a85285890819055025326/v.f754006.mp4"},{"name":"第18课：熟练掌握AE文字工具","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/68e068905285890818623393524/v.f754006.mp4"}]
+    // 全能第一阶段pr
+    let yd = [{"name":"PR第十课：PR剪辑的方法","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/0c912a275285890811361604744/v.f100030.mp4"},{"name":"第十九课：多机位剪辑","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/885f7a735285890811478638119/v.f100030.mp4"},{"name":"第二十课茶吧机商业案例","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/f8b168355285890811483879352/v.f100030.mp4"},{"name":"第二十二课：调色基础菜单学习02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/334cb6a75285890812080141398/v.f100030.mp4"},{"name":"第二十三课：调色基础菜单学习03","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/3ca53b875285890812080548612/v.f100030.mp4"},{"name":"第二十四课：实战调色01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/4609b9125285890812080954379/v.f100030.mp4"},{"name":"PR第三课：去除水印及字幕","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/6a6b8e535285890816314604798/v.f100030.mp4"},{"name":"字幕2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/432cbced5285890817517825520/v.f100030.mp4"},{"name":"字幕1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/fdc6f8a35285890817523912111/v.f754006.mp4"},{"name":"PR第一课：初识PR2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/290489f05285890818575254108/v.f754006.mp4"},{"name":"PR第十五课：调色基础菜单学习01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/933e7fca5285890818685679868/v.f754006.mp4"},{"name":" PR第二十二课：无缝转场2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a9179d925285890818675742323/v.f754006.mp4"},{"name":"第二十三课：专题片剪辑01","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/0bbd98ff5285890818822679369/v.f754006.mp4"},{"name":"第二十四课：专题片剪辑02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/057941d85285890818808839117/v.f754006.mp4"},{"name":"第二十课：优秀的转场","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/06e128555285890818839132844/v.f754006.mp4"},{"name":"PR第七课：音频1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/b42a72605285890818848737862/v.f754006.mp4"},{"name":"第十九课：实战调色02","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/53cd0f6c5285890818901386006/v.f754006.mp4"},{"name":" PR第十一课：抠像1","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8a6cd2375285890818912248882/v.f754006.mp4"},{"name":"PR第十二课：抠像2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/8803e6cb5285890818912135713/v.f754006.mp4"},{"name":"PR第八课：音频2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/cb1c4b705285890819037088631/v.f754006.mp4"},{"name":"PR第二课：剪辑三步曲2","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/26d1de9d5285890819052200233/v.f754006.mp4"},{"name":"PR第十课","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/bbde75555285890819190628726/v.f754006.mp4"},{"name":"PR第九课：了解关键帧与蒙版","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/4e14dd7b3701925918999593292/v.f754006.mp4"},{"name":" 第十三课：多机位剪辑","url":"https://1500002513.vod2.myqcloud.com/43828c9bvodtranscq1500002513/a63e2f683701925919039105964/v.f754006.mp4"}]
+
+    // const arr = [getnames(ya),getnames(yb),getnames(yc),getnames(yd)]
+    function getnames(arr){
+      return arr.map(o => o.url)
+    }
+    let str = ''
+    getnames(yb).forEach(s => {
+      str += `<div>${s}</div>`
     })
-    if (localStorage.getItem('uid')) {
-      user.value = localStorage.getItem('uid')
-    }
-    user.onchange = () => {
-      localStorage.setItem('uid', user.value)
-    }
-    let v1 = document.getElementById('v1')
-    let v2 = document.getElementById('v2')
-    let pc = new RTCPeerConnection(null)
-    pc.ontrack = gotRemoteStream;
-    pc.onicecandidate = onIceCandidate;
-    let isf = false
-
-    function call() {
-      isf = true
-      const uid = user.value
-      vinit()
-      pc.createOffer({
-        offerToReceiveAudio: 1,
-        offerToReceiveVideo: 1
-      }).then((desc) => {
-        pc.setLocalDescription(desc)
-        socket.emit('vcall_rtcmsg', { desc, uid })
-      });
-    }
-    function answer(res) {
-      pc.setRemoteDescription(res.desc)
-    }
-    function accept() {
-      const uid = user.value
-      vinit()
-      pc.createAnswer().then((desc) => {
-        pc.setLocalDescription(desc)
-        socket.emit('vcall_rtcmsg', { desc, uid })
-      });
-    }
-    async function vinit() {
-      const localStream = await navigator.mediaDevices
-        .getUserMedia({
-          audio: false,
-          video: true
-        })
-      v1.srcObject = localStream
-      localStream.getTracks().forEach(track => pc.addTrack(track, localStream));
-    }
-
-    function gotRemoteStream(e) {
-      let remoteStream = new MediaStream()
-      remoteStream.addTrack(e.track, remoteStream);
-      v2.srcObject = remoteStream;
-    }
-    function onIceCandidate(event) {
-      // console.log(event)
-      // pc.addIceCandidate(event.candidate)
-      const uid = user.value
-      socket.emit('vcall_rtcmsg', { candidate: event.candidate, uid })
-    }
-    function candidate(res) {
-      pc.addIceCandidate(res.candidate)
-    }
+    document.body.innerHTML = str
   </script>
 </body>
 

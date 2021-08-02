@@ -61,7 +61,11 @@ app.on("error", function (err, ctx) {
 // browserSync.watch('./public/123.html').on('change', browserSync.reload)
 abc();
 function abc() {
-  var io = require("socket.io")(server);
+  var io = require("socket.io")(server, {
+    cors: {
+      origin: '*'
+    }
+  });
   var chat = io.of("/chat").on("connection", (socket) => {
     // 实时通讯视频聊天
     socket.on("vcall_rtcmsg", async (msg) => {

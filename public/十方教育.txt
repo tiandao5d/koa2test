@@ -87,7 +87,8 @@ __token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjk4Mzg65b6
 // 米哥赠送
 http://localhost:5015/shop/00001/live/1195?__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjM1MTrogIHnsbMiLCJleHAiOjE2MjIyNTQyOTh9.Mqq_p3h3tHwnbXkxnTOUOHs5CbnXTJ94QyIskVbup9k
 
-
+// 余舒婷 stage的token
+https://study-stage.tenclass.com/shop/00001/nuwa_cloud/9284?is_pc=1&__token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJjdXJyZW50LXVzZXIiOiIxOjk5OTA65pyJ6ZKx5ZOl5ZOl5ZWK5ZOIIiwiZXhwIjoxNjI5NTMwNTA4fQ.NGcOxPA9W_kC9-Lc3nyEfxGXt61CY0UFYlZO7LPEr6I
 3. ARMS
 飞书文档：https://longsee.feishu.cn/docs/doccnPcdE09fpkfnjy2JN1g6ob0#
 阿里云地址：https://signin.aliyun.com/login.htm?spm=5176.12901015.yrepazatz.6.1c4a525cuvo9u9&callback=https%3A%2F%2Fwww.aliyun.com%2F%3Fspm%3D5176.3047821.0.0.6ebf70b4BJjoXG#/main
@@ -197,3 +198,5 @@ https://exmail.qq.com/login
 3、座位表
 4、带新人溜一圈
 5、新人产品体验报告
+
+https://longsee.feishu.cn/docs/doccneyK7qGO08uBva6PsDlF01d#
